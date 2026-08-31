@@ -1,0 +1,12 @@
+docs/requirements/**/*.png filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.webp filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.gif filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.bmp filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.tif filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.tiff filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.heic filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.avif filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.doc filter=lfs diff=lfs merge=lfs -text
+docs/requirements/**/*.docx filter=lfs diff=lfs merge=lfs -text
