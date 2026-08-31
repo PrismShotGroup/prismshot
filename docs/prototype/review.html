@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050609">
+  <meta name="description" content="PrismShot 棱镜定格官网静态原型评审入口。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>原型评审｜PrismShot 棱镜定格</title>
+  <link rel="icon" href="LOGO3.png" type="image/png">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body class="review-body">
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="site-header review-header">
+    <a class="brand" href="review.html" aria-label="PrismShot 原型评审首页">
+      <img class="brand__mark" src="LOGO3.png" alt="">
+      <span class="brand__copy">
+        <span class="brand__name">Prism Shot</span>
+        <span class="brand__sub">Prototype Review</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="评审导航">
+      <a href="#brief">评审说明</a>
+      <a href="#compare">首页方案</a>
+      <a href="#pages">其他页面</a>
+      <a href="#feedback">整理反馈</a>
+    </nav>
+
+    <div class="header-meta" aria-hidden="true">Review / R01</div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <nav aria-label="移动端评审导航">
+      <a href="#brief">评审说明 <span>01</span></a>
+      <a href="#compare">首页方案 <span>02</span></a>
+      <a href="#pages">其他页面 <span>03</span></a>
+      <a href="#feedback">整理反馈 <span>04</span></a>
+    </nav>
+  </div>
+
+  <main class="review-main" id="main">
+    <section class="review-hero" aria-labelledby="review-title">
+      <div class="review-hero__copy">
+        <div class="eyebrow">Prototype review · Round 01</div>
+        <h1 class="review-title" id="review-title"><span>Review</span><span>The Prism.</span></h1>
+        <p class="review-lede">这不是最终官网，而是一轮关于“第一眼是否像 PrismShot”的共同判断。请先查看居中首页，再看看它能否自然地带你进入社团的活动、主题赛与作品。</p>
+        <div class="button-row review-hero__actions">
+          <a class="btn btn--primary btn--down" href="#compare">先查看首页方案</a>
+          <a class="btn btn--down" href="#brief">了解评审范围</a>
+        </div>
+        <p class="review-hero__hint"><span aria-hidden="true">↗</span> 原型页面会在新标签页打开，方便保留本页并继续查看其他页面。</p>
+      </div>
+
+      <aside class="review-dossier surface" aria-label="本轮原型信息">
+        <img class="review-dossier__mark" src="LOGO3.png" alt="" aria-hidden="true">
+        <div class="review-dossier__top"><span>Review file</span><span>R01 / 2026.08.31</span></div>
+        <div class="review-dossier__count"><strong>05</strong><span>可查看页面<br>Pure static HTML</span></div>
+        <dl class="review-dossier__facts">
+          <div><dt>重点</dt><dd>首页方向与整体体验</dd></div>
+          <div><dt>设备</dt><dd>桌面端 + 手机端</dd></div>
+          <div><dt>反馈</dt><dd>复制文字后发到群内</dd></div>
+        </dl>
+        <p class="review-dossier__privacy"><span aria-hidden="true">●</span> 本页不上传、不保存，也不统计任何反馈。</p>
+      </aside>
+    </section>
+
+    <section class="review-section" id="brief" aria-labelledby="brief-title">
+      <div class="review-section__head reveal">
+        <span class="review-section__number">01</span>
+        <div>
+          <div class="eyebrow">Before you start · 评审边界</div>
+          <h2 id="brief-title">请判断体验，<br>暂时忽略占位内容。</h2>
+        </div>
+      </div>
+
+      <div class="review-scope-grid">
+        <article class="review-scope-card review-scope-card--focus surface reveal">
+          <span class="review-scope-card__label">这一轮请看</span>
+          <ul>
+            <li><strong>首页呈现</strong><span>居中信息、水晶画框与背景能否形成完整的第一印象？</span></li>
+            <li><strong>信息层级</strong><span>是否一眼知道社团是谁、在做什么？</span></li>
+            <li><strong>视觉一致</strong><span>从首页进入内页后，气质是否连贯？</span></li>
+            <li><strong>使用体验</strong><span>导航、展开、大图和手机布局是否顺手？</span></li>
+          </ul>
+        </article>
+
+        <article class="review-scope-card surface reveal">
+          <span class="review-scope-card__label">这一轮先不看</span>
+          <ul>
+            <li><strong>照片内容</strong><span>目前使用 Unsplash 占位图。</span></li>
+            <li><strong>活动资料</strong><span>日期、人物、赛程与文案均为示意。</span></li>
+            <li><strong>社交账号</strong><span>外链和二维码尚未替换为社团资料。</span></li>
+            <li><strong>后台能力</strong><span>投稿、登录、数据管理不在本轮范围。</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="review-public-note reveal">
+        <span class="review-public-note__index">NOTE</span>
+        <p><strong>这是可公开访问的静态链接。</strong> 已设置不让搜索引擎收录，但它不是密码保护；请不要在页面或反馈中放入隐私资料。</p>
+      </aside>
+    </section>
+
+    <section class="review-section" id="compare" aria-labelledby="compare-title">
+      <div class="review-section__head reveal">
+        <span class="review-section__number">02</span>
+        <div>
+          <div class="eyebrow">Homepage direction · 首页方案</div>
+          <h2 id="compare-title">让两侧的光，<br>聚向同一个名字。</h2>
+          <p>居中构图负责建立品牌中心，两侧透明水晶负责形成舞台边界。建议分别在电脑与手机上查看一次。</p>
+        </div>
+      </div>
+
+      <div class="review-choice-grid review-choice-grid--single">
+        <article class="review-choice surface reveal">
+          <div class="review-choice__preview" aria-hidden="true">
+            <span class="review-choice__coordinate">HOME / CENTER</span>
+            <div class="review-mini-wordmark review-mini-wordmark--center"><img src="LOGO2.png" alt=""><i>Photography Club · 棱镜定格</i></div>
+            <span class="review-mini-prism review-mini-prism--left"></span>
+            <span class="review-mini-prism review-mini-prism--right"></span>
+          </div>
+          <div class="review-choice__body">
+            <div class="review-choice__meta"><span>Homepage · Centered</span><span>index.html</span></div>
+            <h3>居中 · 棱镜舞台</h3>
+            <p>社团名称、副标题与简介位于视觉正中，透明水晶从两侧形成带有色散高光的画框。</p>
+            <ul class="review-tags" aria-label="首页特点"><li>品牌中心</li><li>水晶画框</li><li>沉浸单屏</li></ul>
+            <a class="review-open" href="index.html" target="_blank" rel="noopener">打开首页完整页面 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="review-key-question reveal">
+        <span>Key question</span>
+        <p>水晶的大小、亮度与边缘位置，是否把注意力聚向 PrismShot，同时保留足够舒适的阅读空间？</p>
+      </div>
+    </section>
+
+    <section class="review-section" id="pages" aria-labelledby="pages-title">
+      <div class="review-section__head reveal">
+        <span class="review-section__number">03</span>
+        <div>
+          <div class="eyebrow">Walk through · 其他页面</div>
+          <h2 id="pages-title">再走一遍，<br>看看网站是否成立。</h2>
+          <p>内容页统一使用居中首页作为“主页”入口，可从任一页面自然返回品牌主舞台。</p>
+        </div>
+      </div>
+
+      <div class="review-page-grid">
+        <article class="review-page-card reveal">
+          <div class="review-page-card__top"><span>01</span><span>Schedule</span></div>
+          <h3>活动</h3>
+          <p>日历、活动类型、多活动日期，以及过往活动的折叠内容与照片大图。</p>
+          <div class="review-page-card__focus"><span>重点体验</span>月份切换 · 活动展开 · 图片查看</div>
+          <a href="events.html" target="_blank" rel="noopener" aria-label="在新标签页打开活动页">打开页面 <span>↗</span></a>
+        </article>
+
+        <article class="review-page-card reveal">
+          <div class="review-page-card__top"><span>02</span><span>Contest</span></div>
+          <h3>主题赛</h3>
+          <p>当期主题、投稿与投票时间、比赛规则，以及历届冠军作品的展示方式。</p>
+          <div class="review-page-card__focus"><span>重点体验</span>赛程理解 · 投稿入口 · 信息密度</div>
+          <a href="contests.html" target="_blank" rel="noopener" aria-label="在新标签页打开主题赛页">打开页面 <span>↗</span></a>
+        </article>
+
+        <article class="review-page-card reveal">
+          <div class="review-page-card__top"><span>03</span><span>Archive</span></div>
+          <h3>画廊</h3>
+          <p>按日期倒序的瀑布流照片墙，可打开大图、前后切换，并继续加载更多作品。</p>
+          <div class="review-page-card__focus"><span>重点体验</span>浏览节奏 · 大图信息 · 手机瀑布流</div>
+          <a href="gallery.html" target="_blank" rel="noopener" aria-label="在新标签页打开画廊页">打开页面 <span>↗</span></a>
+        </article>
+
+        <article class="review-page-card reveal">
+          <div class="review-page-card__top"><span>04</span><span>Collective</span></div>
+          <h3>关于我们</h3>
+          <p>社团介绍、价值主张与平台入口，二维码区域用于验证未来的联络结构。</p>
+          <div class="review-page-card__focus"><span>重点体验</span>社团印象 · 平台层级 · 联系路径</div>
+          <a href="about.html" target="_blank" rel="noopener" aria-label="在新标签页打开关于我们页">打开页面 <span>↗</span></a>
+        </article>
+      </div>
+
+      <div class="review-prompt-grid" aria-label="建议思考的问题">
+        <p class="reveal"><span>01</span>三秒内能否判断这是一个 VRChat 摄影社团？</p>
+        <p class="reveal"><span>02</span>有哪一段文字太小、太淡，或根本不想读？</p>
+        <p class="reveal"><span>03</span>导航名称是否符合社团成员平时的说法？</p>
+        <p class="reveal"><span>04</span>手机查看时，有没有内容显得拥挤或难操作？</p>
+        <p class="reveal"><span>05</span>如果只能删掉或增加一项内容，你会选什么？</p>
+      </div>
+    </section>
+
+    <section class="review-section review-section--feedback" id="feedback" aria-labelledby="feedback-title">
+      <div class="review-section__head reveal">
+        <span class="review-section__number">04</span>
+        <div>
+          <div class="eyebrow">Take it with you · 整理反馈</div>
+          <h2 id="feedback-title">写在这里，<br>复制到群里。</h2>
+          <p>这个表单没有后端。点击复制后，请把生成的文字粘贴到 QQ 群或共享文档中。</p>
+        </div>
+      </div>
+
+      <div class="review-feedback-layout">
+        <form class="review-form surface reveal" id="review-form">
+          <div class="review-form__notice"><span aria-hidden="true">●</span><strong>仅在你的浏览器中整理文字</strong>，不会提交或保存。</div>
+
+          <div class="review-field review-field--wide">
+            <label>首页整体观感</label>
+            <div class="review-radio-row">
+              <label class="review-radio"><input type="radio" name="home-choice" value="方向清晰" checked><span><strong>✓</strong> 方向清晰</span></label>
+              <label class="review-radio"><input type="radio" name="home-choice" value="水晶需要调整"><span><strong>◇</strong> 水晶需调整</span></label>
+              <label class="review-radio"><input type="radio" name="home-choice" value="信息层级需要调整"><span><strong>≡</strong> 信息需调整</span></label>
+            </div>
+          </div>
+
+          <div class="review-field">
+            <label for="review-page">重点页面</label>
+            <select id="review-page" name="review-page">
+              <option>整体体验</option>
+              <option>首页</option>
+              <option>活动</option>
+              <option>主题赛</option>
+              <option>画廊</option>
+              <option>关于我们</option>
+            </select>
+          </div>
+
+          <div class="review-field">
+            <label for="review-device">查看设备</label>
+            <select id="review-device" name="review-device">
+              <option>电脑</option>
+              <option>手机</option>
+              <option>电脑和手机都看过</option>
+              <option>平板</option>
+            </select>
+          </div>
+
+          <div class="review-field">
+            <label for="review-name">称呼 <span>可选</span></label>
+            <input id="review-name" name="review-name" type="text" maxlength="30" autocomplete="nickname" placeholder="方便群内对照">
+          </div>
+
+          <div class="review-field review-field--wide">
+            <div class="review-field__line"><label for="review-notes">你的反馈</label><output id="review-count" for="review-notes">0 / 2000</output></div>
+            <textarea id="review-notes" name="review-notes" rows="8" maxlength="2000" required placeholder="哪里让你印象深刻？哪里看不懂、不舒服，或觉得不像 PrismShot？越具体越有帮助。"></textarea>
+          </div>
+
+          <div class="review-form__actions review-field--wide">
+            <button class="btn btn--primary btn--plain" type="submit">复制我的反馈</button>
+            <button class="btn btn--plain" id="copy-template" type="button">复制空白模板</button>
+            <button class="review-reset" type="reset">清空</button>
+          </div>
+          <p class="review-copy-status review-field--wide" id="review-copy-status" role="status" aria-live="polite"></p>
+          <div class="review-copy-fallback review-field--wide" id="review-copy-fallback" hidden>
+            <label for="review-copy-output">自动复制被浏览器拦截，请手动复制下面的文字</label>
+            <textarea id="review-copy-output" rows="9" readonly></textarea>
+          </div>
+        </form>
+
+        <aside class="review-feedback-aside reveal">
+          <span class="review-feedback-aside__label">A useful note</span>
+          <blockquote>“手机上的社团名很完整；但正文偏淡，第一遍没有注意到。”</blockquote>
+          <p>“喜欢 / 不喜欢”是起点；再补一句发生在哪个页面、什么设备、为什么，会更容易转成下一版修改。</p>
+          <div class="review-feedback-aside__route"><span>填写</span><i>→</i><span>复制</span><i>→</i><span>粘贴到群内</span></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer review-footer">
+    <div class="site-footer__inner">
+      <span>© <span data-year></span> PrismShot 棱镜定格 · Prototype R01</span>
+      <div class="site-footer__links"><a href="index.html" target="_blank" rel="noopener">打开首页</a><a href="#main">返回顶部</a></div>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="prototype.js"></script>
+  <script>
+    (() => {
+      const form = document.querySelector("#review-form");
+      const notes = document.querySelector("#review-notes");
+      const count = document.querySelector("#review-count");
+      const status = document.querySelector("#review-copy-status");
+      const templateButton = document.querySelector("#copy-template");
+      const fallback = document.querySelector("#review-copy-fallback");
+      const fallbackOutput = document.querySelector("#review-copy-output");
+
+      const blankTemplate = [
+        "【PrismShot 官网原型反馈 · R01】",
+        "首页整体观感：",
+        "重点页面：",
+        "查看设备：电脑 / 手机 / 平板",
+        "",
+        "印象最好的地方：",
+        "",
+        "看不懂或不舒服的地方：",
+        "",
+        "希望增加 / 删除的内容："
+      ].join("\n");
+
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(text);
+            return;
+          } catch (error) {
+            // Fall through to the legacy copy path when browser permission is denied.
+          }
+        }
+
+        const temporary = document.createElement("textarea");
+        temporary.value = text;
+        temporary.setAttribute("readonly", "");
+        temporary.style.position = "fixed";
+        temporary.style.opacity = "0";
+        document.body.appendChild(temporary);
+        temporary.select();
+        const copied = document.execCommand("copy");
+        temporary.remove();
+        if (!copied) throw new Error("copy failed");
+      }
+
+      function reportCopy(message, failed = false) {
+        status.textContent = message;
+        status.classList.toggle("is-error", failed);
+        if (!failed) fallback.hidden = true;
+        window.PrismShotProto?.showToast(message);
+      }
+
+      function offerManualCopy(text) {
+        fallbackOutput.value = text;
+        fallback.hidden = false;
+        fallbackOutput.focus();
+        fallbackOutput.select();
+      }
+
+      notes.addEventListener("input", () => {
+        count.value = `${notes.value.length} / 2000`;
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+        const feedback = [
+          "【PrismShot 官网原型反馈 · R01】",
+          `首页整体观感：${data.get("home-choice")}`,
+          `重点页面：${data.get("review-page")}`,
+          `查看设备：${data.get("review-device")}`,
+          `反馈人：${data.get("review-name") || "未填写"}`,
+          "",
+          "反馈：",
+          String(data.get("review-notes")).trim()
+        ].join("\n");
+
+        try {
+          await copyText(feedback);
+          reportCopy("反馈已复制，请粘贴到 QQ 群或共享文档中。");
+        } catch (error) {
+          offerManualCopy(feedback);
+          reportCopy("浏览器未允许自动复制，已在下方选中文字。", true);
+        }
+      });
+
+      templateButton.addEventListener("click", async () => {
+        try {
+          await copyText(blankTemplate);
+          reportCopy("空白反馈模板已复制。");
+        } catch (error) {
+          offerManualCopy(blankTemplate);
+          reportCopy("浏览器未允许自动复制，已在下方选中文字。", true);
+        }
+      });
+
+      form.addEventListener("reset", () => {
+        window.setTimeout(() => {
+          count.value = "0 / 2000";
+          status.textContent = "";
+          status.classList.remove("is-error");
+          fallback.hidden = true;
+          fallbackOutput.value = "";
+        }, 0);
+      });
+    })();
+  </script>
+</body>
+</html>

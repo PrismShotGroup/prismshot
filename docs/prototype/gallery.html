@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050609">
+  <meta name="description" content="浏览 PrismShot 棱镜定格社团活动历史照片。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>画廊｜PrismShot 棱镜定格原型</title>
+  <link rel="icon" href="LOGO3.png" type="image/png">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="PrismShot 棱镜定格首页"><img class="brand__mark" src="LOGO3.png" alt=""><span class="brand__copy"><span class="brand__name">Prism Shot</span><span class="brand__sub">Photography Club</span></span></a>
+    <nav class="desktop-nav" aria-label="主导航"><a href="index.html">主页</a><a href="events.html">活动</a><a href="contests.html">主题赛</a><a href="gallery.html" aria-current="page">画廊</a><a href="about.html">关于我们</a></nav>
+    <div class="header-meta" aria-hidden="true">Archive / Recent first</div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert><nav aria-label="移动端导航"><a href="index.html">主页 <span>01</span></a><a href="events.html">活动 <span>02</span></a><a href="contests.html">主题赛 <span>03</span></a><a href="gallery.html" aria-current="page">画廊 <span>04</span></a><a href="about.html">关于我们 <span>05</span></a></nav></div>
+
+  <main class="page-shell" id="main">
+    <div class="content-wrap">
+      <section class="page-hero">
+        <div>
+          <div class="eyebrow">Gallery · 活动档案</div>
+          <h1 class="page-title">Photo<br><span class="ghost">Archive</span></h1>
+        </div>
+        <div class="page-hero__aside">
+          <strong>记忆没有标准比例，<br>所以让每张照片自由生长。</strong>
+          <p>这里收录社团活动的历史照片，按拍摄日期由新到旧排列。点击任意画面进入沉浸式查看。</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="gallery-title">
+        <div class="section-head reveal">
+          <div class="section-number">01 / Collection</div>
+          <div>
+            <h2 class="section-title" id="gallery-title">那些值得被<em>再次看见</em>的瞬间</h2>
+            <p class="section-note">原型使用摄影占位素材验证瀑布流与大图查看体验，正式版将替换为社团活动作品。</p>
+          </div>
+        </div>
+
+        <div class="gallery-toolbar reveal">
+          <span class="gallery-count">当前显示 <strong id="visible-count">24</strong> / <span id="total-count">32</span> 张</span>
+          <span>按拍摄日期 · 从新到旧</span>
+        </div>
+
+        <div class="masonry" id="gallery-grid" aria-live="polite"></div>
+        <div class="gallery-load"><button class="btn btn--down" id="load-more" type="button">加载更多照片</button></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner"><span>© <span data-year></span> PrismShot 棱镜定格</span><div class="site-footer__links"><a href="about.html#privacy">隐私说明</a><a href="index.html">返回首页</a><span>Prototype · ZH</span></div></div></footer>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="照片大图查看器" aria-hidden="true">
+    <div class="lightbox__stage"><button class="lightbox__nav lightbox__prev" type="button" aria-label="上一张">←</button><img class="lightbox__image" src="" alt=""><button class="lightbox__nav lightbox__next" type="button" aria-label="下一张">→</button></div>
+    <aside class="lightbox__info"><div class="lightbox__counter">01 / 01</div><h2 class="lightbox__title">作品标题</h2><p class="lightbox__caption"></p><div class="lightbox__meta"></div></aside>
+    <button class="lightbox__close" type="button" aria-label="关闭大图">×</button>
+  </div>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="prototype.js"></script>
+  <script>
+    (() => {
+      const base = "?auto=format&fit=crop&w=1000&q=82";
+      const photos = [
+        ["1492684223066-81342ee5ff30", "散场以前", "Mori", "2026-08-30", "灯光还亮着，合照之后的人群慢慢散开。", "彩色灯光下的活动现场"],
+        ["1514525253161-7a46d19cd819", "蓝色时刻", "Rin", "2026-08-30", "城市合拍活动的幕后记录。", "蓝色舞台灯光中的人群"],
+        ["1531058020387-3be344556be6", "同框", "PrismShot", "2026-08-30", "本期相聚一镜的集体留念。", "暖色灯光下的活动参与者"],
+        ["1506157786151-b8491531f063", "开场光", "Aki", "2026-08-30", "活动开始前，光束先抵达了现场。", "舞台上的强烈光束"],
+        ["1533174072545-7a4b6ad7a6c3", "共振", "Yoru", "2026-08-16", "同镜搭子挑战中的意外瞬间。", "紫色灯光中的现场"],
+        ["1524368535928-5b5e00ddc76b", "任务卡：冷色", "Kite", "2026-08-16", "被限制的颜色，反而打开了新的方向。", "冷色舞台灯与人物剪影"],
+        ["1542751371-adc38448a05e", "另一块屏幕", "Nanami", "2026-08-16", "我们隔着屏幕，也在同一片光里。", "电子竞技现场与屏幕"],
+        ["1516035069371-29a1b244cc32", "快门课", "教练组", "2026-08-09", "摄影教学活动的第一堂插件课。", "手持相机的近景"],
+        ["1493246507139-91e8fad9978e", "雾线", "学员作品", "2026-08-09", "用层次把视线带向远方。", "晨雾中的群山"],
+        ["1500534314209-a25ddb2bd429", "地平线练习", "学员作品", "2026-08-09", "三分构图与负空间练习。", "旷野与远方人物"],
+        ["1500530855697-b586d89ba3ee", "沿途", "匿名", "2026-08-09", "课程结束后的自由拍摄。", "自然风景与远方道路"],
+        ["1487958449943-2429e8be8625", "世界入口", "Lin", "2026-07-26", "每一个世界入口都像一张等待显影的底片。", "现代建筑的几何立面"],
+        ["1441974231531-c6227db76b6e", "森之回声", "Miu", "2026-07-26", "绿色世界合拍活动。", "林间茂密的绿色植物"],
+        ["1470770841072-f978cf4d019e", "湖面来信", "Rin", "2026-07-26", "风停下的时候，倒影变得清晰。", "平静湖面与远山"],
+        ["1473448912268-2022ce9509d8", "穿过树林", "Aki", "2026-07-12", "盲盒卡要求我们只使用自然光。", "光线穿过树林"],
+        ["1470770903676-69b98201ea1c", "慢下来", "匿名", "2026-07-12", "在草地世界里进行的一次长曝光尝试。", "草地与远方山峦"],
+        ["1439853949127-fa647821eba0", "高处的风", "Kite", "2026-06-28", "集体活动结束后留下的单人作品。", "高山与云层景观"],
+        ["1464822759023-fed622ff2c3b", "暮色切片", "Yoru", "2026-06-28", "色彩从天空一层层退去。", "暮色中的山谷"],
+        ["1472214103451-9374bd1c798e", "绿色之外", "Nanami", "2026-06-14", "主题合拍：自然中的几何。", "绿色山地与蜿蜒道路"],
+        ["1501854140801-50d01698950b", "静默岛屿", "Mori", "2026-06-14", "保留大面积留白的一次尝试。", "湖泊中的小岛"],
+        ["1500534623283-312aade485b7", "抵达", "PrismShot", "2026-05-31", "五月末的集体远足记录。", "山谷远足景观"],
+        ["1507525428034-b723cf961d3e", "风景的背面", "Lin", "2026-05-31", "镜头转身以后看到的景色。", "海岸与蓝色海水"],
+        ["1475924156734-496f6cac6ec1", "蓝色距离", "Miu", "2026-05-17", "同镜搭子的互拍作品。", "蓝色山峰与远景"],
+        ["1454496522488-7a8e488e8606", "向光", "Rin", "2026-05-17", "只使用逆光完成的人像环境练习。", "强烈日光下的山景"],
+        ["1433086966358-54859d0ed716", "云层之上", "Aki", "2026-05-03", "一场发生在高空世界的合拍。", "云雾中的高山"],
+        ["1472396961693-142e6e269027", "微光路径", "匿名", "2026-05-03", "跟随环境里的光完成构图。", "森林里的小路"],
+        ["1501785888041-af3ef285b470", "橙色气流", "Kite", "2026-04-19", "色彩主题挑战作品。", "橙色山丘与天空"],
+        ["1506744038136-46273834b3fb", "安静生长", "Miu", "2026-04-19", "低饱和自然世界的观察。", "雾气中的树林"],
+        ["1469474968028-56623f02e42e", "未命名旅途", "unknown", "2026-04-05", "春季活动记录。", "山间道路与风景"],
+        ["1428908728789-d2de25dbd4e2", "潮汐线", "Yoru", "2026-04-05", "在海边世界等待光线变化。", "海边岩石与潮水"],
+        ["1443632864897-14973fa006cf", "第一场雨", "Lin", "2026-03-22", "雨景摄影练习。", "雨后朦胧的城市"],
+        ["1511497584788-876760111969", "夜航", "Nanami", "unknown", "日期待补录的活动照片。", "黑夜中的城市灯光"]
+      ];
+
+      const grid = document.querySelector("#gallery-grid");
+      const loadButton = document.querySelector("#load-more");
+      const visibleCount = document.querySelector("#visible-count");
+      const totalCount = document.querySelector("#total-count");
+      let visible = 24;
+
+      photos.forEach(([id, title, author, date, caption, alt], index) => {
+        const source = `https://images.unsplash.com/photo-${id}${base}`;
+        const button = document.createElement("button");
+        button.className = "gallery-item js-lightbox-trigger";
+        button.type = "button";
+        button.hidden = index >= visible;
+        button.dataset.image = source.replace("w=1000", "w=1800").replace("q=82", "q=88");
+        button.dataset.title = title;
+        button.dataset.author = author === "unknown" ? "未知" : author;
+        button.dataset.date = date === "unknown" ? "日期未知" : date;
+        button.dataset.caption = caption;
+        button.dataset.alt = alt;
+        button.innerHTML = `<img src="${source}" alt="${alt}" loading="lazy"><span class="gallery-item__meta"><strong>${title}</strong><span>${date === "unknown" ? "日期未知" : date}</span></span>`;
+        grid.appendChild(button);
+      });
+
+      totalCount.textContent = photos.length;
+      visibleCount.textContent = Math.min(visible, photos.length);
+
+      loadButton.addEventListener("click", () => {
+        visible = Math.min(visible + 24, photos.length);
+        Array.from(grid.children).forEach((item, index) => { item.hidden = index >= visible; });
+        visibleCount.textContent = visible;
+        loadButton.hidden = visible >= photos.length;
+        window.PrismShotProto?.refreshLightboxItems();
+      });
+    })();
+  </script>
+</body>
+</html>

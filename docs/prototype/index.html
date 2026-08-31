@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050609">
+  <meta name="description" content="PrismShot 棱镜定格——面向 VRChat 摄影爱好者与视频创作者的灵感聚集地。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>PrismShot 棱镜定格｜首页原型</title>
+  <link rel="icon" href="LOGO3.png" type="image/png">
+  <link rel="preload" href="assets/crystal-left.png" as="image" type="image/png">
+  <link rel="preload" href="assets/crystal-right.png" as="image" type="image/png">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body class="home-body centered-home-body">
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="site-header site-header--home">
+    <a class="brand" href="index.html" aria-label="PrismShot 棱镜定格首页">
+      <img class="brand__mark" src="LOGO3.png" alt="">
+      <span class="brand__copy">
+        <span class="brand__name">Prism Shot</span>
+        <span class="brand__sub">Photography Club</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="index.html" aria-current="page">主页</a>
+      <a href="events.html">活动</a>
+      <a href="contests.html">主题赛</a>
+      <a href="gallery.html">画廊</a>
+      <a href="about.html">关于我们</a>
+    </nav>
+
+    <div class="header-meta" aria-hidden="true">Prototype · Centered</div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <nav aria-label="移动端导航">
+      <a href="index.html" aria-current="page">主页 <span>01</span></a>
+      <a href="events.html">活动 <span>02</span></a>
+      <a href="contests.html">主题赛 <span>03</span></a>
+      <a href="gallery.html">画廊 <span>04</span></a>
+      <a href="about.html">关于我们 <span>05</span></a>
+    </nav>
+  </div>
+
+  <main class="home-main centered-home" id="main">
+    <div class="centered-axis" aria-hidden="true"></div>
+    <div class="centered-figure" aria-hidden="true"></div>
+
+    <div class="centered-crystal centered-crystal--left" aria-hidden="true">
+      <img src="assets/crystal-left.png" alt="" decoding="async" fetchpriority="high">
+    </div>
+    <div class="centered-crystal centered-crystal--right" aria-hidden="true">
+      <img src="assets/crystal-right.png" alt="" decoding="async" fetchpriority="high">
+    </div>
+
+    <section class="centered-stage" aria-labelledby="home-title">
+      <div class="centered-stage__kicker">Virtual photography collective</div>
+
+      <h1 class="centered-wordmark" id="home-title" aria-label="PRISM SHOT">
+        <span class="centered-wordmark__crop" aria-hidden="true"><img src="LOGO2.png" alt=""></span>
+      </h1>
+
+      <p class="centered-subtitle">Photography Club <span>棱镜定格</span></p>
+      <span class="centered-divider" aria-hidden="true"></span>
+      <p class="centered-intro">这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台～</p>
+    </section>
+
+    <aside class="social-rail" aria-label="社交平台">
+      <a href="https://im.qq.com/" target="_blank" rel="noopener noreferrer" aria-label="QQ">
+        <span class="social-rail__label" aria-hidden="true">QQ</span><img class="social-brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/qq.svg" width="18" height="18" alt="">
+      </a>
+      <a href="https://hello.vrchat.com/" target="_blank" rel="noopener noreferrer" aria-label="VRChat">
+        <span class="social-rail__label" aria-hidden="true">VRChat</span><img class="social-brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/vrchat.svg" width="18" height="18" alt="">
+      </a>
+      <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+        <span class="social-rail__label" aria-hidden="true">Discord</span><img class="social-brand-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/discord.svg" width="18" height="18" alt="">
+      </a>
+    </aside>
+
+    <div class="centered-home__note" aria-hidden="true">In virtual worlds, we capture real moments</div>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="prototype.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050609">
+  <meta name="description" content="PrismShot 棱镜定格主题摄影赛：查看当期主题、赛程、规则与历届冠军。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>主题赛｜PrismShot 棱镜定格原型</title>
+  <link rel="icon" href="LOGO3.png" type="image/png">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="prototype.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="PrismShot 棱镜定格首页"><img class="brand__mark" src="LOGO3.png" alt=""><span class="brand__copy"><span class="brand__name">Prism Shot</span><span class="brand__sub">Photography Club</span></span></a>
+    <nav class="desktop-nav" aria-label="主导航"><a href="index.html">主页</a><a href="events.html">活动</a><a href="contests.html" aria-current="page">主题赛</a><a href="gallery.html">画廊</a><a href="about.html">关于我们</a></nav>
+    <div class="header-meta" aria-hidden="true">Contest / Issue 07</div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="打开菜单"><span></span></button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert><nav aria-label="移动端导航"><a href="index.html">主页 <span>01</span></a><a href="events.html">活动 <span>02</span></a><a href="contests.html" aria-current="page">主题赛 <span>03</span></a><a href="gallery.html">画廊 <span>04</span></a><a href="about.html">关于我们 <span>05</span></a></nav></div>
+
+  <main class="page-shell" id="main">
+    <div class="content-wrap">
+      <section class="page-hero">
+        <div>
+          <div class="eyebrow">Theme contest · 本期主题</div>
+          <h1 class="page-title">Theme<br><span class="ghost">Contest</span></h1>
+        </div>
+        <div class="page-hero__aside">
+          <strong>同一个主题，<br>无数种观看世界的方式。</strong>
+          <p>每期围绕一个主题展开摄影赛。投稿与投票在社群内完成，官网负责呈现赛程与获奖作品。</p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="current-contest-title">
+        <div class="section-head reveal">
+          <div class="section-number">01 / Current</div>
+          <div>
+            <h2 class="section-title" id="current-contest-title">正在发生的<em>观看练习</em></h2>
+            <p class="section-note">以下主题、日期和链接均为原型演示数据，正式上线前由社团内容配置替换。</p>
+          </div>
+        </div>
+
+        <article class="contest-current surface reveal">
+          <div class="contest-current__copy">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:20px"><span class="contest-issue">PRISM THEME · 07</span><span class="status status--live" id="contest-status">投稿中</span></div>
+              <h3 class="contest-theme">霓虹之后<small>After the neon fades</small></h3>
+              <p class="contest-current__summary">当光源离开画面，色彩还会留下些什么？本期请围绕“余光、残影与夜色中的呼吸”进行创作，题材与拍摄方式不限。</p>
+            </div>
+            <div class="button-row">
+              <a class="btn btn--primary" href="#" data-toast="原型提示：正式版将跳转至群相册投稿链接。">前往群相册</a>
+              <a class="btn" href="#contest-rules">查看完整规则</a>
+            </div>
+          </div>
+          <div class="contest-current__visual" role="img" aria-label="霓虹灯光下的活动现场占位图"></div>
+        </article>
+      </section>
+
+      <section class="section section--tight" id="contest-rules" aria-labelledby="rules-title">
+        <div class="section-head reveal">
+          <div class="section-number">02 / Rules</div>
+          <div><h2 class="section-title" id="rules-title">简单规则，<em>专注表达</em></h2></div>
+        </div>
+
+        <div class="contest-rules-layout reveal">
+          <div>
+            <div class="callout">每位成员可提交 1 张作品，无技术要求，新人也欢迎积极报名！</div>
+            <dl class="contest-rules">
+              <div class="contest-rule"><dt>作品要求</dt><dd>题材贴合当期主题即可，无过多限制；上传至群内指定相册并标注照片比例。</dd></div>
+              <div class="contest-rule"><dt>投票方式</dt><dd>投稿结束后的周六开启群内投票，至次周三截止。官网不接收作品，也不记录票数。</dd></div>
+              <div class="contest-rule"><dt>胜负判定</dt><dd>得票数最高者获胜；若票数相同，由管理员进行最终投票。</dd></div>
+              <div class="contest-rule"><dt>优胜奖品</dt><dd>2000 日元 Booth 自选礼品。<span style="color:var(--amber)">可转赠，不兑现。</span></dd></div>
+            </dl>
+          </div>
+          <div>
+            <div class="contest-dates">
+              <div class="contest-date"><span>投稿期 · UTC+8</span><strong>08.24 — 09.06</strong></div>
+              <div class="contest-date"><span>投票期 · UTC+8</span><strong>09.12 — 09.16</strong></div>
+            </div>
+            <p style="margin:28px 0 0;color:var(--muted);font-size:.78rem">状态会按照 Asia/Shanghai 时间自动切换为“即将开始 / 投稿中 / 等待投票 / 投票中 / 已结束”。原型日期仅用于演示状态逻辑。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--line" aria-labelledby="champions-title">
+        <div class="section-head reveal">
+          <div class="section-number">03 / Archive</div>
+          <div>
+            <h2 class="section-title" id="champions-title">历届冠军，<em>一张图记住一期</em></h2>
+            <p class="section-note">这里只展示主题、冠军作品与作者展示名。作品图为原型占位素材。</p>
+          </div>
+        </div>
+
+        <div class="champions-grid reveal">
+          <article class="champion-card">
+            <div class="champion-card__image"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1000&q=84" alt="旷野中的层叠地貌与远方人物" loading="lazy"><div class="champion-card__meta"><span>ISSUE 06 · CHAMPION</span><h3>「边界以外」</h3><p>摄影 · Lin</p></div></div>
+          </article>
+          <article class="champion-card">
+            <div class="champion-card__image"><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1000&q=84" alt="晨雾与群山之间的光线" loading="lazy"><div class="champion-card__meta"><span>ISSUE 05 · CHAMPION</span><h3>「醒来之前」</h3><p>摄影 · 匿名</p></div></div>
+          </article>
+          <article class="champion-card">
+            <div class="champion-card__image"><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=84" alt="夜色中的远方灯光" loading="lazy"><div class="champion-card__meta"><span>ISSUE 04 · CHAMPION</span><h3>「一束远光」</h3><p>摄影 · Yoru</p></div></div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer__inner"><span>© <span data-year></span> PrismShot 棱镜定格</span><div class="site-footer__links"><a href="about.html#privacy">隐私说明</a><a href="index.html">返回首页</a><span>Prototype · ZH</span></div></div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="prototype.js"></script>
+  <script>
+    (() => {
+      const statusNode = document.querySelector("#contest-status");
+      const now = new Date();
+      const periods = {
+        submitStart: new Date("2026-08-24T00:00:00+08:00"),
+        submitEnd: new Date("2026-09-06T23:59:59+08:00"),
+        voteStart: new Date("2026-09-12T00:00:00+08:00"),
+        voteEnd: new Date("2026-09-16T23:59:59+08:00")
+      };
+      let label = "即将开始";
+      let live = false;
+      if (now >= periods.submitStart && now <= periods.submitEnd) { label = "投稿中"; live = true; }
+      else if (now > periods.submitEnd && now < periods.voteStart) label = "等待投票";
+      else if (now >= periods.voteStart && now <= periods.voteEnd) { label = "投票中"; live = true; }
+      else if (now > periods.voteEnd) label = "已结束";
+      statusNode.textContent = label;
+      statusNode.classList.toggle("status--live", live);
+      statusNode.classList.toggle("status--soon", !live);
+    })();
+  </script>
+</body>
+</html>
