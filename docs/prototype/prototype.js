@@ -68,8 +68,14 @@
       root.style.setProperty("--my", `${Math.round(y * 100)}%`);
 
       if (!reduceMotion && document.querySelector(".home-main")) {
-        root.style.setProperty("--px", (x - 0.5).toFixed(3));
-        root.style.setProperty("--py", (y - 0.5).toFixed(3));
+        const offsetX = x - 0.5;
+        const offsetY = y - 0.5;
+        root.style.setProperty("--px", offsetX.toFixed(3));
+        root.style.setProperty("--py", offsetY.toFixed(3));
+        root.style.setProperty("--crystal-left-x", `${(offsetX * 18).toFixed(2)}px`);
+        root.style.setProperty("--crystal-left-y", `${(offsetY * 12).toFixed(2)}px`);
+        root.style.setProperty("--crystal-right-x", `${(offsetX * -20).toFixed(2)}px`);
+        root.style.setProperty("--crystal-right-y", `${(offsetY * -14).toFixed(2)}px`);
       }
       pointerFrame = 0;
     });

@@ -24,6 +24,10 @@
   --radius: 2px;
   --mx: 50%;
   --my: 25%;
+  --crystal-left-x: 0px;
+  --crystal-left-y: 0px;
+  --crystal-right-x: 0px;
+  --crystal-right-y: 0px;
 }
 
 *,
@@ -1106,20 +1110,81 @@ a {
     drop-shadow(0 13px 24px rgba(0, 0, 0, 0.45));
 }
 
-.centered-wordmark__crop {
+.centered-wordmark__crop,
+.centered-wordmark__refraction {
   position: absolute;
   inset: 0;
   display: block;
   overflow: hidden;
 }
 
-.centered-wordmark__crop img {
+.centered-wordmark__crop img,
+.centered-wordmark__refraction img {
   position: absolute;
   top: -61.1%;
   left: -65.22%;
   width: 166.18%;
   height: auto;
   max-width: none;
+}
+
+.centered-wordmark__refraction {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(100deg, transparent 8%, rgba(0, 0, 0, 0.28) 27%, #000 44% 56%, rgba(0, 0, 0, 0.24) 73%, transparent 92%);
+  mask-image: linear-gradient(100deg, transparent 8%, rgba(0, 0, 0, 0.28) 27%, #000 44% 56%, rgba(0, 0, 0, 0.24) 73%, transparent 92%);
+  -webkit-mask-position: 165% center;
+  mask-position: 165% center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 48% 100%;
+  mask-size: 48% 100%;
+  animation: centered-wordmark-refraction 17s cubic-bezier(0.45, 0, 0.22, 1) infinite;
+  will-change: opacity, mask-position;
+}
+
+.centered-wordmark__refraction img {
+  filter: brightness(1.42) contrast(1.1) saturate(1.78) hue-rotate(-8deg);
+  transform-origin: center;
+  animation: centered-wordmark-prism 17s ease-in-out infinite;
+  will-change: filter, transform;
+}
+
+@keyframes centered-wordmark-refraction {
+  0%, 15% {
+    opacity: 0;
+    -webkit-mask-position: 165% center;
+    mask-position: 165% center;
+  }
+  25% { opacity: 0.16; }
+  47% { opacity: 0.4; }
+  69% {
+    opacity: 0.18;
+    -webkit-mask-position: -65% center;
+    mask-position: -65% center;
+  }
+  77%, 100% {
+    opacity: 0;
+    -webkit-mask-position: -65% center;
+    mask-position: -65% center;
+  }
+}
+
+@keyframes centered-wordmark-prism {
+  0%, 18%, 100% {
+    filter: brightness(1.3) contrast(1.08) saturate(1.55) hue-rotate(-12deg);
+    transform: translate3d(-3px, 0, 0) scale(1.002);
+  }
+  48% {
+    filter: brightness(1.55) contrast(1.14) saturate(1.95) hue-rotate(8deg);
+    transform: translate3d(3px, -1px, 0) scale(1.005);
+  }
+  72% {
+    filter: brightness(1.36) contrast(1.1) saturate(1.7) hue-rotate(18deg);
+    transform: translate3d(1px, 0, 0) scale(1.003);
+  }
 }
 
 .centered-subtitle {
@@ -1210,9 +1275,18 @@ a {
   transform-origin: center;
   transition: transform 0.32s ease-out;
   will-change: transform;
+  --crystal-flare-delay: 0s;
+  --crystal-flare-duration: 7s;
+  --crystal-flare-size: clamp(76px, 8vw, 138px);
+  --crystal-flare-x: 50%;
+  --crystal-flare-y: 50%;
+  --crystal-sheen-delay: 0s;
+  --crystal-sheen-duration: 12s;
 }
 
 .centered-crystal img {
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: 100%;
   max-width: none;
@@ -1220,18 +1294,43 @@ a {
   filter: contrast(1.03) saturate(0.92) drop-shadow(0 0 28px rgba(141, 226, 255, 0.08));
 }
 
+.centered-crystal::before {
+  position: absolute;
+  z-index: 2;
+  top: var(--crystal-flare-y);
+  left: var(--crystal-flare-x);
+  width: var(--crystal-flare-size);
+  aspect-ratio: 1;
+  content: "";
+  opacity: 0.14;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.88);
+  background:
+    linear-gradient(90deg, transparent 0 49.35%, rgba(255, 255, 255, 0.42) 49.85% 50.15%, transparent 50.65%),
+    linear-gradient(0deg, transparent 0 49.45%, rgba(255, 255, 255, 0.3) 49.9% 50.1%, transparent 50.55%),
+    linear-gradient(135deg, transparent 0 49.45%, rgba(132, 243, 255, 0.28) 49.9% 50.1%, transparent 50.55%),
+    linear-gradient(45deg, transparent 0 49.5%, rgba(255, 107, 214, 0.2) 49.92% 50.08%, transparent 50.5%),
+    radial-gradient(circle, #fff 0 1.2%, rgba(255, 255, 255, 0.92) 1.8%, rgba(132, 243, 255, 0.3) 8%, rgba(255, 107, 214, 0.1) 21%, transparent 58%);
+  filter: blur(0.2px);
+  mix-blend-mode: screen;
+  animation: centered-crystal-flare var(--crystal-flare-duration) ease-in-out var(--crystal-flare-delay) infinite;
+  will-change: opacity, transform;
+}
+
 .centered-crystal::after {
   position: absolute;
+  z-index: 1;
   inset: 0;
   content: "";
-  opacity: 0.13;
-  background: linear-gradient(112deg, transparent 28%, rgba(132, 243, 255, 0.82) 43%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 107, 214, 0.68) 56%, transparent 72%);
-  background-position: 120% 0;
-  background-size: 230% 100%;
+  opacity: 0.04;
+  background: linear-gradient(112deg, transparent 31%, rgba(132, 243, 255, 0.58) 42%, rgba(255, 255, 255, 0.92) 49%, rgba(255, 107, 214, 0.45) 56%, transparent 69%);
+  background-position: 135% 0;
+  background-size: 260% 100%;
   mix-blend-mode: screen;
   -webkit-mask: var(--crystal-mask) center / contain no-repeat;
   mask: var(--crystal-mask) center / contain no-repeat;
-  animation: centered-crystal-sheen 9s ease-in-out infinite;
+  animation: centered-crystal-sheen var(--crystal-sheen-duration) cubic-bezier(0.45, 0, 0.2, 1) var(--crystal-sheen-delay) infinite;
+  will-change: opacity, background-position;
 }
 
 .centered-crystal--left {
@@ -1240,7 +1339,14 @@ a {
   height: 140svh;
   aspect-ratio: 940 / 1672;
   --crystal-mask: url("assets/crystal-left.png");
-  transform: translate3d(calc(var(--px, 0) * 10px), calc(var(--py, 0) * 6px), 0);
+  --crystal-flare-delay: -1.4s;
+  --crystal-flare-duration: 6.8s;
+  --crystal-flare-size: clamp(90px, 9vw, 154px);
+  --crystal-flare-x: 46%;
+  --crystal-flare-y: 41%;
+  --crystal-sheen-delay: -2.1s;
+  --crystal-sheen-duration: 11.6s;
+  transform: translate3d(var(--crystal-left-x), var(--crystal-left-y), 0);
 }
 
 .centered-crystal--right {
@@ -1248,17 +1354,37 @@ a {
   right: -1vw;
   aspect-ratio: 941 / 1672;
   --crystal-mask: url("assets/crystal-right.png");
-  transform: translate3d(calc(var(--px, 0) * -12px), calc(var(--py, 0) * -7px), 0);
-}
-
-.centered-crystal--right::after {
-  animation-delay: -4.5s;
+  --crystal-flare-delay: -4.2s;
+  --crystal-flare-duration: 7.7s;
+  --crystal-flare-size: clamp(70px, 7vw, 118px);
+  --crystal-flare-x: 64%;
+  --crystal-flare-y: 48.5%;
+  --crystal-sheen-delay: -6.4s;
+  --crystal-sheen-duration: 13.4s;
+  transform: translate3d(var(--crystal-right-x), var(--crystal-right-y), 0);
 }
 
 @keyframes centered-crystal-sheen {
-  0%, 24% { background-position: 120% 0; opacity: 0.07; }
-  52% { opacity: 0.17; }
-  76%, 100% { background-position: -120% 0; opacity: 0.07; }
+  0%, 17% { background-position: 135% 0; opacity: 0.025; }
+  34% { opacity: 0.08; }
+  54% { opacity: 0.16; }
+  73% { background-position: -135% 0; opacity: 0.06; }
+  81%, 100% { background-position: -135% 0; opacity: 0.025; }
+}
+
+@keyframes centered-crystal-flare {
+  0%, 100% {
+    opacity: 0.11;
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+  43% {
+    opacity: 0.23;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  58% {
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
 .centered-home__note {
@@ -2682,6 +2808,19 @@ button.calendar-day:hover,
     opacity: 0.66;
   }
 
+  .centered-crystal::before {
+    animation-duration: 10s;
+  }
+
+  .centered-crystal::after {
+    animation-duration: 18s;
+  }
+
+  .centered-wordmark__refraction,
+  .centered-wordmark__refraction img {
+    animation-duration: 21s;
+  }
+
   .centered-crystal--left {
     left: -22vw;
   }
@@ -2754,6 +2893,21 @@ button.calendar-day:hover,
     opacity: 0.56;
   }
 
+  .centered-crystal::before {
+    display: none;
+  }
+
+  .centered-crystal::after {
+    opacity: 0.045;
+    background-position: 35% 0;
+    animation: none;
+  }
+
+  .centered-wordmark__refraction,
+  .centered-wordmark__refraction img {
+    animation-duration: 22s;
+  }
+
   .centered-crystal--left {
     left: -38vw;
   }
@@ -2807,6 +2961,30 @@ button.calendar-day:hover,
   .crystal-edge,
   .centered-crystal {
     transform: none;
+  }
+
+  .centered-crystal::before {
+    opacity: 0.1;
+    transform: translate(-50%, -50%) scale(0.9);
+    animation: none !important;
+  }
+
+  .centered-crystal::after {
+    opacity: 0.045;
+    background-position: 45% 0;
+    animation: none !important;
+  }
+
+  .centered-wordmark__refraction {
+    opacity: 0.1;
+    -webkit-mask-position: 48% center;
+    mask-position: 48% center;
+    animation: none !important;
+  }
+
+  .centered-wordmark__refraction img {
+    transform: none;
+    animation: none !important;
   }
 }
 
