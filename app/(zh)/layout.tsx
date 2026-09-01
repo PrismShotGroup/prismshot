@@ -17,7 +17,11 @@ export default function ChineseRootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="zh-CN" className={fontVariables}>
+    <html
+      lang="zh-CN"
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+    >
       <body>{children}</body>
     </html>
   );

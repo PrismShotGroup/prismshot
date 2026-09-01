@@ -17,7 +17,11 @@ export default function EnglishRootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={fontVariables}>
+    <html
+      lang="en"
+      className={fontVariables}
+      data-scroll-behavior="smooth"
+    >
       <body>{children}</body>
     </html>
   );

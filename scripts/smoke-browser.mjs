@@ -163,6 +163,14 @@ await runFlow(
     ]);
     check((await page.locator("html").getAttribute("lang")) === "en", "English html lang missing");
     check(await page.getByRole("link", { name: "Home", exact: true }).first().getAttribute("aria-current") === "page", "English current navigation missing");
+
+    await page.goto(`${baseUrl}/events`, { waitUntil: "networkidle" });
+    await Promise.all([
+      page.waitForURL(`${baseUrl}/contests`),
+      page.getByRole("link", { name: "主题赛", exact: true }).first().click(),
+    ]);
+    await page.waitForTimeout(1000);
+    check((await page.evaluate(() => window.scrollY)) === 0, "route navigation did not reset scroll position to the top");
   },
 );
 
