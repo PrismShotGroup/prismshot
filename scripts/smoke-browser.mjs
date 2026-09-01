@@ -162,6 +162,37 @@ await runFlow(
     check((await dialog.count()) === 0, "photo viewer did not close");
     check(await photoTrigger.evaluate((node) => node === document.activeElement), "photo viewer did not restore focus");
     check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), "mobile events page has horizontal overflow");
+
+    await page.goto(`${baseUrl}/contests`, { waitUntil: "networkidle" });
+    const landscapeChampion = page.getByRole("button", { name: "醒来之前" });
+    check(await landscapeChampion.isVisible(), "mobile contest champion is not visible");
+    await landscapeChampion.scrollIntoViewIfNeeded();
+    await landscapeChampion.locator("img").evaluate((image) => {
+      if (image.complete && image.naturalWidth > 0) return;
+      return new Promise((resolve, reject) => {
+        image.addEventListener("load", resolve, { once: true });
+        image.addEventListener("error", reject, { once: true });
+      });
+    });
+    const championRatio = await landscapeChampion.evaluate((node) => {
+      const image = node.querySelector("img");
+      const bounds = node.getBoundingClientRect();
+      return {
+        displayed: bounds.width / bounds.height,
+        natural: image ? image.naturalWidth / image.naturalHeight : 0,
+      };
+    });
+    check(
+      Math.abs(championRatio.displayed - championRatio.natural) < 0.02,
+      `champion preview does not preserve the source aspect ratio (${championRatio.displayed} vs ${championRatio.natural})`,
+    );
+    await landscapeChampion.click();
+    const contestDialog = page.getByRole("dialog", { name: "照片大图查看器" });
+    check(await contestDialog.isVisible(), "contest champion viewer did not open on mobile");
+    check(await contestDialog.locator("img").evaluate((image) => getComputedStyle(image).objectFit === "contain"), "contest viewer crops the full image");
+    await page.keyboard.press("Escape");
+    check(await landscapeChampion.evaluate((node) => node === document.activeElement), "contest viewer did not restore focus");
+    check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), "mobile contest page has horizontal overflow");
   },
 );
 
@@ -172,6 +203,14 @@ await runFlow(
     await page.goto(`${baseUrl}/contests`, { waitUntil: "networkidle" });
     check(await page.getByText("投稿中", { exact: true }).isVisible(), "contest status is not submitting at the configured date");
     check((await page.getByText(/等待投票/).count()) === 0, "forbidden intermediate contest state is present");
+    const champion = page.getByRole("button", { name: "边界以外" });
+    await champion.click();
+    const contestDialog = page.getByRole("dialog", { name: "照片大图查看器" });
+    check(await contestDialog.isVisible(), "contest champion did not open the shared photo viewer");
+    check((await contestDialog.locator("aside").textContent())?.includes("第 06 期"), "contest viewer is missing issue metadata");
+    await page.keyboard.press("Escape");
+    check(await champion.evaluate((node) => node === document.activeElement), "contest viewer did not restore focus");
+    check((await page.locator("img:not([alt])").count()) === 0, "contest page contains an image without alt text");
 
     await page.goto(`${baseUrl}/gallery`, { waitUntil: "networkidle" });
     const photos = page.locator('button[aria-label^="活动档案"]');
@@ -181,6 +220,7 @@ await runFlow(
     await photos.first().click();
     check(await page.getByRole("dialog", { name: "照片大图查看器" }).isVisible(), "gallery did not reuse the photo viewer");
     await page.keyboard.press("Escape");
+    check((await page.locator("img:not([alt])").count()) === 0, "gallery contains an image without alt text");
 
     await page.goto(`${baseUrl}/about`, { waitUntil: "networkidle" });
     check((await page.locator('a[target="_blank"]').count()) === 5, "about page does not expose five platforms");

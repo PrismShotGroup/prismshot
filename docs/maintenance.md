@@ -8,6 +8,7 @@
 - `content/events.ts`：活动日历、活动介绍与活动照片。
 - `content/contests.ts`：当期主题赛、状态边界、规则和历届冠军。
 - `content/gallery.ts`：画廊照片与分页文案。
+- `content/photo-assets.ts`：摄影源图登记、真实尺寸、中英文替代文本和可选焦点。
 - `content/about.ts`：关于文案、五个平台账号与外链。
 - `content/readiness.ts`：正式发布占位门禁。
 
@@ -19,11 +20,22 @@
 
 ## 摄影图片
 
-1. 将源图放入 `assets/source/events/`，使用稳定、无空格的文件名。
-2. 在内容配置中引用 `/generated/events/<文件名>-1600.webp`。
-3. 运行 `npm run images:build`。
+横图和竖图使用同一套流程，不需要把原图预先裁成统一比例。建议保留社团提供的最大可用版本；源图经 EXIF 方向纠正后的宽度不得低于 1600 像素。常见的 3840×2160 横图可直接使用；相机方向信息纠正后为竖图时，应登记为 2160×3840。
 
-脚本会校正 EXIF 方向，但不会复制 EXIF 元数据；每张源图会生成 480、960、1600 像素宽的 WebP 与 AVIF。网页通过 `<picture>` 和 `sizes` 选择合适版本，不直接发布源图。
+1. 将 JPG、JPEG 或 PNG 原图放入 `assets/source/photos/`，使用稳定、无空格的文件名，例如 `summer-meetup-01.jpg`。
+2. 在 `content/photo-assets.ts` 登记同名 `key`、EXIF 方向纠正后的原图 `width` / `height`，以及中英文 `alt`。需要控制封面式裁切位置时，可选填百分比焦点 `focalPoint: { x, y }`。
+3. 在 `content/events.ts`、`content/gallery.ts` 或 `content/contests.ts` 中通过 `asset: photoAssets.<记录名>` 引用。不要手写 `/generated/` 路径，也不要把 `-1600.webp` 当作内容配置。
+4. 运行 `npm run images:build`；准备提交时运行 `npm run build`。
+
+脚本会校正 EXIF 方向，但不会复制 EXIF 元数据；每张源图会生成 480、960、1600 像素宽的 WebP 与 AVIF。网页通过 `<picture>` 和 `sizes` 选择合适版本，不直接发布源图。构建会拒绝未登记或重复的源图、错误的真实尺寸、宽度不足的原图，以及缺失或尺寸错误的生成变体。
+
+### 各页面图片配置
+
+- 活动：在对应活动的 `photos` 中逐张填写稳定 ID、资产、标题、说明、作者和日期；每项活动允许 1–6 张。
+- 画廊：`galleryPhotos` 的每一项都是独立记录。即使暂时复用同一张占位素材，也要分别填写资产、作者和日期；替换时只修改目标记录。已知日期按新到旧排列，`unknown` 日期统一放在最后。
+- 主题赛：`currentContest.visual` 配置当期主视觉；`contestChampions` 逐项配置冠军作品。冠军缩略图按真实比例完整显示，点击后会进入与画廊共用的大图查看器。
+
+图片作者确实未知时填写 `unknown`，主动匿名时填写 `anonymous`。照片的真实宽高只在 `content/photo-assets.ts` 维护一次，活动、画廊和主题赛不要重复填写。
 
 ## Cloudflare Pages 图片构建
 
@@ -34,7 +46,7 @@ Build command: npm run build
 Build output directory: out
 ```
 
-构建日志必须包含 `[images] ensured ... responsive files`。部署后至少抽查一个 `/generated/events/*.avif` 或 `.webp` 地址返回 `200`；若页面正常但这些地址返回 `404`，优先检查构建命令是否仍为预设的 `npx next build`，然后重新部署。
+构建日志必须包含 `[images] ensured ... responsive files`。部署后至少抽查一个 `/generated/photos/*.avif` 或 `.webp` 地址返回 `200`；若页面正常但这些地址返回 `404`，优先检查构建命令是否仍为预设的 `npx next build`，然后重新部署。
 
 ## 社交链接与二维码
 
@@ -51,4 +63,4 @@ Build output directory: out
 3. 将 `content/readiness.ts` 中对应项目改为 `true`。
 4. 运行 `PRISMSHOT_RELEASE=1 npm run build`。
 
-内容 ID 重复、日期格式错误、活动图片数量超出 1–6、画廊不足 48 张或仍有占位项时，校验会阻止发布构建。
+内容 ID 重复、日期格式错误、图片资产或变体不完整、活动图片数量超出 1–6、画廊不足 48 张或仍有占位项时，校验会阻止发布构建。

@@ -33,6 +33,9 @@ export function ResponsivePhoto({
         alt={alt}
         fill
         sizes={sizes}
+        style={photo.focalPoint
+          ? { objectPosition: `${photo.focalPoint.x}% ${photo.focalPoint.y}%` }
+          : undefined}
         unoptimized
       />
     </picture>

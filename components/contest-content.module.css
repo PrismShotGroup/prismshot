@@ -265,6 +265,7 @@
 .championsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
   gap: 14px;
 }
 

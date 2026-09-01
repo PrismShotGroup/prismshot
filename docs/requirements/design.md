@@ -207,15 +207,16 @@ public/generated/    构建时生成的响应式图片
 ```ts
 {
   id: "stable-unique-id",
-  src: "/images/gallery/photo-01.webp",
-  alt: { zh: "活动合照", en: "Group photo at the event" },
+  asset: photoAssets.photo01,
   author: "摄影者昵称", // 不知道时填写 "unknown"
   date: "2026-08-30",  // 不知道时填写 "unknown"
+  title: { zh: "照片标题", en: "Photograph title" },
   caption: { zh: "可选说明", en: "Optional caption" }
 }
 ```
 
-- 必填：稳定且唯一的 ID、图片、中文替代文本、英文替代文本、作者、日期。
+- 图片资产在 `content/photo-assets.ts` 单独登记稳定 key、EXIF 方向纠正后的原图宽高和中英文替代文本；页面配置不直接填写生成图片路径。
+- 必填：稳定且唯一的 ID、已登记图片资产、标题、作者、日期。
 - 可选：中英文作品说明。
 - 不知道作者或日期时填写统一的 `unknown` 哨兵值，不省略必填字段；页面按语言显示“未知”或 `Unknown`。
 - 日期为 `unknown` 的照片排在所有已知日期照片之后，并保持配置文件中的相对顺序。

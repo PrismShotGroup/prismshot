@@ -10,6 +10,7 @@ import { galleryPhotos } from "../content/gallery";
 import { photoAssets, responsivePhotoWidths } from "../content/photo-assets";
 import { releaseReadiness } from "../content/readiness";
 import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site";
+import type { PhotoAsset } from "../content/types";
 import { pageKeys } from "../lib/i18n";
 
 const errors: string[] = [];
@@ -41,7 +42,7 @@ requireUnique(
   "photographs across events and gallery",
 );
 
-const registeredAssets = Object.values(photoAssets);
+const registeredAssets: readonly PhotoAsset[] = Object.values(photoAssets);
 requireUnique(registeredAssets.map((asset) => asset.key), "photo assets");
 
 const referencedAssets = [
@@ -159,6 +160,15 @@ for (const asset of registeredAssets) {
   }
   if (!asset.alt.zh || !asset.alt.en) {
     errors.push(`${asset.key} is missing bilingual alt text`);
+  }
+  if (
+    asset.focalPoint &&
+    (asset.focalPoint.x < 0 ||
+      asset.focalPoint.x > 100 ||
+      asset.focalPoint.y < 0 ||
+      asset.focalPoint.y > 100)
+  ) {
+    errors.push(`${asset.key} focal point must use percentages from 0 to 100`);
   }
 
   for (const width of responsivePhotoWidths) {
