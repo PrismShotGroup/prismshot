@@ -262,12 +262,6 @@
   letter-spacing: 0.04em;
 }
 
-.scheduleNote {
-  margin: 28px 0 0;
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-
 .championsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

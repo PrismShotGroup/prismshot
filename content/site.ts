@@ -106,7 +106,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Schedule",
           statement: "把相遇排进日历，\n让灵感准时发生。",
           description:
-            "合拍、盲盒挑战与摄影教学，所有活动时间统一按 Asia/Shanghai（UTC+8）展示。",
+            "从主题合拍、盲盒挑战到摄影教学，选择一场喜欢的活动，在镜头里和我们见面。活动时间均为北京时间（UTC+8）。",
         },
       },
       contests: {
@@ -121,7 +121,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Contest",
           statement: "同一个主题，\n无数种观看世界的方式。",
           description:
-            "每期围绕一个主题展开摄影赛。投稿与投票在社群内完成，官网负责呈现赛程与获奖作品。",
+            "每期围绕一个主题展开摄影赛。成员在社群内投稿与投票，在这里关注赛程并查看获奖作品。",
         },
       },
       gallery: {
@@ -136,7 +136,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Archive",
           statement: "记忆没有标准比例，\n所以让每张照片自由生长。",
           description:
-            "这里收录社团活动的历史照片，按拍摄日期由新到旧排列。点击任意画面进入沉浸式查看。",
+            "沿着拍摄时间，重温社团活动中的共同记忆。选择任意照片，进入大图细看。",
         },
       },
       about: {
@@ -198,7 +198,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Schedule",
           statement: "Put every encounter on the calendar,\nand let inspiration arrive on time.",
           description:
-            "Group shoots, mystery challenges, and photography workshops. All times are shown in Asia/Shanghai (UTC+8).",
+            "From themed group shoots and mystery challenges to photography workshops, choose an event and meet us behind the lens. All times are shown in China Standard Time (UTC+8).",
         },
       },
       contests: {
@@ -213,7 +213,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Contest",
           statement: "One shared theme,\ncountless ways to see the world.",
           description:
-            "Each round explores a photography prompt. Submissions and voting happen in the community; the site presents the timeline and winners.",
+            "Each round explores a photography theme. Members submit and vote in the community; follow the timeline and discover the winning photographs here.",
         },
       },
       gallery: {
@@ -228,7 +228,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "Archive",
           statement: "Memory has no standard ratio,\nso every photograph is free to grow.",
           description:
-            "An archive of our community events, ordered from newest to oldest. Select any image for an immersive view.",
+            "Follow the timeline through memories made at club events. Select any photograph to take a closer look.",
         },
       },
       about: {

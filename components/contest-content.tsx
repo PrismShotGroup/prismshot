@@ -98,7 +98,6 @@ export function ContestContent({ locale }: ContestContentProps) {
                 <strong>{currentContest.voteDisplay}</strong>
               </div>
             </div>
-            <p className={styles.scheduleNote}>{copy.scheduleNote}</p>
           </div>
         </div>
       </section>

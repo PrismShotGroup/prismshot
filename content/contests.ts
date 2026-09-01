@@ -96,7 +96,6 @@ export const contestPageCopy: Record<Locale, {
   rules: readonly { label: string; body: string; restriction?: string }[];
   submissionPeriod: string;
   votingPeriod: string;
-  scheduleNote: string;
   submissionLink: string;
   votingLink: string;
   rulesLink: string;
@@ -125,14 +124,13 @@ export const contestPageCopy: Record<Locale, {
     status: { upcoming: "即将开始", submitting: "投稿中", voting: "投票中", ended: "已结束" },
     callout: "每位成员可提交 1 张作品，无技术要求，新人也欢迎积极报名！",
     rules: [
-      { label: "作品要求", body: "题材贴合当期主题即可，无过多限制；上传至群内指定相册并标注照片比例。" },
-      { label: "投票方式", body: "投稿结束后立即开启群内投票。官网不接收作品，也不记录票数。" },
-      { label: "胜负判定", body: "得票数最高者获胜；若票数相同，由管理员进行最终投票。" },
+      { label: "作品要求", body: "题材贴合当期主题即可，无过多限制。上传至群内指定相册并标注照片比例。" },
+      { label: "投票方式", body: "投稿期持续两周，于周六结束。投稿截止后立即开启群内投票，投票于次周三截止。" },
+      { label: "胜负判定", body: "得票数最高者获胜。若票数相同，由管理员进行最终投票。" },
       { label: "优胜奖品", body: "2000 日元 Booth 自选礼品。", restriction: "可转赠，不兑现。" },
     ],
     submissionPeriod: "投稿期 · UTC+8",
     votingPeriod: "投票期 · UTC+8",
-    scheduleNote: "状态按照 Asia/Shanghai 时间自动切换。投稿期结束的同一时刻立即进入投票状态，不存在中间阶段。",
     submissionLink: "前往群相册",
     votingLink: "前往群内投票",
     rulesLink: "查看完整规则",
@@ -162,13 +160,12 @@ export const contestPageCopy: Record<Locale, {
     callout: "Each member may submit one photograph. No technical requirements—new photographers are warmly encouraged to join.",
     rules: [
       { label: "Submission", body: "Create in response to the current prompt, upload to the designated community album, and note the image ratio." },
-      { label: "Voting", body: "Community voting opens the moment submissions close. The website does not accept work or record votes." },
+      { label: "Voting", body: "The submission period runs for two weeks and closes on Saturday. Community voting opens immediately after submissions close and ends the following Wednesday." },
       { label: "Winner", body: "The photograph with the most votes wins. Administrators cast the deciding vote in a tie." },
       { label: "Prize", body: "A Booth item of the winner's choice up to ¥2,000.", restriction: "Transferable, not redeemable for cash." },
     ],
     submissionPeriod: "Submissions · UTC+8",
     votingPeriod: "Voting · UTC+8",
-    scheduleNote: "Status follows Asia/Shanghai time. Voting begins at the exact moment submissions close; there is no intermediate phase.",
     submissionLink: "Open community album",
     votingLink: "Open community vote",
     rulesLink: "Read the full rules",

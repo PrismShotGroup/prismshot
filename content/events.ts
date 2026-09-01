@@ -148,8 +148,8 @@ export const activities: readonly ActivityContent[] = [
       en: "A themed group shoot that turns every shared frame into a memory.",
     },
     description: {
-      zh: "活动提前一周开放合照主题征集与讨论，活动期间以摄影创作为核心，开展集体合拍活动，用镜头定格社团温暖瞬间。",
-      en: "One week before each event, the community proposes and discusses a group-photo theme. We then meet for a collaborative shoot built around that shared idea.",
+      zh: "活动提前一周开放合照主题征集与讨论，活动期间以摄影创作为核心，开展集体合拍活动，用镜头定格社团温暖瞬间，记录每一次美好同框。",
+      en: "One week before each event, the community opens submissions and discussion for the group-photo theme. The event centres on photography and a collaborative group shoot, capturing the club's warm moments and every memorable frame we share.",
     },
     meta: [
       { zh: "形式 · 主题合拍 / 集体创作", en: "Format · Themed group creation" },
@@ -199,17 +199,19 @@ export const activities: readonly ActivityContent[] = [
     id: "frame-partners",
     name: { zh: "同镜搭子", en: "Frame Partners" },
     summary: {
-      zh: "2–3 人自由组队，以盲盒卡组完成一场未知的摄影挑战。",
-      en: "Teams of two or three take on an unknown photography prompt deck.",
+      zh: "2–3 人自由组队，通过盲盒卡组完成基础与进阶摄影挑战。",
+      en: "Teams of two or three use mystery card decks to complete core and advanced photography challenges.",
     },
     description: {
-      zh: "参与者可自由组队，以 2–3 人为一组参与盲盒挑战。完成状态卡、镜头卡、氛围卡组成的基础任务，即可解锁趣味复刻、互拍创作等进阶玩法。",
-      en: "Form a team of two or three and draw a mystery challenge. Complete prompts for pose, lens, and atmosphere to unlock recreations, portrait swaps, and other advanced rounds.",
+      zh: "参与者可自由组队，以 2–3 人为一组参与盲盒挑战。基础卡组包含任务状态卡、镜头卡与氛围卡三类。完成基础挑战后，即可解锁进阶玩法。完成对应挑战可兑换社团定制奖品，三项进阶挑战全部完成后，还可解锁专属神秘定制奖品。",
+      en: "Participants form teams of two or three for a mystery-card challenge. The core deck contains task-status, lens, and atmosphere cards; completing the core challenge unlocks the advanced rounds. Each completed challenge can be redeemed for a club-made prize, while completing all three advanced challenges unlocks an exclusive mystery prize.",
     },
     meta: [
-      { zh: "形式 · 小队盲盒挑战", en: "Format · Team mystery challenge" },
-      { zh: "进阶 · 趣味复刻 / 互拍创作", en: "Advanced · Recreate / portrait swap" },
-      { zh: "奖励 · 社团定制奖品", en: "Reward · Club-made prizes" },
+      { zh: "基础卡组 · 任务状态卡 / 镜头卡 / 氛围卡", en: "Core deck · Task-status / lens / atmosphere cards" },
+      { zh: "终极挑战 · 解锁四类盲盒卡组，完成创作挑战", en: "Ultimate challenge · Unlock four card categories and complete a creative challenge" },
+      { zh: "趣味复刻 · 完成 Meme 图片复刻创作", en: "Meme recreation · Recreate a meme image" },
+      { zh: "互拍创作 · 互相拍摄专属头像与封面作品", en: "Portrait swap · Create personalised profile and cover images for one another" },
+      { zh: "挑战奖励 · 完成对应挑战兑换定制奖品；三项进阶全部完成解锁神秘奖品", en: "Challenge rewards · Redeem custom prizes; complete all three advanced challenges to unlock a mystery prize" },
     ],
     photos: [
       {
@@ -258,8 +260,8 @@ export const activities: readonly ActivityContent[] = [
       en: "From camera tools to field practice, a friendly start for new photographers.",
     },
     description: {
-      zh: "VRChat 专项摄影教学聚焦插件功能讲解与实操。茶话会环节介绍基础功能，后半段进入世界现场练习，让每位成员都能带走可复用的拍摄技巧。",
-      en: "Our VRChat workshops combine a relaxed introduction to camera tools with guided practice inside a world, giving every participant techniques they can reuse.",
+      zh: "VRChat 专项摄影教学，聚焦插件功能讲解与实操。活动前半段是茶话会环节，将介绍插件的基础功能与使用方法，活动后半段开启实战教学，带领大家上手练习插件拍摄技巧。",
+      en: "This VRChat photography workshop focuses on camera plugin features and hands-on practice. The first half is a relaxed discussion introducing the plugin's core features and how to use them; the second moves into practical instruction, guiding everyone through its photography tools and techniques.",
     },
     meta: [
       { zh: "形式 · 茶话会 + 实战教学", en: "Format · Talk and guided practice" },
@@ -329,7 +331,7 @@ export const eventPageCopy: Record<Locale, {
       number: "02 / Program",
       title: "三种相遇，",
       accent: "三种创作方式",
-      note: "选择活动名称查看详情；点击照片进入大图预览。",
+      note: "选择活动名称查看详情。点击照片进入大图预览。",
     },
     selectedDateLabel: "Selected date · UTC+8",
     emptyDate: "这一天暂时没有已配置活动。",
@@ -350,7 +352,7 @@ export const eventPageCopy: Record<Locale, {
       number: "02 / Program",
       title: "Three ways to meet,",
       accent: "three ways to create",
-      note: "Select a program for details, or select a photograph to open the viewer.",
+      note: "Select an activity name to view its details. Select a photograph to open the viewer.",
     },
     selectedDateLabel: "Selected date · UTC+8",
     emptyDate: "No event is currently configured for this date.",
