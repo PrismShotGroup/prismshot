@@ -47,6 +47,10 @@ export interface HomeSocialLink {
   placeholder: boolean;
 }
 
+// Set this to a site-root path after the club provides an approved homepage image.
+// Keeping it null intentionally renders the designed black background.
+export const homeBackgroundSrc: string | null = null;
+
 export const homeSocialLinks: readonly HomeSocialLink[] = [
   {
     name: "QQ",

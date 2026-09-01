@@ -13,6 +13,10 @@
 
 所有访客可见内容都要同时提供 `zh` 和 `en`。作者或日期确实未知时使用 `unknown`；主动匿名使用 `anonymous`。
 
+## 首页背景
+
+首页背景只能使用社团确认并提供的本地素材。将图片放入 `public/images/home/`，再把 `content/site.ts` 中的 `homeBackgroundSrc` 从 `null` 改为对应的 `/images/home/<文件名>` 路径。没有合适素材时保持 `null`，页面会使用设计好的纯黑背景，不请求外部图片，且不会阻止正式发布。
+
 ## 摄影图片
 
 1. 将源图放入 `assets/source/events/`，使用稳定、无空格的文件名。

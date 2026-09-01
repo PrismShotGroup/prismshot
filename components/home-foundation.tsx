@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getSiteContent, homeSocialLinks } from "@/content/site";
+import { getSiteContent, homeBackgroundSrc, homeSocialLinks } from "@/content/site";
 import type { Locale } from "@/lib/i18n";
 
 import { HomeMotion } from "./home-motion";
@@ -15,16 +15,18 @@ export function HomeFoundation({ locale }: HomeFoundationProps) {
 
   return (
     <HomeMotion className={styles.main}>
-      <div className={styles.background} aria-hidden="true">
-        <Image
-          className={styles.backgroundImage}
-          src="/images/home/background-placeholder.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          preload
-        />
-      </div>
+      {homeBackgroundSrc ? (
+        <div className={styles.background} aria-hidden="true">
+          <Image
+            className={styles.backgroundImage}
+            src={homeBackgroundSrc}
+            alt=""
+            fill
+            sizes="100vw"
+            preload
+          />
+        </div>
+      ) : null}
       <div className={styles.atmosphere} aria-hidden="true" />
       <div className={styles.axis} aria-hidden="true" />
       <div className={styles.figure} aria-hidden="true" />

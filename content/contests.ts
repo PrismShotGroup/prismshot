@@ -79,10 +79,10 @@ export const contestChampions: readonly ContestChampion[] = [
     issue: "04",
     theme: { zh: "一束远光", en: "A Distant Light" },
     author: "Yoru",
-    imageSrc: "/images/home/background-placeholder.jpg",
+    imageSrc: "/generated/events/event-12-1600.webp",
     imageAlt: {
-      zh: "夜色中的远方灯光",
-      en: "Distant lights under a night sky",
+      zh: "自然景观中的远方光线",
+      en: "Distant light across a natural landscape",
     },
   },
 ];

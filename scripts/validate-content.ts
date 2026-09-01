@@ -5,7 +5,7 @@ import { socialPlatforms } from "../content/about";
 import { activities, calendarEvents, configuredEventMonths } from "../content/events";
 import { galleryPhotos } from "../content/gallery";
 import { releaseReadiness } from "../content/readiness";
-import { homeSocialLinks, siteContent } from "../content/site";
+import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site";
 import { currentContest } from "../content/contests";
 import { pageKeys } from "../lib/i18n";
 
@@ -75,6 +75,18 @@ for (const platform of [...homeSocialLinks, ...socialPlatforms]) {
     if (url.protocol !== "https:") errors.push(`${platform.name} must use HTTPS`);
   } catch {
     errors.push(`${platform.name} has an invalid URL`);
+  }
+}
+
+if (homeBackgroundSrc) {
+  if (!homeBackgroundSrc.startsWith("/images/home/")) {
+    errors.push("home background must be a local /images/home/ asset");
+  } else {
+    try {
+      await access(path.join(process.cwd(), "public", homeBackgroundSrc));
+    } catch {
+      errors.push(`home background is missing: ${homeBackgroundSrc}`);
+    }
   }
 }
 
