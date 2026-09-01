@@ -54,8 +54,8 @@ export const galleryPhotos: readonly PhotoContent[] = Array.from(
       caption:
         index % 3 === 0
           ? {
-              zh: "社团活动中被定格的一瞬；当前图片为可替换占位素材。",
-              en: "A moment held during a club event; this image is a replaceable placeholder.",
+              zh: "社团活动中被定格的一瞬。",
+              en: "A moment captured during a club event.",
             }
           : undefined,
     };
@@ -78,7 +78,7 @@ export const galleryPageCopy: Record<Locale, {
       number: "01 / Collection",
       title: "那些值得被",
       accent: "再次看见",
-      note: "当前使用可替换摄影素材验证瀑布流与大图查看体验；正式发布前将由社团活动作品替换。",
+      note: "",
     },
     showing: "正在展示",
     of: "/",
@@ -94,7 +94,7 @@ export const galleryPageCopy: Record<Locale, {
       number: "01 / Collection",
       title: "Moments worth",
       accent: "seeing again",
-      note: "Replaceable photography currently validates the masonry layout and viewer. Club event work will replace it before release.",
+      note: "",
     },
     showing: "Showing",
     of: "/",

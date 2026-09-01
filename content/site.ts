@@ -162,7 +162,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       subtitleDetail: "棱镜定格",
       intro:
         "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台",
-      note: "In virtual worlds, we capture real moments",
+      note: "在虚拟次元，定格真实热爱",
     },
   },
   en: {
@@ -254,7 +254,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       subtitleDetail: "PrismShot",
       intro:
         "PrismShot is a creative home built for VRChat photographers and video makers. Whether you are learning to shape a virtual frame or looking for people to create with, there is a place for your perspective here.",
-      note: "In virtual worlds, we capture real moments",
+      note: "Across virtual worlds, capture what we truly love",
     },
   },
 };
