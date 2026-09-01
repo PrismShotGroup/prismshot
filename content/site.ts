@@ -34,10 +34,39 @@ export interface SiteCopy {
     kicker: string;
     title: string;
     subtitle: string;
+    subtitleDetail: string;
     intro: string;
     note: string;
   };
 }
+
+export interface HomeSocialLink {
+  name: "QQ" | "VRChat" | "Discord";
+  href: string;
+  iconSrc: string;
+  placeholder: boolean;
+}
+
+export const homeSocialLinks: readonly HomeSocialLink[] = [
+  {
+    name: "QQ",
+    href: "https://im.qq.com/",
+    iconSrc: "/icons/social/qq.svg",
+    placeholder: true,
+  },
+  {
+    name: "VRChat",
+    href: "https://hello.vrchat.com/",
+    iconSrc: "/icons/social/vrchat.svg",
+    placeholder: true,
+  },
+  {
+    name: "Discord",
+    href: "https://discord.com/",
+    iconSrc: "/icons/social/discord.svg",
+    placeholder: true,
+  },
+];
 
 export const siteContent: Record<Locale, SiteCopy> = {
   zh: {
@@ -125,7 +154,8 @@ export const siteContent: Record<Locale, SiteCopy> = {
     home: {
       kicker: "Virtual photography collective",
       title: "PRISM SHOT",
-      subtitle: "Photography Club · 棱镜定格",
+      subtitle: "Photography Club",
+      subtitleDetail: "棱镜定格",
       intro:
         "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台～",
       note: "In virtual worlds, we capture real moments",
@@ -216,7 +246,8 @@ export const siteContent: Record<Locale, SiteCopy> = {
     home: {
       kicker: "Virtual photography collective",
       title: "PRISM SHOT",
-      subtitle: "Photography Club · Reframing virtual worlds",
+      subtitle: "Photography Club",
+      subtitleDetail: "PrismShot Collective",
       intro:
         "PrismShot is a creative home built for VRChat photographers and video makers. Whether you are learning to shape a virtual frame or looking for people to create with, there is a place for your perspective here.",
       note: "In virtual worlds, we capture real moments",
