@@ -13,6 +13,8 @@ export interface PhotoContent {
   date: string;
   title: LocalizedText;
   caption?: LocalizedText;
+  width?: number;
+  height?: number;
 }
 
 export function localize(value: LocalizedText, locale: Locale): string {
