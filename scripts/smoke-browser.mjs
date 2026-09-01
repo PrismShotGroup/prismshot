@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
 import { chromium } from "playwright-core";
+import sharp from "sharp";
 
 const outputRoot = path.join(process.cwd(), "out");
 const mimeTypes = {
@@ -24,6 +25,41 @@ const mimeTypes = {
 
 function check(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+async function checkHomeWordmark(page, label) {
+  const wordmark = page.locator("#home-title");
+  await wordmark.evaluate((node) => {
+    node.style.background = "#000";
+    node.style.filter = "none";
+    node.children[1].style.display = "none";
+  });
+
+  const screenshot = await wordmark.screenshot();
+  const { data, info } = await sharp(screenshot)
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const verticalInset = Math.max(3, Math.round(info.height * 0.12));
+  let minX = info.width;
+  let maxX = -1;
+
+  for (let y = verticalInset; y < info.height - verticalInset; y += 1) {
+    for (let x = 0; x < info.width; x += 1) {
+      const offset = (y * info.width + x) * 3;
+      if (data[offset] + data[offset + 1] + data[offset + 2] > 330) {
+        minX = Math.min(minX, x);
+        maxX = Math.max(maxX, x);
+      }
+    }
+  }
+
+  const centerOffset = (minX + maxX) / 2 - info.width / 2;
+  check(minX > info.width * 0.025, `${label} wordmark clips its left edge (${minX}px)`);
+  check(
+    Math.abs(centerOffset) < info.width * 0.015,
+    `${label} wordmark is not visually centred (${centerOffset}px)`,
+  );
 }
 
 async function existingFile(filePath) {
@@ -119,6 +155,7 @@ await runFlow(
     check((await page.locator("footer").count()) === 0, "homepage must not render a footer");
     const crystalAnimation = await page.locator('img[src*="crystal-left"]').evaluate((image) => getComputedStyle(image.parentElement).animationName);
     check(crystalAnimation === "none", "reduced-motion crystal fallback is not static");
+    await checkHomeWordmark(page, "desktop");
 
     await Promise.all([
       page.waitForURL(`${baseUrl}/en`),
@@ -133,6 +170,8 @@ await runFlow(
   "mobile events interactions",
   { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
   async (page) => {
+    await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+    await checkHomeWordmark(page, "mobile");
     await page.goto(`${baseUrl}/events`, { waitUntil: "networkidle" });
     const menuButton = page.locator('button[aria-controls="mobile-menu"]');
     check(await menuButton.isVisible(), "mobile menu button is not visible at the mobile breakpoint");
