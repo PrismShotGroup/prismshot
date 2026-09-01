@@ -1,8 +1,8 @@
-import { ContentRoute } from "@/components/content-route";
+import { EventsRoute } from "@/components/events-route";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata("en", "events");
 
 export default function EnglishEventsPage() {
-  return <ContentRoute locale="en" page="events" />;
+  return <EventsRoute locale="en" />;
 }

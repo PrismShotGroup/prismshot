@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { getSiteContent } from "@/content/site";
 import type { ContentPageKey, Locale } from "@/lib/i18n";
 
@@ -6,9 +8,14 @@ import styles from "./content-page-intro.module.css";
 interface ContentPageIntroProps {
   locale: Locale;
   page: ContentPageKey;
+  children?: ReactNode;
 }
 
-export function ContentPageIntro({ locale, page }: ContentPageIntroProps) {
+export function ContentPageIntro({
+  locale,
+  page,
+  children,
+}: ContentPageIntroProps) {
   const hero = getSiteContent(locale).pages[page].hero;
 
   if (!hero) {
@@ -32,6 +39,7 @@ export function ContentPageIntro({ locale, page }: ContentPageIntroProps) {
             <p>{hero.description}</p>
           </div>
         </section>
+        {children}
       </div>
     </main>
   );
