@@ -3,8 +3,8 @@ import path from "node:path";
 
 import sharp from "sharp";
 
-const sourceDirectory = path.join(process.cwd(), "assets/source/events");
-const outputDirectory = path.join(process.cwd(), "public/generated/events");
+const sourceDirectory = path.join(process.cwd(), "assets/source/photos");
+const outputDirectory = path.join(process.cwd(), "public/generated/photos");
 const widths = [480, 960, 1600] as const;
 
 async function needsBuild(sourcePath: string, outputPath: string) {

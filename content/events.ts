@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 
+import { photoAssets } from "./photo-assets";
 import type { LocalizedText, PhotoContent } from "./types";
 
 export type EventKind = "gather" | "partner" | "class";
@@ -159,8 +160,7 @@ export const activities: readonly ActivityContent[] = [
     photos: [
       {
         id: "event-gather-01",
-        src: "/generated/events/event-01-1600.webp",
-        alt: { zh: "夜间活动中的人群与灯光", en: "A crowd gathered under night-time lights" },
+        asset: photoAssets.event01,
         title: { zh: "相聚一镜 · 城市夜游", en: "Together in One Frame · City at Night" },
         caption: { zh: "在虚拟城市的霓虹里完成本期集体合照。", en: "Our group portrait set among the neon lights of a virtual city." },
         author: "PrismShot",
@@ -168,8 +168,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-gather-02",
-        src: "/generated/events/event-02-1600.webp",
-        alt: { zh: "蓝紫灯光下的活动现场", en: "An event scene under blue and violet light" },
+        asset: photoAssets.event02,
         title: { zh: "灯光测试", en: "Lighting Test" },
         caption: { zh: "活动开始前的灯光与构图测试。", en: "Lighting and composition tests before the event." },
         author: "Rin",
@@ -177,8 +176,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-gather-03",
-        src: "/generated/events/event-03-1600.webp",
-        alt: { zh: "聚会现场的合照时刻", en: "A group-photo moment at the gathering" },
+        asset: photoAssets.event03,
         title: { zh: "同框时刻", en: "The Shared Frame" },
         caption: { zh: "快门落下前的最后一秒。", en: "The final second before the shutter falls." },
         author: "anonymous",
@@ -186,8 +184,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-gather-04",
-        src: "/generated/events/event-04-1600.webp",
-        alt: { zh: "彩色灯光下的活动参与者", en: "Event participants under colourful lights" },
+        asset: photoAssets.event04,
         title: { zh: "幕后记录", en: "Behind the Frame" },
         caption: { zh: "一次共同创作，也是一段共同记忆。", en: "A shared creation and a shared memory." },
         author: "Mori",
@@ -216,8 +213,7 @@ export const activities: readonly ActivityContent[] = [
     photos: [
       {
         id: "event-partner-01",
-        src: "/generated/events/event-05-1600.webp",
-        alt: { zh: "蓝色舞台灯光与人物剪影", en: "Silhouettes under blue stage lights" },
+        asset: photoAssets.event05,
         title: { zh: "盲盒任务：氛围卡", en: "Mystery Prompt: Atmosphere" },
         caption: { zh: "小队抽到的关键词是“冷色、距离与等待”。", en: "The team drew: cool tones, distance, and waiting." },
         author: "Kite",
@@ -225,8 +221,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-partner-02",
-        src: "/generated/events/event-06-1600.webp",
-        alt: { zh: "舞台灯光中的创作现场", en: "A creative session under stage lights" },
+        asset: photoAssets.event06,
         title: { zh: "互拍创作", en: "Portrait Swap" },
         caption: { zh: "两位搭档交换摄影师与模特身份。", en: "Two partners trade the roles of photographer and subject." },
         author: "Aki",
@@ -234,8 +229,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-partner-03",
-        src: "/generated/events/event-07-1600.webp",
-        alt: { zh: "电子屏幕环绕的活动现场", en: "An event space surrounded by digital screens" },
+        asset: photoAssets.event07,
         title: { zh: "镜头卡：低机位", en: "Lens Prompt: Low Angle" },
         caption: { zh: "从限制条件里找到新的观看方式。", en: "Finding a new point of view inside a constraint." },
         author: "Yu",
@@ -243,8 +237,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-partner-04",
-        src: "/generated/events/event-08-1600.webp",
-        alt: { zh: "活动灯光下的团队", en: "A team gathered under event lights" },
+        asset: photoAssets.event08,
         title: { zh: "挑战完成", en: "Challenge Complete" },
         caption: { zh: "完成基础卡组后的团队记录。", en: "A team portrait after completing the core deck." },
         author: "PrismShot",
@@ -271,8 +264,7 @@ export const activities: readonly ActivityContent[] = [
     photos: [
       {
         id: "event-class-01",
-        src: "/generated/events/event-09-1600.webp",
-        alt: { zh: "手持相机进行拍摄教学", en: "A hands-on camera lesson" },
+        asset: photoAssets.event09,
         title: { zh: "摄影插件课堂", en: "Camera Tool Workshop" },
         caption: { zh: "从界面开始，理解焦距、景深与曝光。", en: "Starting with the interface to understand focal length, depth, and exposure." },
         author: "PrismShot Coaches",
@@ -280,8 +272,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-class-02",
-        src: "/generated/events/event-10-1600.webp",
-        alt: { zh: "旷野景观中的构图练习", en: "A composition exercise in an open landscape" },
+        asset: photoAssets.event10,
         title: { zh: "构图练习", en: "Composition Practice" },
         caption: { zh: "用同一个场景完成三种不同叙事。", en: "Three different stories made from one scene." },
         author: "PrismShot Coaches",
@@ -289,8 +280,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-class-03",
-        src: "/generated/events/event-11-1600.webp",
-        alt: { zh: "山谷间的自然光线", en: "Natural light crossing a mountain valley" },
+        asset: photoAssets.event11,
         title: { zh: "光线观察", en: "Reading Light" },
         caption: { zh: "让光成为画面真正的主角。", en: "Letting light become the subject of the frame." },
         author: "Nanami",
@@ -298,8 +288,7 @@ export const activities: readonly ActivityContent[] = [
       },
       {
         id: "event-class-04",
-        src: "/generated/events/event-12-1600.webp",
-        alt: { zh: "自然场景中的摄影作品", en: "A photographic study in a natural setting" },
+        asset: photoAssets.event12,
         title: { zh: "课后实拍", en: "Field Practice" },
         caption: { zh: "把刚学到的方法带进真实场景。", en: "Taking new techniques into a live setting." },
         author: "Workshop Participant",

@@ -47,11 +47,11 @@ export function GalleryContent({ locale }: GalleryContentProps) {
               type="button"
               aria-label={localize(photo.title, locale)}
               onClick={() => setLightboxIndex(index)}
-              style={{ aspectRatio: `${photo.width ?? 4} / ${photo.height ?? 3}` }}
+              style={{ aspectRatio: `${photo.asset.width} / ${photo.asset.height}` }}
             >
               <ResponsivePhoto
-                photo={photo}
-                alt={localize(photo.alt, locale)}
+                photo={photo.asset}
+                alt={localize(photo.asset.alt, locale)}
                 sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw"
               />
               <span className={styles.itemMeta}>

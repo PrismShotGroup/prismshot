@@ -64,7 +64,7 @@ for (const photo of galleryPhotos) {
     if (!datePattern.test(photo.date)) errors.push(`${photo.id} has an invalid date`);
     if (encounteredUnknownDate) errors.push(`${photo.id} appears after an unknown-date photograph`);
   }
-  if (!photo.alt.zh || !photo.alt.en || !photo.author) {
+  if (!photo.asset.alt.zh || !photo.asset.alt.en || !photo.author) {
     errors.push(`${photo.id} is missing required bilingual metadata`);
   }
 }
@@ -90,15 +90,11 @@ if (homeBackgroundSrc) {
   }
 }
 
-for (const sourceFile of activities.flatMap((activity) => activity.photos)) {
-  const match = sourceFile.src.match(/\/generated\/events\/(event-\d+)-1600\.webp$/);
-  if (!match) errors.push(`${sourceFile.id} does not use the responsive image convention`);
-  else {
-    try {
-      await access(path.join(process.cwd(), "assets/source/events", `${match[1]}.jpg`));
-    } catch {
-      errors.push(`${sourceFile.id} is missing its source image`);
-    }
+for (const photo of activities.flatMap((activity) => activity.photos)) {
+  try {
+    await access(path.join(process.cwd(), "assets/source/photos", `${photo.asset.key}.jpg`));
+  } catch {
+    errors.push(`${photo.id} is missing its source image`);
   }
 }
 

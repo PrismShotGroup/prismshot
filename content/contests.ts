@@ -38,7 +38,7 @@ export const currentContest: ContestRound = {
     zh: "当光源离开画面，色彩还会留下些什么？本期请围绕“余光、残影与夜色中的呼吸”进行创作，题材与拍摄方式不限。",
     en: "What colour remains after the light leaves the frame? Explore afterglow, visual echoes, and the breath of night in any subject or photographic approach.",
   },
-  visualSrc: "/generated/events/event-04-1600.webp",
+  visualSrc: "/generated/photos/event-04-1600.webp",
   visualAlt: {
     zh: "霓虹灯光下的活动现场占位图",
     en: "Placeholder scene under neon event lights",
@@ -57,7 +57,7 @@ export const contestChampions: readonly ContestChampion[] = [
     issue: "06",
     theme: { zh: "边界以外", en: "Beyond the Boundary" },
     author: "Lin",
-    imageSrc: "/generated/events/event-10-1600.webp",
+    imageSrc: "/generated/photos/event-10-1600.webp",
     imageAlt: {
       zh: "旷野中的层叠地貌与远方人物",
       en: "Layered terrain and a distant figure in the open landscape",
@@ -68,7 +68,7 @@ export const contestChampions: readonly ContestChampion[] = [
     issue: "05",
     theme: { zh: "醒来之前", en: "Before Waking" },
     author: "anonymous",
-    imageSrc: "/generated/events/event-11-1600.webp",
+    imageSrc: "/generated/photos/event-11-1600.webp",
     imageAlt: {
       zh: "晨雾与群山之间的光线",
       en: "Light moving through morning mist and mountains",
@@ -79,7 +79,7 @@ export const contestChampions: readonly ContestChampion[] = [
     issue: "04",
     theme: { zh: "一束远光", en: "A Distant Light" },
     author: "Yoru",
-    imageSrc: "/generated/events/event-12-1600.webp",
+    imageSrc: "/generated/photos/event-12-1600.webp",
     imageAlt: {
       zh: "自然景观中的远方光线",
       en: "Distant light across a natural landscape",

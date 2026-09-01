@@ -288,7 +288,7 @@ export function EventsContent({ locale }: EventsContentProps) {
                           aria-label={localize(mainPhoto.title, locale)}
                           onClick={() => setLightboxIndex(allPhotos.findIndex((photo) => photo.id === mainPhoto.id))}
                         >
-                          <ResponsivePhoto photo={mainPhoto} alt={localize(mainPhoto.alt, locale)} sizes="(max-width: 820px) 100vw, 43vw" />
+                          <ResponsivePhoto photo={mainPhoto.asset} alt={localize(mainPhoto.asset.alt, locale)} sizes="(max-width: 820px) 100vw, 43vw" />
                         </button>
                         {thumbnails.length > 0 && (
                           <div className={styles.thumbnailGrid} data-count={thumbnails.length}>
@@ -299,7 +299,7 @@ export function EventsContent({ locale }: EventsContentProps) {
                                 aria-label={localize(photo.title, locale)}
                                 onClick={() => setLightboxIndex(allPhotos.findIndex((item) => item.id === photo.id))}
                               >
-                                <ResponsivePhoto photo={photo} alt={localize(photo.alt, locale)} sizes="(max-width: 820px) 36vw, 16vw" />
+                                <ResponsivePhoto photo={photo.asset} alt={localize(photo.asset.alt, locale)} sizes="(max-width: 820px) 36vw, 16vw" />
                               </button>
                             ))}
                           </div>

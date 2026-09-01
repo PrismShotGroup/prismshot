@@ -5,16 +5,24 @@ export interface LocalizedText {
   en: string;
 }
 
+export interface PhotoAsset {
+  key: string;
+  width: number;
+  height: number;
+  alt: LocalizedText;
+  focalPoint?: {
+    x: number;
+    y: number;
+  };
+}
+
 export interface PhotoContent {
   id: string;
-  src: string;
-  alt: LocalizedText;
+  asset: PhotoAsset;
   author: string;
   date: string;
   title: LocalizedText;
   caption?: LocalizedText;
-  width?: number;
-  height?: number;
 }
 
 export function localize(value: LocalizedText, locale: Locale): string {
