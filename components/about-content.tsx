@@ -32,7 +32,7 @@ export async function AboutContent({ locale }: AboutContentProps) {
         <div className={styles.manifesto}>
           <div className={styles.markWrap}>
             <Image
-              src="/images/brand/prismshot-mark.png"
+              src="/images/brand/prismshot-mark.webp"
               alt={copy.logoAlt}
               width={2000}
               height={2000}

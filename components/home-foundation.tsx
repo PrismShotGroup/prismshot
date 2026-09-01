@@ -33,7 +33,7 @@ export function HomeFoundation({ locale }: HomeFoundationProps) {
 
       <div className={`${styles.crystal} ${styles.crystalLeft}`} aria-hidden="true">
         <Image
-          src="/images/home/crystal-left.png"
+          src="/images/home/crystal-left.webp"
           alt=""
           width={940}
           height={1672}
@@ -43,7 +43,7 @@ export function HomeFoundation({ locale }: HomeFoundationProps) {
       </div>
       <div className={`${styles.crystal} ${styles.crystalRight}`} aria-hidden="true">
         <Image
-          src="/images/home/crystal-right.png"
+          src="/images/home/crystal-right.webp"
           alt=""
           width={941}
           height={1672}
@@ -57,7 +57,7 @@ export function HomeFoundation({ locale }: HomeFoundationProps) {
         <h1 className={styles.wordmark} id="home-title" aria-label={home.title}>
           <span className={styles.wordmarkCrop} aria-hidden="true">
             <Image
-              src="/images/brand/prismshot-wordmark.png"
+              src="/images/brand/prismshot-wordmark.webp"
               alt=""
               width={3822}
               height={1321}
@@ -67,7 +67,7 @@ export function HomeFoundation({ locale }: HomeFoundationProps) {
           </span>
           <span className={styles.wordmarkRefraction} aria-hidden="true">
             <Image
-              src="/images/brand/prismshot-wordmark.png"
+              src="/images/brand/prismshot-wordmark.webp"
               alt=""
               width={3822}
               height={1321}

@@ -153,8 +153,17 @@ await runFlow(
     check((await page.locator("html").getAttribute("lang")) === "zh-CN", "Chinese html lang missing");
     check((await page.locator('img[src*="crystal-"]').count()) === 2, "homepage crystal layers missing");
     check((await page.locator("footer").count()) === 0, "homepage must not render a footer");
+    const homepageImageSources = await page
+      .locator('img[src*="/images/home/"], img[src*="/images/brand/"]')
+      .evaluateAll((images) => images.map((image) => image.getAttribute("src")));
+    check(
+      homepageImageSources.length === 5 && homepageImageSources.every((source) => source?.endsWith(".webp")),
+      `homepage still references a non-WebP visual: ${homepageImageSources.join(", ")}`,
+    );
     const crystalAnimation = await page.locator('img[src*="crystal-left"]').evaluate((image) => getComputedStyle(image.parentElement).animationName);
     check(crystalAnimation === "none", "reduced-motion crystal fallback is not static");
+    const crystalMask = await page.locator('img[src*="crystal-left"]').evaluate((image) => getComputedStyle(image.parentElement).getPropertyValue("--crystal-mask"));
+    check(crystalMask.includes("crystal-left.webp"), "homepage crystal mask is not WebP");
     await checkHomeWordmark(page, "desktop");
 
     await Promise.all([

@@ -13,9 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#050609",
     icons: [
       {
-        src: "/images/brand/prismshot-mark.png",
+        src: "/images/brand/prismshot-mark.webp",
         sizes: "any",
-        type: "image/png",
+        type: "image/webp",
       },
     ],
   };

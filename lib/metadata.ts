@@ -42,8 +42,8 @@ export function createRootMetadata(locale: Locale): Metadata {
       follow: !isPreviewBuild(),
     },
     icons: {
-      icon: "/images/brand/prismshot-mark.png",
-      apple: "/images/brand/prismshot-mark.png",
+      icon: "/images/brand/prismshot-mark.webp",
+      apple: "/images/brand/prismshot-mark.webp",
     },
   };
 }

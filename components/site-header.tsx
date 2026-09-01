@@ -122,7 +122,7 @@ export function SiteHeader({
         >
           <Image
             className={styles.brandMark}
-            src="/images/brand/prismshot-mark.png"
+            src="/images/brand/prismshot-mark.webp"
             width={48}
             height={48}
             alt=""

@@ -456,7 +456,7 @@
   left: -1.5vw;
   height: 140svh;
   aspect-ratio: 940 / 1672;
-  --crystal-mask: url("/images/home/crystal-left.png");
+  --crystal-mask: url("/images/home/crystal-left.webp");
   --crystal-flare-delay: -1.4s;
   --crystal-flare-duration: 6.8s;
   --crystal-flare-size: clamp(90px, 9vw, 154px);
@@ -475,7 +475,7 @@
   top: 10svh;
   right: -1vw;
   aspect-ratio: 941 / 1672;
-  --crystal-mask: url("/images/home/crystal-right.png");
+  --crystal-mask: url("/images/home/crystal-right.webp");
   --crystal-flare-delay: -4.2s;
   --crystal-flare-duration: 7.7s;
   --crystal-flare-size: clamp(70px, 7vw, 118px);
