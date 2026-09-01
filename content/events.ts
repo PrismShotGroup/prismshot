@@ -154,8 +154,7 @@ export const activities: readonly ActivityContent[] = [
     },
     meta: [
       { zh: "形式 · 主题合拍 / 集体创作", en: "Format · Themed group creation" },
-      { zh: "规模 · 全体成员开放", en: "Access · Open to all members" },
-      { zh: "图片为可替换占位素材", en: "Images are replaceable placeholders" },
+      { zh: "规模 · 全体成员开放", en: "Access · Open to all members" }
     ],
     photos: [
       {
