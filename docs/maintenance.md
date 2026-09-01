@@ -21,6 +21,17 @@
 
 脚本会校正 EXIF 方向，但不会复制 EXIF 元数据；每张源图会生成 480、960、1600 像素宽的 WebP 与 AVIF。网页通过 `<picture>` 和 `sizes` 选择合适版本，不直接发布源图。
 
+## Cloudflare Pages 图片构建
+
+Cloudflare 的 `Next.js (Static HTML Export)` 预设默认使用 `npx next build`。该命令不会触发本项目在 npm `prebuild` 生命周期中配置的内容校验和图片生成，因此必须在 Pages 的构建设置中手动覆盖为：
+
+```text
+Build command: npm run build
+Build output directory: out
+```
+
+构建日志必须包含 `[images] ensured ... responsive files`。部署后至少抽查一个 `/generated/events/*.avif` 或 `.webp` 地址返回 `200`；若页面正常但这些地址返回 `404`，优先检查构建命令是否仍为预设的 `npx next build`，然后重新部署。
+
 ## 社交链接与二维码
 
 在 `content/about.ts` 中同时修改账号名和 `href`。二维码由同一个 `href` 在静态构建时生成，不需要提交二维码图片，也没有浏览器端二维码依赖。QQ 必须替换为可直接访问的加群链接。
@@ -31,7 +42,7 @@
 
 普通开发允许占位内容。准备正式发布时：
 
-1. 替换占位背景、摄影作品、介绍文案、比赛数据和全部社交账号。
+1. 替换摄影作品、介绍文案、比赛数据和全部社交账号；首页背景若不提供则保留纯黑默认背景。
 2. 逐项人工检查二维码、外链、中英文与图片替代文本。
 3. 将 `content/readiness.ts` 中对应项目改为 `true`。
 4. 运行 `PRISMSHOT_RELEASE=1 npm run build`。
