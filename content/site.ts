@@ -54,21 +54,21 @@ export const homeBackgroundSrc: string | null = null;
 export const homeSocialLinks: readonly HomeSocialLink[] = [
   {
     name: "QQ",
-    href: "https://im.qq.com/",
+    href: "https://qun.qq.com/universal-share/share?ac=1&authKey=LNlrUNfp5UiuvgXV95A9CmGbIwI2lU5cg4sYJKKb1aN7fhHbrBVvjeffxLE9RznM&busi_data=eyJncm91cENvZGUiOiIyMjU2OTU2MDQiLCJ0b2tlbiI6Ik5PZG1YQ0ZBZGNYYllxTWc1RG1YaDZKVFpQSE8xZ1JKSFNEMGwvZFY1cUJDNE1JRGIwaWtxRDhXeEp0cThObkwiLCJ1aW4iOiI0NjE3NTUzNTkifQ%3D%3D&data=yptXIfMwo4G84TGk9eSy0cuq5_p-sthFpu3EHf5mFvMrH5LpwIjNDiwrjoaWKDLR5ve66nO-OcKAjv0uuzedlw&svctype=4&tempid=h5_group_info",
     iconSrc: "/icons/social/qq.svg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     name: "VRChat",
-    href: "https://hello.vrchat.com/",
+    href: "https://vrc.group/PSPC.2575",
     iconSrc: "/icons/social/vrchat.svg",
-    placeholder: true,
+    placeholder: false,
   },
   {
     name: "Discord",
-    href: "https://discord.com/",
+    href: "https://discord.gg/T4yFrRafum",
     iconSrc: "/icons/social/discord.svg",
-    placeholder: true,
+    placeholder: false,
   },
 ];
 
@@ -90,7 +90,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       home: {
         navLabel: "主页",
         headerMeta: "Virtual photography",
-        metaTitle: "PrismShot 棱镜定格｜VRChat 摄影社团",
+        metaTitle: "PrismShot 棱镜定格｜VRChat虚拟摄影社团",
         metaDescription:
           "PrismShot 棱镜定格——面向 VRChat 摄影爱好者与视频创作者的灵感聚集地。",
       },
@@ -156,12 +156,12 @@ export const siteContent: Record<Locale, SiteCopy> = {
       },
     },
     home: {
-      kicker: "Virtual photography collective",
+      kicker: "Virtual photography group",
       title: "PRISM SHOT",
       subtitle: "Photography Club",
       subtitleDetail: "棱镜定格",
       intro:
-        "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台～",
+        "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台",
       note: "In virtual worlds, we capture real moments",
     },
   },
@@ -248,7 +248,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       },
     },
     home: {
-      kicker: "Virtual photography collective",
+      kicker: "Virtual photography group",
       title: "PRISM SHOT",
       subtitle: "Photography Club",
       subtitleDetail: "PrismShot Collective",
