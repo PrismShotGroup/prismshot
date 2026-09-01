@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import {
   contestChampions,
   contestPageCopy,
@@ -10,7 +8,9 @@ import { localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { ContestStatusBadge } from "./contest-status-badge";
+import { ContestChampionGallery } from "./contest-champion-gallery";
 import { EditorialSectionHeading } from "./editorial-section-heading";
+import { ResponsivePhoto } from "./responsive-photo";
 import styles from "./contest-content.module.css";
 
 interface ContestContentProps {
@@ -20,7 +20,6 @@ interface ContestContentProps {
 export function ContestContent({ locale }: ContestContentProps) {
   const copy = contestPageCopy[locale];
   const serverStatus = getContestStatus(currentContest, new Date());
-  const anonymous = locale === "zh" ? "匿名" : "Anonymous";
 
   return (
     <>
@@ -63,10 +62,9 @@ export function ContestContent({ locale }: ContestContentProps) {
             </div>
           </div>
           <div className={styles.currentVisual}>
-            <Image
-              src={currentContest.visualSrc}
-              alt={localize(currentContest.visualAlt, locale)}
-              fill
+            <ResponsivePhoto
+              photo={currentContest.visual}
+              alt={localize(currentContest.visual.alt, locale)}
               sizes="(max-width: 820px) 100vw, 48vw"
             />
           </div>
@@ -104,25 +102,12 @@ export function ContestContent({ locale }: ContestContentProps) {
 
       <section className={`${styles.section} ${styles.sectionLine}`} aria-labelledby="champions-title">
         <EditorialSectionHeading {...copy.archiveSection} id="champions-title" />
-        <div className={styles.championsGrid}>
-          {contestChampions.map((champion) => (
-            <article className={styles.championCard} key={champion.id}>
-              <div className={styles.championImage}>
-                <Image
-                  src={champion.imageSrc}
-                  alt={localize(champion.imageAlt, locale)}
-                  fill
-                  sizes="(max-width: 820px) 100vw, 33vw"
-                />
-                <div className={styles.championMeta}>
-                  <span>ISSUE {champion.issue} · {copy.championLabel}</span>
-                  <h3>「{localize(champion.theme, locale)}」</h3>
-                  <p>{copy.photographyBy} · {champion.author === "anonymous" ? anonymous : champion.author}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ContestChampionGallery
+          champions={contestChampions}
+          championLabel={copy.championLabel}
+          locale={locale}
+          photographyBy={copy.photographyBy}
+        />
       </section>
     </>
   );

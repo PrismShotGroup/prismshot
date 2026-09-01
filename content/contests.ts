@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
-import type { LocalizedText } from "./types";
+import { photoAssets } from "./photo-assets";
+import type { LocalizedText, PhotoAsset } from "./types";
 
 export type ContestStatus = "upcoming" | "submitting" | "voting" | "ended";
 
@@ -9,8 +10,7 @@ export interface ContestRound {
   theme: LocalizedText;
   themeEn: string;
   summary: LocalizedText;
-  visualSrc: string;
-  visualAlt: LocalizedText;
+  visual: PhotoAsset;
   submissionStart: string;
   voteStart: string;
   voteEnd: string;
@@ -26,8 +26,7 @@ export interface ContestChampion {
   issue: string;
   theme: LocalizedText;
   author: string;
-  imageSrc: string;
-  imageAlt: LocalizedText;
+  image: PhotoAsset;
 }
 
 export const currentContest: ContestRound = {
@@ -38,11 +37,7 @@ export const currentContest: ContestRound = {
     zh: "当光源离开画面，色彩还会留下些什么？本期请围绕“余光、残影与夜色中的呼吸”进行创作，题材与拍摄方式不限。",
     en: "What colour remains after the light leaves the frame? Explore afterglow, visual echoes, and the breath of night in any subject or photographic approach.",
   },
-  visualSrc: "/generated/photos/event-04-1600.webp",
-  visualAlt: {
-    zh: "霓虹灯光下的活动现场占位图",
-    en: "Placeholder scene under neon event lights",
-  },
+  visual: photoAssets.event04,
   submissionStart: "2026-08-24T00:00:00+08:00",
   voteStart: "2026-09-07T00:00:00+08:00",
   voteEnd: "2026-09-17T00:00:00+08:00",
@@ -57,33 +52,21 @@ export const contestChampions: readonly ContestChampion[] = [
     issue: "06",
     theme: { zh: "边界以外", en: "Beyond the Boundary" },
     author: "Lin",
-    imageSrc: "/generated/photos/event-10-1600.webp",
-    imageAlt: {
-      zh: "旷野中的层叠地貌与远方人物",
-      en: "Layered terrain and a distant figure in the open landscape",
-    },
+    image: photoAssets.event10,
   },
   {
     id: "issue-05",
     issue: "05",
     theme: { zh: "醒来之前", en: "Before Waking" },
     author: "anonymous",
-    imageSrc: "/generated/photos/event-11-1600.webp",
-    imageAlt: {
-      zh: "晨雾与群山之间的光线",
-      en: "Light moving through morning mist and mountains",
-    },
+    image: photoAssets.event11,
   },
   {
     id: "issue-04",
     issue: "04",
     theme: { zh: "一束远光", en: "A Distant Light" },
     author: "Yoru",
-    imageSrc: "/generated/photos/event-12-1600.webp",
-    imageAlt: {
-      zh: "自然景观中的远方光线",
-      en: "Distant light across a natural landscape",
-    },
+    image: photoAssets.event12,
   },
 ];
 
