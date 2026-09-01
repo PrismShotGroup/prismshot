@@ -10,6 +10,7 @@
     "build": "next build",
     "images:build": "tsx scripts/process-images.ts",
     "content:validate": "tsx scripts/validate-content.ts",
+    "test:smoke": "node scripts/smoke-browser.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"
   },
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
+    "playwright-core": "^1.62.1",
     "tsx": "^4.23.13",
     "typescript": "^5"
   }
