@@ -1,0 +1,296 @@
+.header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  display: grid;
+  grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1fr);
+  align-items: center;
+  height: var(--header-h);
+  padding: 0 var(--page-pad);
+  border-bottom: 1px solid var(--line);
+  background: rgba(5, 6, 9, 0.78);
+  backdrop-filter: blur(20px) saturate(130%);
+}
+
+.homeHeader {
+  position: absolute;
+  width: 100%;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(to bottom, rgba(3, 4, 6, 0.78), transparent);
+  backdrop-filter: none;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 12px;
+  width: max-content;
+}
+
+.brandMark {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(132, 243, 255, 0.18));
+}
+
+.brandCopy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brandName {
+  font-family: var(--display);
+  font-size: 1.42rem;
+  letter-spacing: 0.13em;
+}
+
+.brandSub {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+
+.desktopNav a {
+  position: relative;
+  padding: 11px 0;
+  color: rgba(245, 246, 242, 0.68);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.desktopNav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 1px;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  transition: transform 0.25s ease;
+}
+
+.desktopNav a:hover,
+.desktopNav a[aria-current="page"] {
+  color: #fff;
+}
+
+.desktopNav a:hover::after,
+.desktopNav a[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.headerTools {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.headerTools::before {
+  width: 30px;
+  height: 1px;
+  content: "";
+  background: var(--line-strong);
+}
+
+.headerMeta {
+  white-space: nowrap;
+}
+
+.languageSwitch {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  transition: border-color 0.25s ease, color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.languageSwitch:hover {
+  border-color: var(--cyan);
+  background: rgba(132, 243, 255, 0.06);
+  color: var(--cyan);
+}
+
+.menuToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+}
+
+.menuToggle span,
+.menuToggle::before,
+.menuToggle::after {
+  width: 18px;
+  height: 1px;
+  content: "";
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menuToggle {
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menuToggle[aria-expanded="true"] span {
+  opacity: 0;
+}
+
+.menuToggle[aria-expanded="true"]::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menuToggle[aria-expanded="true"]::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobileMenu {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  padding: calc(var(--header-h) + 30px) var(--page-pad) 40px;
+  visibility: hidden;
+  opacity: 0;
+  background:
+    linear-gradient(rgba(4, 5, 8, 0.9), rgba(4, 5, 8, 0.97)),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 214, 0.2), transparent 35%);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobileMenuOpen {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mobileMenuInner {
+  display: grid;
+  gap: clamp(24px, 6vh, 46px);
+}
+
+.mobileMenu nav {
+  display: grid;
+  gap: 4px;
+}
+
+.mobileMenu nav a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 13vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.mobileMenu nav a span {
+  color: var(--muted-2);
+  font-family: var(--body);
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+}
+
+.mobileMenu nav a[aria-current="page"] {
+  color: var(--cyan);
+}
+
+.mobileLanguageSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mobileLanguageSwitch strong {
+  color: var(--cyan);
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1260px) {
+  .headerMeta {
+    display: none;
+  }
+}
+
+@media (max-width: 1120px) {
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .desktopNav,
+  .headerTools {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .brandMark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brandSub {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobileMenu,
+  .menuToggle span,
+  .menuToggle::before,
+  .menuToggle::after {
+    transition: none;
+  }
+}
