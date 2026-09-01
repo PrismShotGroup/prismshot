@@ -22,7 +22,7 @@ export function EditorialSectionHeading({
         <h2 className={styles.title} id={id}>
           {title}<em>{accent}</em>
         </h2>
-        <p className={styles.note}>{note}</p>
+        {note && <p className={styles.note}>{note}</p>}
       </div>
     </div>
   );

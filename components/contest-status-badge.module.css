@@ -1,0 +1,33 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  content: "";
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.live {
+  border-color: rgba(146, 242, 182, 0.28);
+  background: rgba(146, 242, 182, 0.05);
+  color: var(--green);
+}
+
+.inactive {
+  color: var(--amber);
+}
