@@ -1,8 +1,6 @@
 # PrismShot
 
-PrismShot 棱镜定格官网的 Next.js 基础脚手架。
-
-项目初始化与资料归档已经完成，HTML 原型也已通过评审：居中首页及现有内页的视觉与交互方向冻结为 V1 实现基线。默认的 Create Next App 示例页面尚未替换，下一阶段可直接按照确认稿与原型开始实现。
+PrismShot 棱镜定格的中英双语静态官网。正式页面按照已通过评审的居中原型实现，内容通过 TypeScript 配置维护。
 
 ## 技术基线
 
@@ -12,30 +10,38 @@ PrismShot 棱镜定格官网的 Next.js 基础脚手架。
 - ESLint
 - npm
 - 静态导出到 `out/`
+- Sharp 构建时响应式图片
+- Cloudflare Pages 部署
 
 ## 目录
 
 ```text
-CONTEXT.md          活动、主题赛、画廊与署名的统一领域语言
-app/                 Next.js 路由与页面（当前为默认示例）
-components/          预留的共享组件目录
-content/             预留的类型化内容配置目录
+CONTEXT.md           活动、主题赛、画廊与署名的统一领域语言
+app/                 中英文静态路由与 SEO 文件
+components/          共享布局、页面模块与浏览器交互
+content/             类型化双语内容配置
+assets/source/       构建前摄影源素材
 docs/requirements/   原始需求、确认稿与视觉参考
 docs/prototype/      唯一保留的 HTML 原型
-public/images/       预留的正式素材目录
-public/generated/    预留的构建产物目录
+public/images/       Logo、首页等直接使用的素材
+public/generated/    构建时生成且不提交的响应式图片
+scripts/             内容校验与图片生成
 ```
 
-资料入口见 [`docs/README.md`](./docs/README.md)。实现时以 [`docs/requirements/design.md`](./docs/requirements/design.md) 为最终约定。
+资料入口见 [`docs/README.md`](./docs/README.md)，内容更新见 [`docs/maintenance.md`](./docs/maintenance.md)，部署见 [`docs/deployment.md`](./docs/deployment.md)。实现与验收以 [`docs/requirements/design.md`](./docs/requirements/design.md) 为最终约定。
 
 ## 本地命令
 
 ```bash
 npm install
 npm run dev
+npm run content:validate
+npm run images:build
 npm run lint
 npm run typecheck
 npm run build
 ```
 
-`npm run build` 会按 `next.config.ts` 的静态导出配置生成 `out/`。当前默认示例仅用于验证脚手架可运行，并不代表最终页面。
+`npm run dev` 会先生成本地响应式图片。`npm run build` 会先校验内容并生成多档 WebP/AVIF，然后按 `next.config.ts` 的静态导出配置生成 `out/`。
+
+正式发布构建需设置 `PRISMSHOT_RELEASE=1`。只要 [`content/readiness.ts`](./content/readiness.ts) 仍存在未确认项，发布构建就会失败；普通开发和预览构建不受影响。

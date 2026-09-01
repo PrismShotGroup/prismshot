@@ -13,6 +13,14 @@ export const siteUrl = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://prismshot.top",
 );
 
+export function isPreviewBuild(): boolean {
+  const cloudflareBranch = process.env.CF_PAGES_BRANCH;
+  return (
+    process.env.PRISMSHOT_PREVIEW === "1" ||
+    (Boolean(cloudflareBranch) && cloudflareBranch !== "main")
+  );
+}
+
 function absolutePageUrl(locale: Locale, page: PageKey): string {
   return new URL(getPageHref(locale, page), siteUrl).toString();
 }
@@ -29,6 +37,10 @@ export function createRootMetadata(locale: Locale): Metadata {
       template: locale === "zh" ? "%s｜PrismShot" : "%s | PrismShot",
     },
     description: home.metaDescription,
+    robots: {
+      index: !isPreviewBuild(),
+      follow: !isPreviewBuild(),
+    },
     icons: {
       icon: "/images/brand/prismshot-mark.png",
       apple: "/images/brand/prismshot-mark.png",

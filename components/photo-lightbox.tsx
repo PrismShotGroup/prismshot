@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import type { PhotoContent } from "@/content/types";
 import { localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
+import { ResponsivePhoto } from "./responsive-photo";
 import styles from "./photo-lightbox.module.css";
 
 interface PhotoLightboxProps {
@@ -123,12 +123,11 @@ export function PhotoLightbox({
           ←
         </button>
         <div className={styles.imageWrap}>
-          <Image
+          <ResponsivePhoto
             key={photo.id}
-            className={styles.image}
-            src={photo.src}
+            imageClassName={styles.image}
+            photo={photo}
             alt={localize(photo.alt, locale)}
-            fill
             sizes="(max-width: 820px) 100vw, calc(100vw - 380px)"
           />
         </div>

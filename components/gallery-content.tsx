@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { galleryPageCopy, galleryPhotos } from "@/content/gallery";
@@ -9,6 +8,7 @@ import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
 import { PhotoLightbox } from "./photo-lightbox";
+import { ResponsivePhoto } from "./responsive-photo";
 import styles from "./gallery-content.module.css";
 
 interface GalleryContentProps {
@@ -49,10 +49,9 @@ export function GalleryContent({ locale }: GalleryContentProps) {
               onClick={() => setLightboxIndex(index)}
               style={{ aspectRatio: `${photo.width ?? 4} / ${photo.height ?? 3}` }}
             >
-              <Image
-                src={photo.src}
+              <ResponsivePhoto
+                photo={photo}
                 alt={localize(photo.alt, locale)}
-                fill
                 sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw"
               />
               <span className={styles.itemMeta}>

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useState, useSyncExternalStore } from "react";
 
 import {
@@ -14,6 +13,7 @@ import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
 import { PhotoLightbox } from "./photo-lightbox";
+import { ResponsivePhoto } from "./responsive-photo";
 import styles from "./events-content.module.css";
 
 interface EventsContentProps {
@@ -288,7 +288,7 @@ export function EventsContent({ locale }: EventsContentProps) {
                           aria-label={localize(mainPhoto.title, locale)}
                           onClick={() => setLightboxIndex(allPhotos.findIndex((photo) => photo.id === mainPhoto.id))}
                         >
-                          <Image src={mainPhoto.src} alt={localize(mainPhoto.alt, locale)} fill sizes="(max-width: 820px) 100vw, 43vw" />
+                          <ResponsivePhoto photo={mainPhoto} alt={localize(mainPhoto.alt, locale)} sizes="(max-width: 820px) 100vw, 43vw" />
                         </button>
                         {thumbnails.length > 0 && (
                           <div className={styles.thumbnailGrid} data-count={thumbnails.length}>
@@ -299,7 +299,7 @@ export function EventsContent({ locale }: EventsContentProps) {
                                 aria-label={localize(photo.title, locale)}
                                 onClick={() => setLightboxIndex(allPhotos.findIndex((item) => item.id === photo.id))}
                               >
-                                <Image src={photo.src} alt={localize(photo.alt, locale)} fill sizes="(max-width: 820px) 36vw, 16vw" />
+                                <ResponsivePhoto photo={photo} alt={localize(photo.alt, locale)} sizes="(max-width: 820px) 36vw, 16vw" />
                               </button>
                             ))}
                           </div>

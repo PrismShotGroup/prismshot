@@ -1,6 +1,6 @@
 # PrismShot 资料索引
 
-本目录保存实现前的需求依据与 HTML 原型。当前只完成归档，不代表原型已经转写为 Next.js 页面。
+本目录保存需求依据、HTML 原型以及正式站点的维护与部署说明。原型已转写为 Next.js 页面，但继续作为视觉和交互基线保留。
 
 ## 阅读顺序
 
@@ -9,6 +9,8 @@
 3. [`requirements/index.png`](./requirements/index.png)：仅用于约束视觉语言，不要求逐像素复刻，也不能直接作为正式页面素材。
 4. [`requirements/棱镜定格.docx`](./requirements/棱镜定格.docx)：保留的原始需求文档。
 5. [`prototype/index.html`](./prototype/index.html)：HTML 原型入口；其他页面、样式和脚本均位于同一目录。
+6. [`maintenance.md`](./maintenance.md)：内容、图片、二维码和发布占位门禁的维护流程。
+7. [`deployment.md`](./deployment.md)：Cloudflare Pages 构建、环境变量与域名配置。
 
 ## 原型复核结论
 

@@ -10,18 +10,18 @@ interface GallerySeed {
 }
 
 const gallerySeeds: readonly GallerySeed[] = [
-  { src: "/images/events/event-01.jpg", width: 1600, height: 1068, alt: { zh: "夜间活动中的人群与灯光", en: "A crowd gathered under night-time lights" } },
-  { src: "/images/events/event-02.jpg", width: 1600, height: 1067, alt: { zh: "蓝紫灯光下的活动现场", en: "An event under blue and violet light" } },
-  { src: "/images/events/event-03.jpg", width: 1600, height: 1067, alt: { zh: "聚会现场的合照时刻", en: "A group-photo moment at a gathering" } },
-  { src: "/images/events/event-04.jpg", width: 1600, height: 1200, alt: { zh: "彩色灯光下的活动参与者", en: "Participants under colourful event lights" } },
-  { src: "/images/events/event-05.jpg", width: 1600, height: 1067, alt: { zh: "蓝色舞台灯光与人物剪影", en: "Silhouettes under blue stage lights" } },
-  { src: "/images/events/event-06.jpg", width: 1600, height: 1068, alt: { zh: "舞台灯光中的创作现场", en: "A creative session under stage lights" } },
-  { src: "/images/events/event-07.jpg", width: 1600, height: 1067, alt: { zh: "电子屏幕环绕的活动现场", en: "An event surrounded by digital screens" } },
-  { src: "/images/events/event-08.jpg", width: 1600, height: 1600, alt: { zh: "活动灯光下的团队", en: "A team gathered under event lights" } },
-  { src: "/images/events/event-09.jpg", width: 1600, height: 2000, alt: { zh: "手持相机进行拍摄教学", en: "A hands-on camera lesson" } },
-  { src: "/images/events/event-10.jpg", width: 1600, height: 2400, alt: { zh: "旷野景观中的构图练习", en: "A composition exercise in an open landscape" } },
-  { src: "/images/events/event-11.jpg", width: 1600, height: 1067, alt: { zh: "山谷间的自然光线", en: "Natural light crossing a mountain valley" } },
-  { src: "/images/events/event-12.jpg", width: 1600, height: 2400, alt: { zh: "自然场景中的摄影作品", en: "A photographic study in a natural setting" } },
+  { src: "/generated/events/event-01-1600.webp", width: 1600, height: 1068, alt: { zh: "夜间活动中的人群与灯光", en: "A crowd gathered under night-time lights" } },
+  { src: "/generated/events/event-02-1600.webp", width: 1600, height: 1067, alt: { zh: "蓝紫灯光下的活动现场", en: "An event under blue and violet light" } },
+  { src: "/generated/events/event-03-1600.webp", width: 1600, height: 1067, alt: { zh: "聚会现场的合照时刻", en: "A group-photo moment at a gathering" } },
+  { src: "/generated/events/event-04-1600.webp", width: 1600, height: 1200, alt: { zh: "彩色灯光下的活动参与者", en: "Participants under colourful event lights" } },
+  { src: "/generated/events/event-05-1600.webp", width: 1600, height: 1067, alt: { zh: "蓝色舞台灯光与人物剪影", en: "Silhouettes under blue stage lights" } },
+  { src: "/generated/events/event-06-1600.webp", width: 1600, height: 1068, alt: { zh: "舞台灯光中的创作现场", en: "A creative session under stage lights" } },
+  { src: "/generated/events/event-07-1600.webp", width: 1600, height: 1067, alt: { zh: "电子屏幕环绕的活动现场", en: "An event surrounded by digital screens" } },
+  { src: "/generated/events/event-08-1600.webp", width: 1600, height: 1600, alt: { zh: "活动灯光下的团队", en: "A team gathered under event lights" } },
+  { src: "/generated/events/event-09-1600.webp", width: 1600, height: 2000, alt: { zh: "手持相机进行拍摄教学", en: "A hands-on camera lesson" } },
+  { src: "/generated/events/event-10-1600.webp", width: 1600, height: 2400, alt: { zh: "旷野景观中的构图练习", en: "A composition exercise in an open landscape" } },
+  { src: "/generated/events/event-11-1600.webp", width: 1600, height: 1067, alt: { zh: "山谷间的自然光线", en: "Natural light crossing a mountain valley" } },
+  { src: "/generated/events/event-12-1600.webp", width: 1600, height: 2400, alt: { zh: "自然场景中的摄影作品", en: "A photographic study in a natural setting" } },
 ];
 
 const authors = ["Rin", "Mori", "Kite", "Aki", "Yu", "Nanami", "PrismShot", "unknown"] as const;
