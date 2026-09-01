@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import type { PhotoContent } from "@/content/types";
+import type { PhotoViewerItem } from "@/content/types";
 import { localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
@@ -10,14 +10,14 @@ import { ResponsivePhoto } from "./responsive-photo";
 import styles from "./photo-lightbox.module.css";
 
 interface PhotoLightboxProps {
-  photos: readonly PhotoContent[];
+  items: readonly PhotoViewerItem[];
   initialIndex: number;
   locale: Locale;
   onClose: () => void;
 }
 
 export function PhotoLightbox({
-  photos,
+  items,
   initialIndex,
   locale,
   onClose,
@@ -27,7 +27,7 @@ export function PhotoLightbox({
   const touchStartXRef = useRef(0);
 
   const step = (direction: -1 | 1) => {
-    setIndex((current) => (current + direction + photos.length) % photos.length);
+    setIndex((current) => (current + direction + items.length) % items.length);
   };
 
   useEffect(() => {
@@ -45,11 +45,11 @@ export function PhotoLightbox({
       } else if (event.key === "ArrowLeft") {
         event.preventDefault();
         setIndex((current) =>
-          (current - 1 + photos.length) % photos.length,
+          (current - 1 + items.length) % items.length,
         );
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        setIndex((current) => (current + 1) % photos.length);
+        setIndex((current) => (current + 1) % items.length);
       } else if (event.key === "Tab") {
         const dialog = closeButtonRef.current?.closest<HTMLElement>(
           '[role="dialog"]',
@@ -78,18 +78,9 @@ export function PhotoLightbox({
       document.body.classList.remove("menu-open");
       previouslyFocused?.focus();
     };
-  }, [onClose, photos.length]);
+  }, [items.length, onClose]);
 
-  const photo = photos[index];
-  const anonymous = locale === "zh" ? "匿名" : "Anonymous";
-  const unknown = locale === "zh" ? "未知" : "Unknown";
-  const author =
-    photo.author === "anonymous"
-      ? anonymous
-      : photo.author === "unknown"
-        ? unknown
-        : photo.author;
-  const date = photo.date === "unknown" ? unknown : photo.date;
+  const photo = items[index];
 
   return (
     <div
@@ -142,11 +133,15 @@ export function PhotoLightbox({
       </div>
       <aside className={styles.info}>
         <div className={styles.counter}>
-          {String(index + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
+          {String(index + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </div>
         <h2>{localize(photo.title, locale)}</h2>
         {photo.caption && <p>{localize(photo.caption, locale)}</p>}
-        <div className={styles.meta}>{author} · {date}</div>
+        {photo.details && photo.details.length > 0 && (
+          <div className={styles.meta}>
+            {photo.details.map((detail) => localize(detail, locale)).join(" · ")}
+          </div>
+        )}
       </aside>
       <button
         ref={closeButtonRef}

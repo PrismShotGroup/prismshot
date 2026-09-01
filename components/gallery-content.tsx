@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 
 import { galleryPageCopy, galleryPhotos } from "@/content/gallery";
-import { localize } from "@/content/types";
+import { localize, toPhotoViewerItem } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
@@ -23,6 +23,7 @@ export function GalleryContent({ locale }: GalleryContentProps) {
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const copy = galleryPageCopy[locale];
   const visiblePhotos = galleryPhotos.slice(0, visibleCount);
+  const viewerItems = visiblePhotos.map(toPhotoViewerItem);
   const hasMore = visibleCount < galleryPhotos.length;
 
   return (
@@ -79,7 +80,7 @@ export function GalleryContent({ locale }: GalleryContentProps) {
 
       {lightboxIndex !== null && (
         <PhotoLightbox
-          photos={visiblePhotos}
+          items={viewerItems}
           initialIndex={lightboxIndex}
           locale={locale}
           onClose={closeLightbox}

@@ -8,7 +8,7 @@ import {
   configuredEventMonths,
   eventPageCopy,
 } from "@/content/events";
-import { localize } from "@/content/types";
+import { localize, toPhotoViewerItem } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
@@ -98,6 +98,7 @@ export function EventsContent({ locale }: EventsContentProps) {
     (event) => event.date === activeDate,
   );
   const allPhotos = activities.flatMap((activity) => activity.photos);
+  const viewerItems = allPhotos.map(toPhotoViewerItem);
   const firstWeekday =
     (new Date(Date.UTC(currentMonth.year, currentMonth.month - 1, 1)).getUTCDay() + 6) % 7;
   const daysInMonth = new Date(
@@ -316,7 +317,7 @@ export function EventsContent({ locale }: EventsContentProps) {
 
       {lightboxIndex !== null && (
         <PhotoLightbox
-          photos={allPhotos}
+          items={viewerItems}
           initialIndex={lightboxIndex}
           locale={locale}
           onClose={closeLightbox}
