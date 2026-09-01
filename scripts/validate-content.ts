@@ -1,12 +1,15 @@
-import { access } from "node:fs/promises";
+import { access, readdir } from "node:fs/promises";
 import path from "node:path";
 
+import sharp from "sharp";
+
 import { socialPlatforms } from "../content/about";
+import { currentContest, contestChampions } from "../content/contests";
 import { activities, calendarEvents, configuredEventMonths } from "../content/events";
 import { galleryPhotos } from "../content/gallery";
+import { photoAssets, responsivePhotoWidths } from "../content/photo-assets";
 import { releaseReadiness } from "../content/readiness";
 import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site";
-import { currentContest } from "../content/contests";
 import { pageKeys } from "../lib/i18n";
 
 const errors: string[] = [];
@@ -30,6 +33,32 @@ for (const locale of ["zh", "en"] as const) {
 requireUnique(calendarEvents.map((event) => event.id), "calendar events");
 requireUnique(activities.map((activity) => activity.id), "activities");
 requireUnique(galleryPhotos.map((photo) => photo.id), "gallery photos");
+requireUnique(contestChampions.map((champion) => champion.id), "contest champions");
+
+const activityPhotos = activities.flatMap((activity) => activity.photos);
+requireUnique(
+  [...activityPhotos, ...galleryPhotos].map((photo) => photo.id),
+  "photographs across events and gallery",
+);
+
+const registeredAssets = Object.values(photoAssets);
+requireUnique(registeredAssets.map((asset) => asset.key), "photo assets");
+
+const referencedAssets = [
+  ...activityPhotos.map((photo) => ({ label: photo.id, asset: photo.asset })),
+  ...galleryPhotos.map((photo) => ({ label: photo.id, asset: photo.asset })),
+  { label: `contest-${currentContest.issue}`, asset: currentContest.visual },
+  ...contestChampions.map((champion) => ({ label: champion.id, asset: champion.image })),
+];
+const registeredAssetsByKey = new Map<string, (typeof registeredAssets)[number]>(
+  registeredAssets.map((asset) => [asset.key, asset]),
+);
+
+for (const reference of referencedAssets) {
+  if (registeredAssetsByKey.get(reference.asset.key) !== reference.asset) {
+    errors.push(`${reference.label} must reference a registered photo asset`);
+  }
+}
 
 for (const activity of activities) {
   if (activity.photos.length < 1 || activity.photos.length > 6) {
@@ -90,11 +119,66 @@ if (homeBackgroundSrc) {
   }
 }
 
-for (const photo of activities.flatMap((activity) => activity.photos)) {
-  try {
-    await access(path.join(process.cwd(), "assets/source/photos", `${photo.asset.key}.jpg`));
-  } catch {
-    errors.push(`${photo.id} is missing its source image`);
+const sourceDirectory = path.join(process.cwd(), "assets/source/photos");
+const generatedDirectory = path.join(process.cwd(), "public/generated/photos");
+const sourceFiles = (await readdir(sourceDirectory)).filter((file) =>
+  /\.(jpe?g|png)$/i.test(file),
+);
+const configuredAssetKeys = new Set<string>(
+  registeredAssets.map((asset) => asset.key),
+);
+
+for (const sourceFile of sourceFiles) {
+  if (!configuredAssetKeys.has(path.parse(sourceFile).name)) {
+    errors.push(`${sourceFile} is not registered in content/photo-assets.ts`);
+  }
+}
+
+const minimumWidth = responsivePhotoWidths.at(-1);
+for (const asset of registeredAssets) {
+  const matchingSources = sourceFiles.filter(
+    (sourceFile) => path.parse(sourceFile).name === asset.key,
+  );
+
+  if (matchingSources.length !== 1) {
+    errors.push(`${asset.key} requires exactly one source image; found ${matchingSources.length}`);
+    continue;
+  }
+
+  const sourcePath = path.join(sourceDirectory, matchingSources[0]);
+  const sourceMetadata = await sharp(sourcePath).metadata();
+  const orientedSize = sourceMetadata.autoOrient ?? sourceMetadata;
+
+  if (orientedSize.width !== asset.width || orientedSize.height !== asset.height) {
+    errors.push(
+      `${asset.key} source is ${orientedSize.width}×${orientedSize.height} after EXIF orientation; asset record says ${asset.width}×${asset.height}`,
+    );
+  }
+  if (minimumWidth && asset.width < minimumWidth) {
+    errors.push(`${asset.key} is ${asset.width}px wide; minimum usable width is ${minimumWidth}px`);
+  }
+  if (!asset.alt.zh || !asset.alt.en) {
+    errors.push(`${asset.key} is missing bilingual alt text`);
+  }
+
+  for (const width of responsivePhotoWidths) {
+    const expectedHeight = Math.round((asset.height / asset.width) * width);
+    for (const format of ["webp", "avif"] as const) {
+      const outputPath = path.join(
+        generatedDirectory,
+        `${asset.key}-${width}.${format}`,
+      );
+      try {
+        const outputMetadata = await sharp(outputPath).metadata();
+        if (outputMetadata.width !== width || outputMetadata.height !== expectedHeight) {
+          errors.push(
+            `${asset.key}-${width}.${format} is ${outputMetadata.width}×${outputMetadata.height}; expected ${width}×${expectedHeight}`,
+          );
+        }
+      } catch {
+        errors.push(`${asset.key} is missing its ${width}px ${format.toUpperCase()} variant`);
+      }
+    }
   }
 }
 

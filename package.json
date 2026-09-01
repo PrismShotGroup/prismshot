@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "npm run images:build",
     "dev": "next dev",
-    "prebuild": "npm run content:validate && npm run images:build",
+    "prebuild": "npm run images:build && npm run content:validate",
     "build": "next build",
     "images:build": "tsx scripts/process-images.ts",
     "content:validate": "tsx scripts/validate-content.ts",
