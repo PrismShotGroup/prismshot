@@ -90,7 +90,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       home: {
         navLabel: "主页",
         headerMeta: "Virtual photography",
-        metaTitle: "PrismShot 棱镜定格｜VRChat虚拟摄影社团",
+        metaTitle: "PrismShot 棱镜定格｜VRChat虚拟摄影群组",
         metaDescription:
           "PrismShot 棱镜定格——面向 VRChat 摄影爱好者与视频创作者的灵感聚集地。",
       },
@@ -141,7 +141,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       },
       about: {
         navLabel: "关于我们",
-        headerMeta: "Collective / About",
+        headerMeta: "Club / About",
         metaTitle: "关于我们｜PrismShot 棱镜定格",
         metaDescription:
           "认识 PrismShot 棱镜定格，并通过 QQ、VRChat、Discord、抖音与 Bilibili 找到我们。",
@@ -182,7 +182,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       home: {
         navLabel: "Home",
         headerMeta: "Virtual photography",
-        metaTitle: "PrismShot | VRChat Photography Club",
+        metaTitle: "PrismShot | VRChat Photography Group",
         metaDescription:
           "PrismShot is a creative home for VRChat photographers and video makers.",
       },
@@ -233,7 +233,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       },
       about: {
         navLabel: "About us",
-        headerMeta: "Collective / About",
+        headerMeta: "Club / About",
         metaTitle: "About Us | PrismShot",
         metaDescription:
           "Meet PrismShot and find the club on QQ, VRChat, Discord, Douyin, and Bilibili.",
@@ -251,7 +251,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       kicker: "Virtual photography group",
       title: "PRISM SHOT",
       subtitle: "Photography Club",
-      subtitleDetail: "PrismShot Collective",
+      subtitleDetail: "PrismShot",
       intro:
         "PrismShot is a creative home built for VRChat photographers and video makers. Whether you are learning to shape a virtual frame or looking for people to create with, there is a place for your perspective here.",
       note: "In virtual worlds, we capture real moments",
