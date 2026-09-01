@@ -80,9 +80,9 @@
           <div>
             <div class="contest-dates">
               <div class="contest-date"><span>投稿期 · UTC+8</span><strong>08.24 — 09.06</strong></div>
-              <div class="contest-date"><span>投票期 · UTC+8</span><strong>09.12 — 09.16</strong></div>
+              <div class="contest-date"><span>投票期 · UTC+8</span><strong>09.07 — 09.16</strong></div>
             </div>
-            <p style="margin:28px 0 0;color:var(--muted);font-size:.78rem">状态会按照 Asia/Shanghai 时间自动切换为“即将开始 / 投稿中 / 等待投票 / 投票中 / 已结束”。原型日期仅用于演示状态逻辑。</p>
+            <p style="margin:28px 0 0;color:var(--muted);font-size:.78rem">状态会按照 Asia/Shanghai 时间自动切换为“即将开始 / 投稿中 / 投票中 / 已结束”。投稿结束后立即进入投票状态，原型日期仅用于演示状态逻辑。</p>
           </div>
         </div>
       </section>
@@ -121,14 +121,12 @@
       const now = new Date();
       const periods = {
         submitStart: new Date("2026-08-24T00:00:00+08:00"),
-        submitEnd: new Date("2026-09-06T23:59:59+08:00"),
-        voteStart: new Date("2026-09-12T00:00:00+08:00"),
+        voteStart: new Date("2026-09-07T00:00:00+08:00"),
         voteEnd: new Date("2026-09-16T23:59:59+08:00")
       };
       let label = "即将开始";
       let live = false;
-      if (now >= periods.submitStart && now <= periods.submitEnd) { label = "投稿中"; live = true; }
-      else if (now > periods.submitEnd && now < periods.voteStart) label = "等待投票";
+      if (now >= periods.submitStart && now < periods.voteStart) { label = "投稿中"; live = true; }
       else if (now >= periods.voteStart && now <= periods.voteEnd) { label = "投票中"; live = true; }
       else if (now > periods.voteEnd) label = "已结束";
       statusNode.textContent = label;
