@@ -61,7 +61,6 @@ export function ContestChampionGallery({
               type="button"
               aria-label={localize(champion.theme, locale)}
               onClick={() => setLightboxIndex(index)}
-              style={{ aspectRatio: `${champion.image.width} / ${champion.image.height}` }}
             >
               <ResponsivePhoto
                 photo={champion.image}

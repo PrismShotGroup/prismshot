@@ -167,25 +167,18 @@ await runFlow(
     const landscapeChampion = page.getByRole("button", { name: "醒来之前" });
     check(await landscapeChampion.isVisible(), "mobile contest champion is not visible");
     await landscapeChampion.scrollIntoViewIfNeeded();
-    await landscapeChampion.locator("img").evaluate((image) => {
-      if (image.complete && image.naturalWidth > 0) return;
-      return new Promise((resolve, reject) => {
-        image.addEventListener("load", resolve, { once: true });
-        image.addEventListener("error", reject, { once: true });
-      });
-    });
-    const championRatio = await landscapeChampion.evaluate((node) => {
-      const image = node.querySelector("img");
+    const championPreview = await landscapeChampion.evaluate((node) => {
       const bounds = node.getBoundingClientRect();
       return {
-        displayed: bounds.width / bounds.height,
-        natural: image ? image.naturalWidth / image.naturalHeight : 0,
+        ratio: bounds.width / bounds.height,
+        fit: getComputedStyle(node.querySelector("img")).objectFit,
       };
     });
     check(
-      Math.abs(championRatio.displayed - championRatio.natural) < 0.02,
-      `champion preview does not preserve the source aspect ratio (${championRatio.displayed} vs ${championRatio.natural})`,
+      Math.abs(championPreview.ratio - 4 / 5) < 0.02,
+      `champion preview is not 4:5 (${championPreview.ratio})`,
     );
+    check(championPreview.fit === "cover", "champion preview does not crop to its 4:5 frame");
     await landscapeChampion.click();
     const contestDialog = page.getByRole("dialog", { name: "照片大图查看器" });
     check(await contestDialog.isVisible(), "contest champion viewer did not open on mobile");
