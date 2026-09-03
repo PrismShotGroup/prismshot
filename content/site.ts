@@ -104,9 +104,9 @@ export const siteContent: Record<Locale, SiteCopy> = {
           eyebrow: "Events · 一起按下快门",
           title: "Event",
           ghostTitle: "Schedule",
-          statement: "把相遇排进日历，\n让灵感准时发生。",
+          statement: "棱镜定格，\n重新定义每一次相遇。",
           description:
-            "从主题合拍、盲盒挑战到摄影教学，选择一场喜欢的活动，在镜头里和我们见面。活动时间均为北京时间（UTC+8）。",
+            "每周轮换三大主题活动——相聚一镜、同镜搭子、教练我要学摄影。",
         },
       },
       contests: {
@@ -196,9 +196,9 @@ export const siteContent: Record<Locale, SiteCopy> = {
           eyebrow: "Events · Meet behind the lens",
           title: "Event",
           ghostTitle: "Schedule",
-          statement: "Put every encounter on the calendar,\nand let inspiration arrive on time.",
+          statement: "PrismShot,\nredefining every encounter.",
           description:
-            "From themed group shoots and mystery challenges to photography workshops, choose an event and meet us behind the lens. All times are shown in China Standard Time (UTC+8).",
+            "Three signature events rotate weekly—Together in One Frame, Frame Partners, and Coach, Teach Me Photography.",
         },
       },
       contests: {

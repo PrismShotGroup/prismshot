@@ -30,45 +30,11 @@ export interface ActivityContent {
 }
 
 export const configuredEventMonths: readonly CalendarMonth[] = [
-  { year: 2026, month: 8 },
   { year: 2026, month: 9 },
   { year: 2026, month: 10 },
 ];
 
 export const calendarEvents: readonly CalendarEvent[] = [
-  {
-    id: "class-2026-08-09",
-    date: "2026-08-09",
-    kind: "class",
-    typeLabel: { zh: "摄影教学", en: "Workshop" },
-    title: { zh: "教练，我要学摄影", en: "Coach, Teach Me Photography" },
-    time: "20:00",
-    note: {
-      zh: "摄影插件基础与实拍练习。",
-      en: "Camera-tool basics followed by a practical shoot.",
-    },
-  },
-  {
-    id: "partner-2026-08-16",
-    date: "2026-08-16",
-    kind: "partner",
-    typeLabel: { zh: "盲盒挑战", en: "Mystery challenge" },
-    title: { zh: "同镜搭子", en: "Frame Partners" },
-    time: "20:30",
-    note: {
-      zh: "2–3 人组队，现场抽取创作任务。",
-      en: "Teams of two or three draw a creative prompt on site.",
-    },
-  },
-  {
-    id: "gather-2026-08-30",
-    date: "2026-08-30",
-    kind: "gather",
-    typeLabel: { zh: "集体合拍", en: "Group shoot" },
-    title: { zh: "相聚一镜", en: "Together in One Frame" },
-    time: "20:30",
-    note: { zh: "本期主题：城市夜游。", en: "Prompt: City after dark." },
-  },
   {
     id: "class-2026-09-05",
     date: "2026-09-05",
@@ -77,20 +43,20 @@ export const calendarEvents: readonly CalendarEvent[] = [
     title: { zh: "教练，我要学摄影", en: "Coach, Teach Me Photography" },
     time: "20:00",
     note: {
-      zh: "本期主题：人像光线入门。",
-      en: "An introduction to lighting virtual portraits.",
+      zh: "",
+      en: "",
     },
   },
   {
     id: "partner-2026-09-12",
     date: "2026-09-12",
     kind: "partner",
-    typeLabel: { zh: "盲盒挑战", en: "Mystery challenge" },
+    typeLabel: { zh: "双人组队挑战", en: "Two-person team challenge" },
     title: { zh: "同镜搭子", en: "Frame Partners" },
     time: "20:30",
     note: {
-      zh: "基础卡组与进阶挑战同步开放。",
-      en: "Core prompt decks and advanced challenges are both open.",
+      zh: "",
+      en: "",
     },
   },
   {
@@ -98,44 +64,11 @@ export const calendarEvents: readonly CalendarEvent[] = [
     date: "2026-09-26",
     kind: "gather",
     typeLabel: { zh: "集体合拍", en: "Group shoot" },
-    title: { zh: "相聚一镜", en: "Together in One Frame" },
+    title: { zh: "主题赛摄影展 + 相聚一镜", en: "Theme Contest Exhibition + Together in One Frame" },
     time: "20:30",
     note: {
-      zh: "主题将在活动前一周公开征集。",
-      en: "The prompt will be chosen by the community one week ahead.",
-    },
-  },
-  {
-    id: "partner-extra-2026-09-26",
-    date: "2026-09-26",
-    kind: "partner",
-    typeLabel: { zh: "盲盒挑战", en: "Mystery challenge" },
-    title: { zh: "同镜搭子 · 加映场", en: "Frame Partners · Late Session" },
-    time: "22:00",
-    note: {
-      zh: "当日第二场，小队名额有限。",
-      en: "A second session with limited team capacity.",
-    },
-  },
-  {
-    id: "gather-2026-10-10",
-    date: "2026-10-10",
-    kind: "gather",
-    typeLabel: { zh: "集体合拍", en: "Group shoot" },
-    title: { zh: "相聚一镜", en: "Together in One Frame" },
-    time: "20:30",
-    note: { zh: "秋季主题合拍活动。", en: "An autumn-themed group shoot." },
-  },
-  {
-    id: "class-2026-10-24",
-    date: "2026-10-24",
-    kind: "class",
-    typeLabel: { zh: "摄影教学", en: "Workshop" },
-    title: { zh: "教练，我要学摄影", en: "Coach, Teach Me Photography" },
-    time: "20:00",
-    note: {
-      zh: "构图诊疗室与作品复盘。",
-      en: "Composition clinic and a review of recent work.",
+      zh: "",
+      en: "",
     },
   },
 ];
@@ -195,12 +128,12 @@ export const activities: readonly ActivityContent[] = [
     id: "frame-partners",
     name: { zh: "同镜搭子", en: "Frame Partners" },
     summary: {
-      zh: "2–3 人自由组队，通过盲盒卡组完成基础与进阶摄影挑战。",
-      en: "Teams of two or three use mystery card decks to complete core and advanced photography challenges.",
+      zh: "两人自由组队，通过盲盒卡组完成基础与进阶摄影挑战。",
+      en: "Teams of two use mystery card decks to complete core and advanced photography challenges.",
     },
     description: {
-      zh: "参与者可自由组队，以 2–3 人为一组参与盲盒挑战。基础卡组包含任务状态卡、镜头卡与氛围卡三类。完成基础挑战后，即可解锁进阶玩法。完成对应挑战可兑换社团定制奖品，三项进阶挑战全部完成后，还可解锁专属神秘定制奖品。",
-      en: "Participants form teams of two or three for a mystery-card challenge. The core deck contains task-status, lens, and atmosphere cards; completing the core challenge unlocks the advanced rounds. Each completed challenge can be redeemed for a club-made prize, while completing all three advanced challenges unlocks an exclusive mystery prize.",
+      zh: "参与者可自由组队，以两人为一组参与盲盒挑战。基础卡组包含任务状态卡、镜头卡与氛围卡三类。完成基础挑战后，即可解锁进阶玩法。完成对应挑战可兑换社团定制奖品，三项进阶挑战全部完成后，还可解锁专属神秘定制奖品。",
+      en: "Participants form teams of two for a mystery-card challenge. The core deck contains task-status, lens, and atmosphere cards; completing the core challenge unlocks the advanced rounds. Each completed challenge can be redeemed for a club-made prize, while completing all three advanced challenges unlocks an exclusive mystery prize.",
     },
     meta: [
       { zh: "基础卡组 · 任务状态卡 / 镜头卡 / 氛围卡", en: "Core deck · Task-status / lens / atmosphere cards" },
@@ -258,7 +191,7 @@ export const activities: readonly ActivityContent[] = [
     meta: [
       { zh: "形式 · 茶话会 + 实战教学", en: "Format · Talk and guided practice" },
       { zh: "难度 · 零基础友好", en: "Level · Beginner-friendly" },
-      { zh: "内容 · 插件 / 构图 / 光线", en: "Topics · Tools / composition / light" },
+      { zh: "内容 · 插件教学与实战", en: "Topics · Plugin instruction and hands-on practice" },
     ],
     photos: [
       {
@@ -311,14 +244,14 @@ export const eventPageCopy: Record<Locale, {
   zh: {
     calendarSection: {
       number: "01 / Calendar",
-      title: "本月，和我们在",
-      accent: "镜头里见",
-      note: "选择有标记的日期查看活动安排。",
+      title: "周常活动｜",
+      accent: "每周五 21:30",
+      note: "活动时间均为北京时间（UTC+8），活动开启后将在游戏群组房间内进行。",
     },
     programSection: {
       number: "02 / Program",
-      title: "三种相遇，",
-      accent: "三种创作方式",
+      title: "提前加入群组，",
+      accent: "等待本周的镜头召集",
       note: "选择活动名称查看详情。点击照片进入大图预览。",
     },
     selectedDateLabel: "Selected date · UTC+8",
@@ -332,14 +265,14 @@ export const eventPageCopy: Record<Locale, {
   en: {
     calendarSection: {
       number: "01 / Calendar",
-      title: "Meet us this month,",
-      accent: "behind the lens",
-      note: "Choose a marked date to view the event schedule.",
+      title: "Weekly events | ",
+      accent: "Every Friday at 21:30",
+      note: "All event times are shown in China Standard Time (UTC+8), and events take place in the in-game group instance.",
     },
     programSection: {
       number: "02 / Program",
-      title: "Three ways to meet,",
-      accent: "three ways to create",
+      title: "Join the group ahead of time, ",
+      accent: "and await this week's photo call",
       note: "Select an activity name to view its details. Select a photograph to open the viewer.",
     },
     selectedDateLabel: "Selected date · UTC+8",

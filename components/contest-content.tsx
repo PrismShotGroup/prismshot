@@ -20,6 +20,10 @@ interface ContestContentProps {
 export function ContestContent({ locale }: ContestContentProps) {
   const copy = contestPageCopy[locale];
   const serverStatus = getContestStatus(currentContest, new Date());
+  const ruleColumns = [
+    { id: "participation", rules: copy.rules.slice(0, 3) },
+    { id: "prizes", rules: copy.rules.slice(3) },
+  ];
 
   return (
     <>
@@ -43,9 +47,15 @@ export function ContestContent({ locale }: ContestContentProps) {
               </div>
               <h3 className={styles.theme}>
                 {localize(currentContest.theme, locale)}
-                <small>{currentContest.themeEn}</small>
+                <small>{localize(currentContest.subtitle, locale)}</small>
               </h3>
               <p className={styles.summary}>{localize(currentContest.summary, locale)}</p>
+              <div className={`${styles.dates} ${styles.currentDates}`}>
+                <div className={styles.date}>
+                  <span>{copy.submissionPeriod}</span>
+                  <strong>{currentContest.submissionDisplay}</strong>
+                </div>
+              </div>
             </div>
             <div className={styles.buttonRow}>
               {currentContest.submissionUrl && (
@@ -74,28 +84,18 @@ export function ContestContent({ locale }: ContestContentProps) {
       <section className={`${styles.section} ${styles.tightSection}`} id="contest-rules" aria-labelledby="rules-title">
         <EditorialSectionHeading {...copy.rulesSection} id="rules-title" />
         <div className={styles.rulesLayout}>
-          <div>
-            <div className={styles.callout}>{copy.callout}</div>
-            <dl className={styles.rules}>
-              {copy.rules.map((rule) => (
-                <div className={styles.rule} key={rule.label}>
-                  <dt>{rule.label}</dt>
-                  <dd>{rule.body}{rule.restriction && <> <span>{rule.restriction}</span></>}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div>
-            <div className={styles.dates}>
-              <div className={styles.date}>
-                <span>{copy.submissionPeriod}</span>
-                <strong>{currentContest.submissionDisplay}</strong>
-              </div>
-              <div className={styles.date}>
-                <span>{copy.votingPeriod}</span>
-                <strong>{currentContest.voteDisplay}</strong>
-              </div>
-            </div>
+          <div className={styles.callout}>{copy.callout}</div>
+          <div className={styles.ruleColumns}>
+            {ruleColumns.map((column) => (
+              <dl className={styles.rules} key={column.id}>
+                {column.rules.map((rule) => (
+                  <div className={styles.rule} key={rule.label}>
+                    <dt>{rule.label}</dt>
+                    <dd>{rule.body}{rule.restriction && <> <span>{rule.restriction}</span></>}</dd>
+                  </div>
+                ))}
+              </dl>
+            ))}
           </div>
         </div>
       </section>
