@@ -31,44 +31,55 @@ export interface ActivityContent {
 
 export const configuredEventMonths: readonly CalendarMonth[] = [
     { year: 2026, month: 9 },
-    { year: 2026, month: 10 },
 ];
 
 export const calendarEvents: readonly CalendarEvent[] = [
     {
-        id: "class-2026-09-05",
-        date: "2026-09-05",
+        id: "class-2026-09-04",
+        date: "2026-09-04",
         kind: "class",
         typeLabel: { zh: "摄影教学", en: "Workshop" },
         title: { zh: "教练，我要学摄影", en: "Coach, Teach Me Photography" },
-        time: "20:00",
+        time: "21:30",
         note: {
             zh: "",
             en: "",
         },
     },
     {
-        id: "partner-2026-09-12",
-        date: "2026-09-12",
+        id: "partner-2026-09-11",
+        date: "2026-09-11",
         kind: "partner",
         typeLabel: { zh: "双人组队挑战", en: "Two-person team challenge" },
         title: { zh: "同镜搭子", en: "Frame Partners" },
-        time: "20:30",
+        time: "21:30",
         note: {
             zh: "",
             en: "",
         },
     },
     {
-        id: "gather-2026-09-26",
-        date: "2026-09-26",
+        id: "gather-2026-09-18",
+        date: "2026-09-18",
         kind: "gather",
         typeLabel: { zh: "集体合拍", en: "Group shoot" },
         title: {
             zh: "主题赛摄影展 + 相聚一镜",
             en: "Theme Contest Exhibition + Together in One Frame",
         },
-        time: "20:30",
+        time: "21:30",
+        note: {
+            zh: "",
+            en: "",
+        },
+    },
+    {
+        id: "class-2026-09-25",
+        date: "2026-09-25",
+        kind: "class",
+        typeLabel: { zh: "摄影教学", en: "Workshop" },
+        title: { zh: "教练，我要学摄影", en: "Coach, Teach Me Photography" },
+        time: "21:30",
         note: {
             zh: "",
             en: "",
