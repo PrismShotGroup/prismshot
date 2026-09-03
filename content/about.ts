@@ -90,7 +90,7 @@ export const aboutPageCopy: Record<Locale, {
       note: "",
     },
     placeholderTag: "VRChat虚拟摄影群组",
-    lead: "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地。",
+    lead: "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者量身打造的灵感聚集地。",
     body: [
       "无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台。我们相信，摄影不是少数人的技术竞赛，而是一种可以共同练习的观看方式。",
       "从主题合拍、搭档挑战，到面向新人的摄影教学，我们希望每一次活动都能让成员带走一张喜欢的作品，也带走一段值得记住的关系。",
@@ -113,7 +113,7 @@ export const aboutPageCopy: Record<Locale, {
       note: "",
     },
     placeholderTag: "VRChat Photography Group",
-    lead: "PrismShot is a creative home built for VRChat photographers and video makers.",
+    lead: "PrismShot is a creative home built for VRChat photographers.",
     body: [
       "Whether you are learning virtual photography or looking for people to create with, there is room for your perspective here. We see photography not as a technical contest for a few, but as a way of looking that anyone can practise together.",
       "From themed group shoots and partner challenges to beginner workshops, we hope every event leaves members with a photograph they love and a connection worth remembering.",

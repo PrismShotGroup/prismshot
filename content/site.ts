@@ -92,7 +92,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
         headerMeta: "Virtual photography",
         metaTitle: "PrismShot 棱镜定格｜VRChat虚拟摄影群组",
         metaDescription:
-          "PrismShot 棱镜定格——面向 VRChat 摄影爱好者与视频创作者的灵感聚集地。",
+          "PrismShot 棱镜定格——面向 VRChat 摄影爱好者的灵感聚集地。",
       },
       events: {
         navLabel: "活动",
@@ -151,7 +151,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "The Lens",
           statement: "我们分享的不只是照片，\n也是彼此看见世界的方式。",
           description:
-            "欢迎摄影爱好者、视频创作者与所有仍在摸索的人，在虚拟世界里一起创作。",
+            "欢迎摄影爱好者与所有仍在摸索的人，在虚拟世界里一起创作。",
         },
       },
     },
@@ -161,7 +161,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       subtitle: "Photography Club",
       subtitleDetail: "棱镜定格",
       intro:
-        "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者与视频创作者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台",
+        "这里是 PrismShot 棱镜定格，一个为 VRChat 摄影爱好者量身打造的灵感聚集地！无论你是想解锁虚拟拍摄技能，还是想找到同好共创作品，这里都有属于你的创作舞台",
       note: "在虚拟次元，定格真实热爱",
     },
   },
@@ -184,7 +184,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
         headerMeta: "Virtual photography",
         metaTitle: "PrismShot | VRChat Photography Group",
         metaDescription:
-          "PrismShot is a creative home for VRChat photographers and video makers.",
+          "PrismShot is a creative home for VRChat photographers.",
       },
       events: {
         navLabel: "Events",
@@ -243,7 +243,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
           ghostTitle: "The Lens",
           statement: "We share more than photographs—\nwe share ways of seeing the world.",
           description:
-            "Photographers, video makers, and curious beginners are all welcome to create with us in virtual worlds.",
+            "Photographers and curious beginners are all welcome to create with us in virtual worlds.",
         },
       },
     },
@@ -253,7 +253,7 @@ export const siteContent: Record<Locale, SiteCopy> = {
       subtitle: "Photography Club",
       subtitleDetail: "PrismShot",
       intro:
-        "PrismShot is a creative home built for VRChat photographers and video makers. Whether you are learning to shape a virtual frame or looking for people to create with, there is a place for your perspective here.",
+        "PrismShot is a creative home built for VRChat photographers. Whether you are learning to shape a virtual frame or looking for people to create with, there is a place for your perspective here.",
       note: "Across virtual worlds, capture what we truly love",
     },
   },

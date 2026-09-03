@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "PrismShot 棱镜定格",
     short_name: "PrismShot",
-    description: "A creative home for VRChat photographers and video makers.",
+    description: "A creative home for VRChat photographers.",
     start_url: "/",
     display: "standalone",
     background_color: "#050609",
