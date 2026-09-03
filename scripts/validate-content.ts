@@ -43,6 +43,12 @@ requireUnique(galleryPhotos.map((photo) => photo.id), "gallery photos");
 requireUnique(contestChampions.map((champion) => champion.id), "contest champions");
 requireUnique(teamMembers.map((member) => member.id), "team members");
 
+for (const champion of contestChampions) {
+  if (champion.theme && (!champion.theme.zh.trim() || !champion.theme.en.trim())) {
+    errors.push(`${champion.id} has an incomplete bilingual theme`);
+  }
+}
+
 const activityPhotos = activities.flatMap((activity) => activity.photos);
 requireUnique(
   [...activityPhotos, ...galleryPhotos].map((photo) => photo.id),
