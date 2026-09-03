@@ -91,14 +91,17 @@ export async function AboutContent({ locale }: AboutContentProps) {
           <div className={styles.supportIntro}>
             {copy.supportIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
-          <ol className={styles.supportUses}>
-            {copy.supportUses.map((use, index) => (
-              <li key={use}>
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <p>{use}</p>
-              </li>
-            ))}
-          </ol>
+          <div className={styles.supportUsesBlock}>
+            <h3 className={styles.supportUsesTitle}>{copy.supportUsesLabel}</h3>
+            <ol className={styles.supportUses}>
+              {copy.supportUses.map((use, index) => (
+                <li key={use}>
+                  <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <p>{use}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
         {qqPlatform && (
           <a

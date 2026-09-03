@@ -119,6 +119,7 @@ export const aboutPageCopy: Record<Locale, {
   lead: string;
   body: readonly string[];
   supportIntro: readonly string[];
+  supportUsesLabel: string;
   supportUses: readonly string[];
   supportContact: string;
   supportContactLabel: string;
@@ -163,6 +164,7 @@ export const aboutPageCopy: Record<Locale, {
       "我们是由 VRChat 摄影爱好者自发组成的小众社群，至今所有活动都靠大家用爱发电。",
       "你的每一份赞助，都将直接用于摄影比赛奖金、创作奖品与主题活动落地，让更多热爱虚拟摄影的人，能在镜头里被看见。",
     ],
+    supportUsesLabel: "赞助用途",
     supportUses: [
       "主题摄影赛事的奖金与奖品",
       "大型创作活动的支持",
@@ -212,6 +214,7 @@ export const aboutPageCopy: Record<Locale, {
       "We are a small, self-organised community of VRChat photography enthusiasts, and every event so far has been made possible by members volunteering their time and care.",
       "Every contribution goes directly towards contest prizes, creative awards, and themed events—helping more virtual photographers have their work seen.",
     ],
+    supportUsesLabel: "How support is used",
     supportUses: [
       "Prizes and awards for themed photography contests",
       "Support for major creative events",
