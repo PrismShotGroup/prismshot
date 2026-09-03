@@ -166,8 +166,8 @@ export const contestPageCopy: Record<
     zh: {
         currentSection: {
             number: "01 / Current",
-            title: "正在发生的",
-            accent: "观看练习",
+            title: "正在进行的",
+            accent: "摄影主题赛",
             note: "",
         },
         rulesSection: {
@@ -223,19 +223,19 @@ export const contestPageCopy: Record<
     en: {
         currentSection: {
             number: "01 / Current",
-            title: "A practice in",
-            accent: "seeing differently",
+            title: "An ongoing ",
+            accent: "photography contest",
             note: "",
         },
         rulesSection: {
             number: "02 / Rules",
-            title: "Simple rules,",
+            title: "Simple rules, ",
             accent: "clear expression",
             note: "",
         },
         archiveSection: {
             number: "03 / Archive",
-            title: "Past champions,",
+            title: "Past champions, ",
             accent: "one frame per round",
             note: "",
         },

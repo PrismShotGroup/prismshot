@@ -138,7 +138,7 @@ export const galleryPageCopy: Record<
     en: {
         section: {
             number: "01 / Collection",
-            title: "Moments worth",
+            title: "Moments worth ",
             accent: "seeing again",
             note: "",
         },
