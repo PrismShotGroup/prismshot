@@ -3,6 +3,7 @@ export const releaseReadiness = {
   eventPhotography: false,
   contestContent: false,
   galleryPhotography: false,
-  aboutIntroduction: false,
+  aboutIntroduction: true,
+  teamPortraits: false,
   communityAccounts: false,
 } as const;

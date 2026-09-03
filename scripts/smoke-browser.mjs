@@ -272,10 +272,18 @@ await runFlow(
     check((await page.locator("img:not([alt])").count()) === 0, "gallery contains an image without alt text");
 
     await page.goto(`${baseUrl}/about`, { waitUntil: "networkidle" });
-    check((await page.locator('a[target="_blank"]').count()) === 5, "about page does not expose five platforms");
-    const qrImages = page.locator('img[alt$="二维码"]');
+    const connectSection = page.locator('section[aria-labelledby="connect-title"]');
+    check((await connectSection.locator('a[target="_blank"]').count()) === 5, "about page does not expose five platforms");
+    const qrImages = connectSection.locator('img[alt$="二维码"]');
     check((await qrImages.count()) === 5, "about page does not render five QR codes");
     check((await qrImages.first().getAttribute("src"))?.startsWith("data:image/png;base64,") === true, "QR code was not generated at build time");
+    check(await page.getByRole("heading", { name: "一份支持，让更多光影赛事发生" }).isVisible(), "about support section is missing");
+    check((await page.locator('section[aria-labelledby="team-title"] article').count()) === 4, "about team does not list four members");
+    check((await page.getByText("人物照片待替换", { exact: true }).count()) === 4, "team portrait placeholders are not explicit");
+
+    await page.goto(`${baseUrl}/en/about`, { waitUntil: "networkidle" });
+    check(await page.getByRole("heading", { name: "A little support, more stories in light" }).isVisible(), "English support copy is missing");
+    check(await page.getByText("Founder", { exact: true }).isVisible(), "English team roles are missing");
   },
 );
 

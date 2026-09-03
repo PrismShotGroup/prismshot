@@ -149,9 +149,8 @@ export const siteContent: Record<Locale, SiteCopy> = {
           eyebrow: "About us · 棱镜定格",
           title: "Behind",
           ghostTitle: "The Lens",
-          statement: "我们分享的不只是照片，\n也是彼此看见世界的方式。",
-          description:
-            "欢迎摄影爱好者与所有仍在摸索的人，在虚拟世界里一起创作。",
+          statement: "不止是虚拟影像，\n更是同频的视野。",
+          description: "面向所有 VRChat 摄影爱好者，一起探索镜头边界。",
         },
       },
     },
@@ -241,9 +240,9 @@ export const siteContent: Record<Locale, SiteCopy> = {
           eyebrow: "About us · PrismShot",
           title: "Behind",
           ghostTitle: "The Lens",
-          statement: "We share more than photographs—\nwe share ways of seeing the world.",
+          statement: "Beyond virtual imagery,\na shared way of seeing.",
           description:
-            "Photographers and curious beginners are all welcome to create with us in virtual worlds.",
+            "For every VRChat photography enthusiast, exploring the edges of the frame together.",
         },
       },
     },

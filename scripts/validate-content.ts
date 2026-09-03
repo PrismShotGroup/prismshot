@@ -3,7 +3,7 @@ import path from "node:path";
 
 import sharp from "sharp";
 
-import { socialPlatforms } from "../content/about";
+import { socialPlatforms, teamMembers } from "../content/about";
 import { currentContest, contestChampions } from "../content/contests";
 import { activities, calendarEvents, configuredEventMonths } from "../content/events";
 import { galleryPhotos } from "../content/gallery";
@@ -35,6 +35,7 @@ requireUnique(calendarEvents.map((event) => event.id), "calendar events");
 requireUnique(activities.map((activity) => activity.id), "activities");
 requireUnique(galleryPhotos.map((photo) => photo.id), "gallery photos");
 requireUnique(contestChampions.map((champion) => champion.id), "contest champions");
+requireUnique(teamMembers.map((member) => member.id), "team members");
 
 const activityPhotos = activities.flatMap((activity) => activity.photos);
 requireUnique(
@@ -105,6 +106,26 @@ for (const platform of [...homeSocialLinks, ...socialPlatforms]) {
     if (url.protocol !== "https:") errors.push(`${platform.name} must use HTTPS`);
   } catch {
     errors.push(`${platform.name} has an invalid URL`);
+  }
+}
+
+for (const member of teamMembers) {
+  if (!member.name || !member.role.zh || !member.role.en) {
+    errors.push(`${member.id} is missing required bilingual team metadata`);
+  }
+  if (!member.portraitAlt.zh || !member.portraitAlt.en) {
+    errors.push(`${member.id} is missing bilingual portrait alt text`);
+  }
+  if (member.portraitSrc) {
+    if (!member.portraitSrc.startsWith("/images/about/")) {
+      errors.push(`${member.id} portrait must be a local /images/about/ asset`);
+    } else {
+      try {
+        await access(path.join(process.cwd(), "public", member.portraitSrc));
+      } catch {
+        errors.push(`${member.id} portrait is missing: ${member.portraitSrc}`);
+      }
+    }
   }
 }
 

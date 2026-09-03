@@ -1,7 +1,7 @@
 import Image from "next/image";
 import QRCode from "qrcode";
 
-import { aboutPageCopy, socialPlatforms } from "@/content/about";
+import { aboutPageCopy, socialPlatforms, teamMembers } from "@/content/about";
 import { localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
@@ -14,6 +14,7 @@ interface AboutContentProps {
 
 export async function AboutContent({ locale }: AboutContentProps) {
   const copy = aboutPageCopy[locale];
+  const qqPlatform = socialPlatforms.find((platform) => platform.id === "qq");
   const qrCodes = await Promise.all(
     socialPlatforms.map((platform) =>
       QRCode.toDataURL(platform.href, {
@@ -66,8 +67,10 @@ export async function AboutContent({ locale }: AboutContentProps) {
                 </span>
                 <span className={styles.platformArrow} aria-hidden="true">↗</span>
               </div>
-              <h3>{platform.name}</h3>
-              <p>{platform.account}<br />{localize(platform.linkNote, locale)}</p>
+              <div className={styles.platformCopy}>
+                <h3>{platform.name}</h3>
+                <p>{platform.account}<br />{localize(platform.linkNote, locale)}</p>
+              </div>
               <span className={styles.qr}>
                 <Image
                   src={qrCodes[index]}
@@ -78,6 +81,65 @@ export async function AboutContent({ locale }: AboutContentProps) {
                 />
               </span>
             </a>
+          ))}
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.sectionLine}`} aria-labelledby="support-title">
+        <EditorialSectionHeading {...copy.supportSection} id="support-title" />
+        <div className={styles.supportLayout}>
+          <div className={styles.supportIntro}>
+            {copy.supportIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <ol className={styles.supportUses}>
+            {copy.supportUses.map((use, index) => (
+              <li key={use}>
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <p>{use}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+        {qqPlatform && (
+          <a
+            className={styles.supportContact}
+            href={qqPlatform.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>{copy.supportContact}</span>
+            <strong>{copy.supportContactLabel}<i aria-hidden="true">↗</i></strong>
+          </a>
+        )}
+      </section>
+
+      <section className={`${styles.section} ${styles.sectionLine}`} aria-labelledby="team-title">
+        <EditorialSectionHeading {...copy.teamSection} id="team-title" />
+        <p className={styles.teamIntro}>{copy.teamIntro}</p>
+        <div className={styles.teamGrid}>
+          {teamMembers.map((member, index) => (
+            <article className={styles.teamCard} key={member.id}>
+              <div className={styles.portrait}>
+                {member.portraitSrc ? (
+                  <Image
+                    src={member.portraitSrc}
+                    alt={localize(member.portraitAlt, locale)}
+                    fill
+                    sizes="(max-width: 560px) 50vw, (max-width: 1120px) 45vw, 25vw"
+                  />
+                ) : (
+                  <div className={styles.portraitPlaceholder}>
+                    <span className={styles.memberMonogram} aria-hidden="true">{member.monogram}</span>
+                    <span>{copy.portraitPendingLabel}</span>
+                  </div>
+                )}
+                <span className={styles.memberIndex} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div className={styles.memberCopy}>
+                <h3>{member.name}</h3>
+                <p>{localize(member.role, locale)}</p>
+              </div>
+            </article>
           ))}
         </div>
       </section>

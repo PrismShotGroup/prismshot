@@ -9,7 +9,7 @@
 - `content/contests.ts`：当期主题赛、状态边界、规则和历届冠军。
 - `content/gallery.ts`：画廊照片与分页文案。
 - `content/photo-assets.ts`：摄影源图登记、真实尺寸、中英文替代文本和可选焦点。
-- `content/about.ts`：关于文案、五个平台账号与外链。
+- `content/about.ts`：关于文案、五个平台账号与外链、赞助说明和团队成员。
 - `content/readiness.ts`：正式发布占位门禁。
 
 所有访客可见内容都要同时提供 `zh` 和 `en`。作者或日期确实未知时使用 `unknown`；主动匿名使用 `anonymous`。
@@ -53,6 +53,12 @@ Build output directory: out
 在 `content/about.ts` 中同时修改账号名和 `href`。二维码由同一个 `href` 在静态构建时生成，不需要提交二维码图片，也没有浏览器端二维码依赖。QQ 必须替换为可直接访问的加群链接。
 
 首页的 QQ、VRChat、Discord 链接在 `content/site.ts` 中单独配置，两处应保持一致。
+
+## 团队成员
+
+团队成员的姓名、双语职务和照片都在 `content/about.ts` 的 `teamMembers` 中维护。正式照片提供前，`portraitSrc` 保持 `null`，页面显示品牌化占位；替换时将照片放入 `public/images/about/`，把 `portraitSrc` 改为对应的 `/images/about/<文件名>`，并同时确认中英文 `portraitAlt`。四张照片使用统一的 4:5 卡片裁切，页面组件不需要改动。
+
+全部人物照片替换并检查授权后，将 `content/readiness.ts` 中的 `teamPortraits` 改为 `true`。
 
 ## 发布门禁
 
