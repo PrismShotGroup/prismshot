@@ -1,9 +1,9 @@
 export const releaseReadiness = {
-  homeSocialLinks: false,
-  eventPhotography: false,
-  contestContent: false,
-  galleryPhotography: false,
-  aboutIntroduction: true,
-  teamPortraits: false,
-  communityAccounts: false,
+    homeSocialLinks: true,
+    eventPhotography: true,
+    contestContent: true,
+    galleryPhotography: true,
+    aboutIntroduction: true,
+    teamPortraits: true,
+    communityAccounts: true,
 } as const;
