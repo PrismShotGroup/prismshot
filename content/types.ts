@@ -7,6 +7,7 @@ export interface LocalizedText {
 
 export interface PhotoAsset {
   key: string;
+  source: string;
   width: number;
   height: number;
   alt: LocalizedText;

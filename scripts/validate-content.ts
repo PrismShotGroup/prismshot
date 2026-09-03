@@ -1,4 +1,4 @@
-import { access, readdir } from "node:fs/promises";
+import { access } from "node:fs/promises";
 import path from "node:path";
 
 import sharp from "sharp";
@@ -12,6 +12,10 @@ import { releaseReadiness } from "../content/readiness";
 import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site";
 import type { PhotoAsset } from "../content/types";
 import { pageKeys } from "../lib/i18n";
+import {
+  findPhotoSourceFiles,
+  resolvePhotoSourcePath,
+} from "./photo-source-files";
 
 const errors: string[] = [];
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -45,6 +49,7 @@ requireUnique(
 
 const registeredAssets: readonly PhotoAsset[] = Object.values(photoAssets);
 requireUnique(registeredAssets.map((asset) => asset.key), "photo assets");
+requireUnique(registeredAssets.map((asset) => asset.source), "photo asset sources");
 
 const referencedAssets = [
   ...activityPhotos.map((photo) => ({ label: photo.id, asset: photo.asset })),
@@ -143,31 +148,35 @@ if (homeBackgroundSrc) {
 
 const sourceDirectory = path.join(process.cwd(), "assets/source/photos");
 const generatedDirectory = path.join(process.cwd(), "public/generated/photos");
-const sourceFiles = (await readdir(sourceDirectory)).filter((file) =>
-  /\.(jpe?g|png)$/i.test(file),
-);
-const configuredAssetKeys = new Set<string>(
-  registeredAssets.map((asset) => asset.key),
+const sourceFiles = await findPhotoSourceFiles(sourceDirectory);
+const configuredAssetSources = new Set<string>(
+  registeredAssets.map((asset) => asset.source),
 );
 
 for (const sourceFile of sourceFiles) {
-  if (!configuredAssetKeys.has(path.parse(sourceFile).name)) {
-    errors.push(`${sourceFile} is not registered in content/photo-assets.ts`);
+  if (!configuredAssetSources.has(sourceFile.relativePath)) {
+    errors.push(`${sourceFile.relativePath} is not registered in content/photo-assets.ts`);
   }
 }
 
 const minimumWidth = responsivePhotoWidths.at(-1);
 for (const asset of registeredAssets) {
-  const matchingSources = sourceFiles.filter(
-    (sourceFile) => path.parse(sourceFile).name === asset.key,
-  );
-
-  if (matchingSources.length !== 1) {
-    errors.push(`${asset.key} requires exactly one source image; found ${matchingSources.length}`);
+  let sourcePath: string;
+  try {
+    sourcePath = resolvePhotoSourcePath(sourceDirectory, asset.source);
+  } catch (error) {
+    errors.push(`${asset.key} has an invalid source path: ${(error as Error).message}`);
     continue;
   }
 
-  const sourcePath = path.join(sourceDirectory, matchingSources[0]);
+  const sourceFile = sourceFiles.find(
+    (candidate) => candidate.relativePath === asset.source,
+  );
+  if (!sourceFile) {
+    errors.push(`${asset.key} source is missing: ${asset.source}`);
+    continue;
+  }
+
   const sourceMetadata = await sharp(sourcePath).metadata();
   const orientedSize = sourceMetadata.autoOrient ?? sourceMetadata;
 
