@@ -1,7 +1,7 @@
 import { getSiteContent } from "@/content/site";
 import type { Locale } from "@/lib/i18n";
 
-import { ContentPageIntro } from "./content-page-intro";
+import { AnniversaryContent } from "./anniversary-content";
 import { SiteShell } from "./site-shell";
 
 interface AnniversaryRouteProps {
@@ -17,7 +17,7 @@ export function AnniversaryRoute({ locale }: AnniversaryRouteProps) {
       currentPage="anniversary"
       skipLinkLabel={content.skipLinkLabel}
     >
-      <ContentPageIntro locale={locale} page="anniversary" />
+      <AnniversaryContent locale={locale} />
     </SiteShell>
   );
 }

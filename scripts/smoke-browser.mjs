@@ -200,20 +200,24 @@ await runFlow(
     if (anniversaryEnabled) {
       await page.goto(`${baseUrl}/anniversary`, { waitUntil: "networkidle" });
       check(
-        await page.getByRole("heading", { name: "One Year" }).isVisible(),
-        "Chinese anniversary hero is missing",
+        await page.getByRole("heading", { name: "一周年摄影赛" }).isVisible(),
+        "Chinese anniversary heading is missing",
       );
       check(
-        await page.locator("main").getByText("一周年摄影赛", { exact: true }).isVisible(),
-        "Chinese anniversary title is missing",
+        await page.locator('[data-anniversary-wordmark="one-year"]').isVisible(),
+        "Anniversary wordmark is missing",
+      );
+      check(
+        await page.locator('[data-anniversary-prism="one"]').isVisible(),
+        "Anniversary prism artwork is missing",
       );
       await Promise.all([
         page.waitForURL(`${baseUrl}/en/anniversary`),
         page.locator('a[aria-label="Switch to English"]').first().click(),
       ]);
       check(
-        await page.getByText("Anniversary Photo Contest", { exact: true }).isVisible(),
-        "English anniversary title is missing",
+        await page.getByRole("heading", { name: "Anniversary Photo Contest" }).isVisible(),
+        "English anniversary heading is missing",
       );
     }
   },
@@ -278,6 +282,18 @@ await runFlow(
     await page.keyboard.press("Escape");
     check(await landscapeChampion.evaluate((node) => node === document.activeElement), "contest viewer did not restore focus");
     check(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), "mobile contest page has horizontal overflow");
+
+    if (anniversaryEnabled) {
+      await page.goto(`${baseUrl}/anniversary`, { waitUntil: "networkidle" });
+      check(
+        await page.locator('[data-anniversary-prism="one"]').isVisible(),
+        "mobile anniversary prism artwork is missing",
+      );
+      check(
+        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+        "mobile anniversary page has horizontal overflow",
+      );
+    }
   },
 );
 
