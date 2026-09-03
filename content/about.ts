@@ -14,7 +14,7 @@ export interface SocialPlatform {
 }
 
 export interface TeamMember {
-  id: "linqi" | "lukij" | "ky39" | "yumi";
+  id: "linqi" | "lukij" | "ky39" | "umi";
   name: string;
   monogram: string;
   role: LocalizedText;
@@ -81,7 +81,7 @@ export const teamMembers: readonly TeamMember[] = [
     name: "林琪",
     monogram: "LQ",
     role: { zh: "创始人", en: "Founder" },
-    portraitSrc: null,
+    portraitSrc: "/images/about/linqi.jpg",
     portraitAlt: { zh: "林琪的人物照片", en: "Portrait of Linqi" },
   },
   {
@@ -89,7 +89,7 @@ export const teamMembers: readonly TeamMember[] = [
     name: "LukiJ",
     monogram: "LJ",
     role: { zh: "负责人", en: "Lead" },
-    portraitSrc: null,
+    portraitSrc: "/images/about/lukij.png",
     portraitAlt: { zh: "LukiJ 的人物照片", en: "Portrait of LukiJ" },
   },
   {
@@ -97,16 +97,16 @@ export const teamMembers: readonly TeamMember[] = [
     name: "~KY39~",
     monogram: "KY39",
     role: { zh: "管理员", en: "Administrator" },
-    portraitSrc: null,
+    portraitSrc: "/images/about/ky39.jpg",
     portraitAlt: { zh: "~KY39~ 的人物照片", en: "Portrait of ~KY39~" },
   },
   {
-    id: "yumi",
-    name: "尤米",
-    monogram: "YUMI",
-    role: { zh: "网站制作人", en: "Web Producer" },
-    portraitSrc: null,
-    portraitAlt: { zh: "尤米的人物照片", en: "Portrait of Yumi" },
+    id: "umi",
+    name: "TsurumiUmi",
+    monogram: "UMI",
+    role: { zh: "网站制作", en: "Web Producer" },
+    portraitSrc: "/images/about/umi.jpg",
+    portraitAlt: { zh: "尤米的人物照片", en: "Portrait of Umi" },
   },
 ];
 

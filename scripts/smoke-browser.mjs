@@ -331,8 +331,19 @@ await runFlow(
     check((await qrImages.first().getAttribute("src"))?.startsWith("data:image/png;base64,") === true, "QR code was not generated at build time");
     check(await page.getByRole("heading", { name: "一份支持，让更多光影赛事发生" }).isVisible(), "about support section is missing");
     check(await page.getByRole("heading", { name: "赞助用途", exact: true }).isVisible(), "about support-use heading is missing");
-    check((await page.locator('section[aria-labelledby="team-title"] article').count()) === 4, "about team does not list four members");
-    check((await page.getByText("人物照片待替换", { exact: true }).count()) === 4, "team portrait placeholders are not explicit");
+    const teamSection = page.locator('section[aria-labelledby="team-title"]');
+    check((await teamSection.locator("article").count()) === 4, "about team does not list four members");
+    const teamPortraits = teamSection.locator("article img");
+    check((await teamPortraits.count()) === 4, "about team does not render four portraits");
+    await teamSection.scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => (
+      [...document.querySelectorAll('section[aria-labelledby="team-title"] article img')]
+        .every((image) => image.complete && image.naturalWidth > 0)
+    ));
+    check(
+      await teamPortraits.evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0)),
+      "one or more team portraits failed to load",
+    );
 
     await page.goto(`${baseUrl}/en/about`, { waitUntil: "networkidle" });
     check(await page.getByRole("heading", { name: "A little support, more stories in light" }).isVisible(), "English support copy is missing");
