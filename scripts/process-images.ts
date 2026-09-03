@@ -5,6 +5,7 @@ import sharp from "sharp";
 
 import { photoAssets, responsivePhotoWidths } from "../content/photo-assets";
 import type { PhotoAsset, PhotoDimensions } from "../content/types";
+import { getResponsivePhotoVariants } from "../lib/responsive-photo-variants";
 import {
   assertExpectedPhotoDimensions,
   readPhotoDimensions,
@@ -68,6 +69,7 @@ if (duplicateKeys.length > 0) {
 }
 
 const dimensionsByKey = new Map<string, PhotoDimensions>();
+let generatedFileCount = 0;
 
 for (const asset of assets) {
   const sourceFile = sourceFiles.find(
@@ -84,24 +86,21 @@ for (const asset of assets) {
   dimensionsByKey.set(asset.key, dimensions);
   assertExpectedPhotoDimensions(asset, dimensions, sourceFile.relativePath);
 
-  const largestOutputWidth = responsivePhotoWidths.at(-1);
-  if (!largestOutputWidth || dimensions.width < largestOutputWidth) {
-    throw new Error(
-      `[images] ${sourceFile.relativePath} is ${dimensions.width}px wide; responsive sources require at least ${largestOutputWidth}px`,
-    );
-  }
-
+  const variants = getResponsivePhotoVariants(
+    dimensions.width,
+    responsivePhotoWidths,
+  );
   const jobs = [];
-  for (const width of responsivePhotoWidths) {
-    const webpPath = path.join(outputDirectory, `${asset.key}-${width}.webp`);
-    const avifPath = path.join(outputDirectory, `${asset.key}-${width}.avif`);
+  for (const variant of variants) {
+    const webpPath = path.join(outputDirectory, `${asset.key}-${variant.fileWidth}.webp`);
+    const avifPath = path.join(outputDirectory, `${asset.key}-${variant.fileWidth}.avif`);
 
     if (await needsBuild(sourcePath, webpPath)) {
       jobs.push(
         sharp(sourcePath)
           .rotate()
-          .resize({ width, withoutEnlargement: true })
-          .webp({ quality: width === 480 ? 76 : 82, effort: 4 })
+          .resize({ width: variant.outputWidth, withoutEnlargement: true })
+          .webp({ quality: variant.outputWidth === 480 ? 76 : 82, effort: 4 })
           .toFile(webpPath),
       );
     }
@@ -109,18 +108,19 @@ for (const asset of assets) {
       jobs.push(
         sharp(sourcePath)
           .rotate()
-          .resize({ width, withoutEnlargement: true })
-          .avif({ quality: width === 480 ? 48 : 56, effort: 3 })
+          .resize({ width: variant.outputWidth, withoutEnlargement: true })
+          .avif({ quality: variant.outputWidth === 480 ? 48 : 56, effort: 3 })
           .toFile(avifPath),
       );
     }
   }
 
   await Promise.all(jobs);
+  generatedFileCount += variants.length * 2;
 }
 
 await writePhotoDimensionsManifest(dimensionsOutputPath, dimensionsByKey);
 
 console.log(
-  `[images] ensured ${assets.length * responsivePhotoWidths.length * 2} responsive files from ${assets.length} registered sources`,
+  `[images] ensured ${generatedFileCount} responsive files from ${assets.length} registered sources`,
 );

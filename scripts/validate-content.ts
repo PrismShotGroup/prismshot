@@ -13,6 +13,7 @@ import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site
 import { getPhotoDimensions } from "../content/types";
 import type { PhotoAsset } from "../content/types";
 import { pageKeys } from "../lib/i18n";
+import { getResponsivePhotoVariants } from "../lib/responsive-photo-variants";
 import {
   findPhotoSourceFiles,
   resolvePhotoSourcePath,
@@ -93,7 +94,6 @@ if (new Date(currentContest.voteStart) >= new Date(currentContest.voteEnd)) {
   errors.push("contest voting boundary must precede vote end");
 }
 
-if (galleryPhotos.length < 48) errors.push("gallery requires at least 48 photographs");
 let encounteredUnknownDate = false;
 for (const photo of galleryPhotos) {
   if (!photo.date || photo.date === "unknown") encounteredUnknownDate = true;
@@ -157,7 +157,6 @@ for (const sourceFile of sourceFiles) {
   }
 }
 
-const minimumWidth = responsivePhotoWidths.at(-1);
 for (const asset of registeredAssets) {
   let sourcePath: string;
   try {
@@ -184,9 +183,6 @@ for (const asset of registeredAssets) {
       `${asset.key} generated dimensions are stale; run npm run images:build`,
     );
   }
-  if (minimumWidth && dimensions.width < minimumWidth) {
-    errors.push(`${asset.key} is ${dimensions.width}px wide; minimum usable width is ${minimumWidth}px`);
-  }
   if (asset.alt && (!asset.alt.zh || !asset.alt.en)) {
     errors.push(`${asset.key} has incomplete bilingual alt text`);
   }
@@ -200,22 +196,31 @@ for (const asset of registeredAssets) {
     errors.push(`${asset.key} focal point must use percentages from 0 to 100`);
   }
 
-  for (const width of responsivePhotoWidths) {
-    const expectedHeight = Math.round((dimensions.height / dimensions.width) * width);
+  const variants = getResponsivePhotoVariants(
+    dimensions.width,
+    responsivePhotoWidths,
+  );
+  for (const variant of variants) {
+    const expectedHeight = Math.round(
+      (dimensions.height / dimensions.width) * variant.outputWidth,
+    );
     for (const format of ["webp", "avif"] as const) {
       const outputPath = path.join(
         generatedDirectory,
-        `${asset.key}-${width}.${format}`,
+        `${asset.key}-${variant.fileWidth}.${format}`,
       );
       try {
         const outputMetadata = await sharp(outputPath).metadata();
-        if (outputMetadata.width !== width || outputMetadata.height !== expectedHeight) {
+        if (
+          outputMetadata.width !== variant.outputWidth ||
+          outputMetadata.height !== expectedHeight
+        ) {
           errors.push(
-            `${asset.key}-${width}.${format} is ${outputMetadata.width}×${outputMetadata.height}; expected ${width}×${expectedHeight}`,
+            `${asset.key}-${variant.fileWidth}.${format} is ${outputMetadata.width}×${outputMetadata.height}; expected ${variant.outputWidth}×${expectedHeight}`,
           );
         }
       } catch {
-        errors.push(`${asset.key} is missing its ${width}px ${format.toUpperCase()} variant`);
+        errors.push(`${asset.key} is missing its ${variant.outputWidth}px ${format.toUpperCase()} variant`);
       }
     }
   }

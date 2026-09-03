@@ -1,26 +1,174 @@
 import type { PhotoAsset } from "./types";
 
 export const photoAssets = {
-  event01: { key: "event-01", source: "event-01.jpg", width: 1600, height: 1068, alt: { zh: "夜间活动中的人群与灯光", en: "A crowd gathered under night-time lights" } },
-  event02: { key: "event-02", source: "event-02.jpg", width: 1600, height: 1067, alt: { zh: "蓝紫灯光下的活动现场", en: "An event scene under blue and violet light" } },
-  event03: { key: "event-03", source: "event-03.jpg", width: 1600, height: 1067, alt: { zh: "聚会现场的合照时刻", en: "A group-photo moment at the gathering" } },
-  event04: { key: "event-04", source: "event-04.jpg", width: 1600, height: 1200, alt: { zh: "彩色灯光下的活动参与者", en: "Event participants under colourful lights" } },
-  event05: { key: "event-05", source: "event-05.jpg", width: 1600, height: 1067, alt: { zh: "蓝色舞台灯光与人物剪影", en: "Silhouettes under blue stage lights" } },
-  event06: { key: "event-06", source: "event-06.jpg", width: 1600, height: 1068, alt: { zh: "舞台灯光中的创作现场", en: "A creative session under stage lights" } },
-  event07: { key: "event-07", source: "event-07.jpg", width: 1600, height: 1067, alt: { zh: "电子屏幕环绕的活动现场", en: "An event space surrounded by digital screens" } },
-  event08: { key: "event-08", source: "event-08.jpg", width: 1600, height: 1600, alt: { zh: "活动灯光下的团队", en: "A team gathered under event lights" } },
-  event09: { key: "event-09", source: "event-09.jpg", width: 1600, height: 2000, alt: { zh: "手持相机进行拍摄教学", en: "A hands-on camera lesson" } },
-  event10: { key: "event-10", source: "event-10.jpg", width: 1600, height: 2400, alt: { zh: "旷野景观中的构图练习", en: "A composition exercise in an open landscape" } },
-  event11: { key: "event-11", source: "event-11.jpg", width: 1600, height: 1067, alt: { zh: "山谷间的自然光线", en: "Natural light crossing a mountain valley" } },
-  event12: { key: "event-12", source: "event-12.jpg", width: 1600, height: 2400, alt: { zh: "自然场景中的摄影作品", en: "A photographic study in a natural setting" } },
+    photoCoaching01: {
+        key: "photo-coaching-01",
+        source: "events/photo-coaching-01.jpg",
+    },
+    photoCoaching02: {
+        key: "photo-coaching-02",
+        source: "events/photo-coaching-02.jpg",
+    },
+    photoCoaching03: {
+        key: "photo-coaching-03",
+        source: "events/photo-coaching-03.png",
+    },
+    photoCoaching04: {
+        key: "photo-coaching-04",
+        source: "events/photo-coaching-04.png",
+    },
+    framePartners01: {
+        key: "frame-partners-01",
+        source: "events/frame-partners-01.png",
+    },
+    framePartners02: {
+        key: "frame-partners-02",
+        source: "events/frame-partners-02.jpeg",
+    },
+    framePartners03: {
+        key: "frame-partners-03",
+        source: "events/frame-partners-03.png",
+    },
+    framePartners04: {
+        key: "frame-partners-04",
+        source: "events/frame-partners-04.jpeg",
+    },
+    togetherOneFrame01: {
+        key: "together-one-frame-01",
+        source: "events/together-one-frame-01.jpeg",
+    },
+    togetherOneFrame02: {
+        key: "together-one-frame-02",
+        source: "events/together-one-frame-02.jpeg",
+    },
+    togetherOneFrame03: {
+        key: "together-one-frame-03",
+        source: "events/together-one-frame-03.png",
+    },
+    togetherOneFrame04: {
+        key: "together-one-frame-04",
+        source: "events/together-one-frame-04.png",
+    },
+    issue2: {
+        key: "issue2",
+        source: "contests/issue2.jpeg",
+    },
+    issue3: {
+        key: "issue3",
+        source: "contests/issue3.jpeg",
+    },
+    issue4: {
+        key: "issue4",
+        source: "contests/issue4.jpeg",
+    },
+    issue5: {
+        key: "issue5",
+        source: "contests/issue5.png",
+    },
+    issue6: {
+        key: "issue6",
+        source: "contests/issue6.jpeg",
+    },
+    issue7: {
+        key: "issue7",
+        source: "contests/issue7.png",
+    },
+    issue8: {
+        key: "issue8",
+        source: "contests/issue8.jpeg",
+    },
+    issue9: {
+        key: "issue9",
+        source: "contests/issue9.png",
+    },
+    issue10: {
+        key: "issue10",
+        source: "contests/issue10.jpeg",
+    },
+    issue11: {
+        key: "issue11",
+        source: "contests/issue11.jpeg",
+    },
+    issue12: {
+        key: "issue12",
+        source: "contests/issue12.png",
+    },
+    issue13: {
+        key: "issue13",
+        source: "contests/issue13.jpeg",
+    },
+    gallery1: {
+        key: "2025-12-13-0",
+        source: "gallery/2025-12-13-0.jpeg",
+    },
+    gallery2: {
+        key: "2025-12-13-1",
+        source: "gallery/2025-12-13-1.jpeg",
+    },
+    gallery3: {
+        key: "2026-1-17",
+        source: "gallery/2026-1-17.jpeg",
+    },
+    gallery4: {
+        key: "2026-02-07-0",
+        source: "gallery/2026-02-07-0.png",
+    },
+    gallery5: {
+        key: "2026-02-07-1",
+        source: "gallery/2026-02-07-1.png",
+    },
+    gallery6: {
+        key: "2026-02-27",
+        source: "gallery/2026-02-27.png",
+    },
+    gallery7: {
+        key: "2026-03-20-0",
+        source: "gallery/2026-03-20-0.png",
+    },
+    gallery8: {
+        key: "2026-03-20-1",
+        source: "gallery/2026-03-20-1.png",
+    },
+    gallery9: {
+        key: "2026-04-10",
+        source: "gallery/2026-04-10.png",
+    },
+    gallery10: {
+        key: "2026-05-02",
+        source: "gallery/2026-05-02.png",
+    },
+    gallery11: {
+        key: "2026-06-05",
+        source: "gallery/2026-06-05.png",
+    },
+    gallery12: {
+        key: "2026-06-26",
+        source: "gallery/2026-06-26.png",
+    },
+    gallery13: {
+        key: "2026-07-11",
+        source: "gallery/2026-07-11.png",
+    },
+    gallery14: {
+        key: "2026-07-18",
+        source: "gallery/2026-07-18.jpeg",
+    },
+    gallery15: {
+        key: "2026-08-07",
+        source: "gallery/2026-08-07.jpeg",
+    },
+    gallery16: {
+        key: "2026-08-28",
+        source: "gallery/2026-08-28.jpeg",
+    },
 } as const satisfies Record<string, PhotoAsset>;
 
 export const responsivePhotoWidths = [480, 960, 1600] as const;
 
 export function getPhotoSource(
-  asset: Pick<PhotoAsset, "key">,
-  width: (typeof responsivePhotoWidths)[number] = 1600,
-  format: "avif" | "webp" = "webp",
+    asset: Pick<PhotoAsset, "key">,
+    width: (typeof responsivePhotoWidths)[number] = 1600,
+    format: "avif" | "webp" = "webp",
 ): string {
-  return `/generated/photos/${asset.key}-${width}.${format}`;
+    return `/generated/photos/${asset.key}-${width}.${format}`;
 }
