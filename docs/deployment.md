@@ -18,10 +18,18 @@ NEXT_PUBLIC_SITE_URL=https://prismshot.top
 PRISMSHOT_RELEASE=1
 ```
 
+一周年摄影赛使用可选的构建变量控制：
+
+```text
+PRISMSHOT_ANNIVERSARY=1
+```
+
+不设置时，构建收尾阶段会移除中英文周年页静态文件，并校验导航与 sitemap 中没有入口；设置为 `1` 时则同时生成两种语言的页面与入口。该行为依赖 npm `postbuild`，因此 Cloudflare 的构建命令必须保持为 `npm run build`。
+
 预览环境设置 `PRISMSHOT_PREVIEW=1`，生成的页面与 `robots.txt` 会禁止索引。正式分支不要设置该变量。
 
 ## 域名
 
 在 Pages 项目中绑定 `prismshot.top`。若需要将 `*.pages.dev` 永久跳转到规范域名，应在 Cloudflare 控制台使用 Bulk Redirect 配置；不要在静态站点中写死会影响预览环境的全局重定向。
 
-`public/_headers` 为静态资源设置长期缓存，并添加基础安全响应头。部署后抽查 `/`、`/en`、四个内容页、`/robots.txt` 和 `/sitemap.xml`，并直接访问至少一个 `/generated/photos/*.webp` 或 `.avif` 地址确认返回 200。
+`public/_headers` 为静态资源设置长期缓存，并添加基础安全响应头。部署后抽查 `/`、`/en`、常驻内容页、`/robots.txt` 和 `/sitemap.xml`，并直接访问至少一个 `/generated/photos/*.webp` 或 `.avif` 地址确认返回 200。周年页关闭时确认 `/anniversary` 与 `/en/anniversary` 返回 404；开启时确认两页均返回 200。

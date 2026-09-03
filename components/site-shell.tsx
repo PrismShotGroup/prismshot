@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import type { Locale, PageKey } from "@/lib/i18n";
+import { getEnabledPageKeys } from "@/lib/site-features";
 
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -20,6 +21,7 @@ export function SiteShell({
   children,
 }: SiteShellProps) {
   const isHome = currentPage === "home";
+  const navigationPages = getEnabledPageKeys();
 
   return (
     <>
@@ -30,6 +32,7 @@ export function SiteShell({
         locale={locale}
         currentPage={currentPage}
         isHome={isHome}
+        navigationPages={navigationPages}
       />
       {children}
       {!isHome && (

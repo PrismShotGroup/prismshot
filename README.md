@@ -44,4 +44,6 @@ npm run build
 
 `npm run dev` 会先生成本地响应式图片。`npm run build` 会先校验内容并生成多档 WebP/AVIF，然后按 `next.config.ts` 的静态导出配置生成 `out/`。
 
+一周年摄影赛默认不参与构建。需要同时启用中英文页面、导航入口和 sitemap 条目时，使用 `PRISMSHOT_ANNIVERSARY=1 npm run build`；取消该变量后重新构建即可关闭。必须通过 `npm run build` 构建，构建后的收尾校验会保证开关状态与静态产物一致。
+
 正式发布构建需设置 `PRISMSHOT_RELEASE=1`。只要 [`content/readiness.ts`](./content/readiness.ts) 仍存在未确认项，发布构建就会失败；普通开发和预览构建不受影响。

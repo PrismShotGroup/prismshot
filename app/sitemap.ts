@@ -1,13 +1,16 @@
 import type { MetadataRoute } from "next";
 
-import { getPageHref, locales, pageKeys } from "@/lib/i18n";
+import { getPageHref, locales } from "@/lib/i18n";
 import { siteUrl } from "@/lib/metadata";
+import { getEnabledPageKeys } from "@/lib/site-features";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const enabledPageKeys = getEnabledPageKeys();
+
   return locales.flatMap((locale) =>
-    pageKeys.map((page) => ({
+    enabledPageKeys.map((page) => ({
       url: new URL(getPageHref(locale, page), siteUrl).toString(),
       lastModified: new Date(),
       changeFrequency: page === "home" ? "weekly" : "monthly",

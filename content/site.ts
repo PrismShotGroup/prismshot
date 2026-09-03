@@ -124,6 +124,19 @@ export const siteContent: Record<Locale, SiteCopy> = {
             "每期围绕一个主题展开摄影赛。成员在社群内投稿与投票，在这里关注赛程并查看获奖作品。",
         },
       },
+      anniversary: {
+        navLabel: "一周年摄影赛",
+        headerMeta: "One year / Coming soon",
+        metaTitle: "一周年摄影赛｜PrismShot 棱镜定格",
+        metaDescription: "PrismShot 棱镜定格一周年摄影赛，敬请期待。",
+        hero: {
+          eyebrow: "Anniversary · 一周年",
+          title: "One",
+          ghostTitle: "Year",
+          statement: "一周年摄影赛",
+          description: "敬请期待",
+        },
+      },
       gallery: {
         navLabel: "画廊",
         headerMeta: "Archive / Moments",
@@ -213,6 +226,19 @@ export const siteContent: Record<Locale, SiteCopy> = {
           statement: "One shared theme,\ncountless ways to see the world.",
           description:
             "Each round explores a photography theme. Members submit and vote in the community; follow the timeline and discover the winning photographs here.",
+        },
+      },
+      anniversary: {
+        navLabel: "Anniversary",
+        headerMeta: "One year / Coming soon",
+        metaTitle: "Anniversary Photo Contest | PrismShot",
+        metaDescription: "The PrismShot Anniversary Photo Contest is coming soon.",
+        hero: {
+          eyebrow: "Anniversary · PrismShot",
+          title: "One",
+          ghostTitle: "Year",
+          statement: "Anniversary Photo Contest",
+          description: "Coming soon",
         },
       },
       gallery: {

@@ -9,7 +9,6 @@ import {
   getAlternateLocale,
   getHtmlLang,
   getPageHref,
-  pageKeys,
   type Locale,
   type PageKey,
 } from "@/lib/i18n";
@@ -20,6 +19,7 @@ interface SiteHeaderProps {
   locale: Locale;
   currentPage: PageKey;
   isHome?: boolean;
+  navigationPages: readonly PageKey[];
 }
 
 const menuId = "mobile-menu";
@@ -28,6 +28,7 @@ export function SiteHeader({
   locale,
   currentPage,
   isHome = false,
+  navigationPages,
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -138,7 +139,7 @@ export function SiteHeader({
           className={styles.desktopNav}
           aria-label={content.primaryNavigationLabel}
         >
-          {pageKeys.map((page) => (
+          {navigationPages.map((page) => (
             <Link
               key={page}
               href={getPageHref(locale, page)}
@@ -189,7 +190,7 @@ export function SiteHeader({
       >
         <div className={styles.mobileMenuInner}>
           <nav aria-label={content.mobileNavigationLabel}>
-            {pageKeys.map((page, index) => (
+            {navigationPages.map((page, index) => (
               <Link
                 key={page}
                 href={getPageHref(locale, page)}

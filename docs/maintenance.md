@@ -60,6 +60,12 @@ Build output directory: out
 
 全部人物照片替换并检查授权后，将 `content/readiness.ts` 中的 `teamPortraits` 改为 `true`。
 
+## 一周年摄影赛
+
+一周年摄影赛是独立顶级页面，默认关闭。运行 `PRISMSHOT_ANNIVERSARY=1 npm run build` 会同时生成 `/anniversary` 与 `/en/anniversary`，并在两种语言的导航和 sitemap 中加入入口；不设置该变量重新构建会同时移除这些内容。
+
+页面名称和中英文“敬请期待”文案在 `content/site.ts` 中维护。导航顺序与路由段集中在 `lib/i18n.ts`，开关规则在 `lib/site-features.ts`。不要只改路由文件夹或单独添加一种语言的入口。
+
 ## 发布门禁
 
 普通开发允许占位内容。准备正式发布时：

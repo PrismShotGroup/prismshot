@@ -6,6 +6,7 @@ export const pageKeys = [
   "home",
   "events",
   "contests",
+  "anniversary",
   "gallery",
   "about",
 ] as const;
@@ -17,13 +18,18 @@ const pageSegments: Record<PageKey, string> = {
   home: "",
   events: "events",
   contests: "contests",
+  anniversary: "anniversary",
   gallery: "gallery",
   about: "about",
 };
 
+export function getPageSegment(page: PageKey): string {
+  return pageSegments[page];
+}
+
 export function getPageHref(locale: Locale, page: PageKey): string {
   const localePrefix = locale === "en" ? "/en" : "";
-  const segment = pageSegments[page];
+  const segment = getPageSegment(page);
 
   if (!segment) {
     return localePrefix || "/";

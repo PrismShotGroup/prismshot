@@ -6,6 +6,7 @@ import { chromium } from "playwright-core";
 import sharp from "sharp";
 
 const outputRoot = path.join(process.cwd(), "out");
+const anniversaryEnabled = process.env.PRISMSHOT_ANNIVERSARY === "1";
 const mimeTypes = {
   ".avif": "image/avif",
   ".css": "text/css; charset=utf-8",
@@ -151,6 +152,11 @@ await runFlow(
   async (page) => {
     await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
     check((await page.locator("html").getAttribute("lang")) === "zh-CN", "Chinese html lang missing");
+    check(
+      (await page.getByRole("link", { name: "一周年摄影赛", exact: true }).count()) ===
+        (anniversaryEnabled ? 1 : 0),
+      "Chinese anniversary navigation does not match the feature flag",
+    );
     check((await page.locator('img[src*="crystal-"]').count()) === 2, "homepage crystal layers missing");
     check((await page.locator("footer").count()) === 0, "homepage must not render a footer");
     const homepageImageSources = await page
@@ -172,6 +178,11 @@ await runFlow(
     ]);
     check((await page.locator("html").getAttribute("lang")) === "en", "English html lang missing");
     check(await page.getByRole("link", { name: "Home", exact: true }).first().getAttribute("aria-current") === "page", "English current navigation missing");
+    check(
+      (await page.getByRole("link", { name: "Anniversary", exact: true }).count()) ===
+        (anniversaryEnabled ? 1 : 0),
+      "English anniversary navigation does not match the feature flag",
+    );
 
     await page.goto(`${baseUrl}/events`, { waitUntil: "networkidle" });
     await Promise.all([
@@ -180,6 +191,31 @@ await runFlow(
     ]);
     await page.waitForTimeout(1000);
     check((await page.evaluate(() => window.scrollY)) === 0, "route navigation did not reset scroll position to the top");
+
+    const anniversaryResponse = await page.request.get(`${baseUrl}/anniversary`);
+    check(
+      anniversaryResponse.status() === (anniversaryEnabled ? 200 : 404),
+      "Chinese anniversary route status does not match the feature flag",
+    );
+    if (anniversaryEnabled) {
+      await page.goto(`${baseUrl}/anniversary`, { waitUntil: "networkidle" });
+      check(
+        await page.getByRole("heading", { name: "One Year" }).isVisible(),
+        "Chinese anniversary hero is missing",
+      );
+      check(
+        await page.locator("main").getByText("一周年摄影赛", { exact: true }).isVisible(),
+        "Chinese anniversary title is missing",
+      );
+      await Promise.all([
+        page.waitForURL(`${baseUrl}/en/anniversary`),
+        page.locator('a[aria-label="Switch to English"]').first().click(),
+      ]);
+      check(
+        await page.getByText("Anniversary Photo Contest", { exact: true }).isVisible(),
+        "English anniversary title is missing",
+      );
+    }
   },
 );
 
