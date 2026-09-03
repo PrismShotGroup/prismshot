@@ -1,5 +1,7 @@
 import type { Locale } from "@/lib/i18n";
 
+import { photoDimensions } from "./photo-dimensions.generated";
+
 export interface LocalizedText {
   zh: string;
   en: string;
@@ -8,13 +10,18 @@ export interface LocalizedText {
 export interface PhotoAsset {
   key: string;
   source: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   alt?: LocalizedText;
   focalPoint?: {
     x: number;
     y: number;
   };
+}
+
+export interface PhotoDimensions {
+  width: number;
+  height: number;
 }
 
 export interface PhotoContent {
@@ -62,6 +69,16 @@ export function getPhotoAlt(asset: PhotoAsset, locale: Locale): string {
     : locale === "zh"
       ? "摄影作品"
       : "Photograph";
+}
+
+export function getPhotoDimensions(asset: Pick<PhotoAsset, "key">): PhotoDimensions {
+  const dimensions = (photoDimensions as Record<string, PhotoDimensions>)[asset.key];
+  if (!dimensions) {
+    throw new Error(
+      `Photo dimensions are missing for ${asset.key}; run npm run images:build`,
+    );
+  }
+  return dimensions;
 }
 
 export function getPhotoLabel(photo: PhotoContent, locale: Locale): string {

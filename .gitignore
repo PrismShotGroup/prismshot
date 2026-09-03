@@ -17,6 +17,7 @@
 /.next/
 /out/
 /public/generated/
+/content/photo-dimensions.generated.js
 
 # production
 /build
@@ -45,4 +46,3 @@ next-env.d.ts
 
 .~lock.*#
 ~$*.docx
-

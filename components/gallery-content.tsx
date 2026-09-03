@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { galleryPageCopy, galleryPhotos } from "@/content/gallery";
 import {
   getPhotoAlt,
+  getPhotoDimensions,
   getPhotoLabel,
   getPhotoMetadataLabel,
   localize,
@@ -44,6 +45,7 @@ export function GalleryContent({ locale }: GalleryContentProps) {
 
       <div className={styles.masonry}>
         {visiblePhotos.map((photo, index) => {
+          const dimensions = getPhotoDimensions(photo.asset);
           const title = photo.title ? localize(photo.title, locale) : undefined;
           const author = getPhotoMetadataLabel(photo.author, locale);
           const date = getPhotoMetadataLabel(photo.date, locale);
@@ -59,7 +61,7 @@ export function GalleryContent({ locale }: GalleryContentProps) {
               type="button"
               aria-label={getPhotoLabel(photo, locale)}
               onClick={() => setLightboxIndex(index)}
-              style={{ aspectRatio: `${photo.asset.width} / ${photo.asset.height}` }}
+              style={{ aspectRatio: `${dimensions.width} / ${dimensions.height}` }}
             >
               <ResponsivePhoto
                 photo={photo.asset}

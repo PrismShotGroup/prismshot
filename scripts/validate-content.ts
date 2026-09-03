@@ -10,6 +10,7 @@ import { galleryPhotos } from "../content/gallery";
 import { photoAssets, responsivePhotoWidths } from "../content/photo-assets";
 import { releaseReadiness } from "../content/readiness";
 import { homeBackgroundSrc, homeSocialLinks, siteContent } from "../content/site";
+import { getPhotoDimensions } from "../content/types";
 import type { PhotoAsset } from "../content/types";
 import { pageKeys } from "../lib/i18n";
 import {
@@ -176,14 +177,15 @@ for (const asset of registeredAssets) {
 
   const sourceMetadata = await sharp(sourcePath).metadata();
   const orientedSize = sourceMetadata.autoOrient ?? sourceMetadata;
+  const dimensions = getPhotoDimensions(asset);
 
-  if (orientedSize.width !== asset.width || orientedSize.height !== asset.height) {
+  if (orientedSize.width !== dimensions.width || orientedSize.height !== dimensions.height) {
     errors.push(
-      `${asset.key} source is ${orientedSize.width}×${orientedSize.height} after EXIF orientation; asset record says ${asset.width}×${asset.height}`,
+      `${asset.key} generated dimensions are stale; run npm run images:build`,
     );
   }
-  if (minimumWidth && asset.width < minimumWidth) {
-    errors.push(`${asset.key} is ${asset.width}px wide; minimum usable width is ${minimumWidth}px`);
+  if (minimumWidth && dimensions.width < minimumWidth) {
+    errors.push(`${asset.key} is ${dimensions.width}px wide; minimum usable width is ${minimumWidth}px`);
   }
   if (asset.alt && (!asset.alt.zh || !asset.alt.en)) {
     errors.push(`${asset.key} has incomplete bilingual alt text`);
@@ -199,7 +201,7 @@ for (const asset of registeredAssets) {
   }
 
   for (const width of responsivePhotoWidths) {
-    const expectedHeight = Math.round((asset.height / asset.width) * width);
+    const expectedHeight = Math.round((dimensions.height / dimensions.width) * width);
     for (const format of ["webp", "avif"] as const) {
       const outputPath = path.join(
         generatedDirectory,

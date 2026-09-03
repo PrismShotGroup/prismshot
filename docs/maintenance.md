@@ -8,7 +8,8 @@
 - `content/events.ts`：活动日历、活动介绍与活动照片。
 - `content/contests.ts`：当期主题赛、状态边界、规则和历届冠军。
 - `content/gallery.ts`：画廊照片与分页文案。
-- `content/photo-assets.ts`：摄影源图路径、稳定 key、真实尺寸、可选替代文本和可选焦点。
+- `content/photo-assets.ts`：摄影源图路径、稳定 key、可选尺寸断言、可选替代文本和可选焦点。
+- `content/photo-dimensions.generated.js`：图片构建自动生成且被 Git 忽略的真实尺寸清单，不要手工编辑；仓库只保留同名 `.d.ts` 类型声明。
 - `content/about.ts`：关于文案、五个平台账号与外链、赞助说明和团队成员。
 - `content/readiness.ts`：正式发布占位门禁。
 
@@ -20,10 +21,10 @@
 
 ## 摄影图片
 
-横图和竖图使用同一套流程，不需要把原图预先裁成统一比例。建议保留社团提供的最大可用版本；源图经 EXIF 方向纠正后的宽度不得低于 1600 像素。常见的 3840×2160 横图可直接使用；相机方向信息纠正后为竖图时，应登记为 2160×3840。脚本只按照 EXIF 校正相机方向，不会根据长宽猜测方向，也不会为了统一版式擅自旋转照片。
+横图和竖图使用同一套流程，不需要把原图预先裁成统一比例。建议保留社团提供的最大可用版本；源图经 EXIF 方向纠正后的宽度不得低于 1600 像素。常见的 3840×2160 横图可直接使用；相机方向信息纠正后为竖图时，脚本会自动读取为 2160×3840。脚本只按照 EXIF 校正相机方向，不会根据长宽猜测方向，也不会为了统一版式擅自旋转照片。
 
 1. 将 JPG、JPEG 或 PNG 原图放入 `assets/source/photos/`。可以按用途建立任意层级的子目录，例如 `events/photo-class/`、`contests/` 和 `gallery/`；目录名和文件名建议稳定、无空格。
-2. 在 `content/photo-assets.ts` 登记全局唯一的稳定 `key`、相对于照片根目录的 `source`，以及 EXIF 方向纠正后的原图 `width` / `height`。`source` 使用正斜杠，不允许绝对路径、反斜杠或 `..`；不同目录可以出现同名文件，但每个完整 `source` 只能登记一次。
+2. 在 `content/photo-assets.ts` 登记全局唯一的稳定 `key` 和相对于照片根目录的 `source`。`source` 使用正斜杠，不允许绝对路径、反斜杠或 `..`；不同目录可以出现同名文件，但每个完整 `source` 只能登记一次。
 3. 在 `content/events.ts`、`content/gallery.ts` 或 `content/contests.ts` 中通过 `asset: photoAssets.<记录名>` 引用。不要手写 `/generated/` 路径，也不要把 `-1600.webp` 当作内容配置。
 4. 运行 `npm run images:build`；准备提交时运行 `npm run build`。
 
@@ -33,8 +34,6 @@
 photoClass01: {
   key: "event-photo-class-01",
   source: "events/photo-class/01.jpg",
-  width: 2160,
-  height: 3840,
   alt: { zh: "可选的照片描述", en: "Optional photograph description" },
   focalPoint: { x: 50, y: 42 },
 }
@@ -42,7 +41,9 @@ photoClass01: {
 
 其中 `alt` 和 `focalPoint` 都可以省略。没有 `alt` 时，页面使用当前语言的通用“摄影作品”标签，保证图片控件仍有可访问名称；获取到准确描述后再补充更好。
 
-脚本会递归扫描照片根目录、校正 EXIF 方向，但不会复制 EXIF 元数据；每张源图会生成 480、960、1600 像素宽的 WebP 与 AVIF。生成文件继续使用扁平且稳定的 `/generated/photos/<key>-<width>.<format>` 路径，移动源图目录不会改变访客 URL。网页通过 `<picture>` 和 `sizes` 选择合适版本，不直接发布源图。构建会拒绝未登记的源图、重复或不安全的 `source`、重复的 `key`、错误的真实尺寸、宽度不足的原图，以及缺失或尺寸错误的生成变体。
+通常不要填写 `width` 和 `height`。图片构建会读取原图信息、应用 EXIF 方向后生成 `content/photo-dimensions.generated.js`，页面始终使用这份真实尺寸。如果需要人工核对某张图，可以同时填写 `width` 和 `height` 作为可选断言；两者必须成对出现，且与自动读取结果不一致时构建会报错。它们不会覆盖真实尺寸。
+
+脚本会递归扫描照片根目录、校正 EXIF 方向，但不会复制 EXIF 元数据；每张源图会生成 480、960、1600 像素宽的 WebP 与 AVIF。生成文件继续使用扁平且稳定的 `/generated/photos/<key>-<width>.<format>` 路径，移动源图目录不会改变访客 URL。网页通过 `<picture>` 和 `sizes` 选择合适版本，不直接发布源图。构建会拒绝未登记的源图、重复或不安全的 `source`、重复的 `key`、不完整或错误的可选尺寸断言、宽度不足的原图，以及缺失或尺寸错误的生成变体。
 
 ### 各页面图片配置
 
@@ -50,7 +51,7 @@ photoClass01: {
 - 画廊：`galleryPhotos` 的每一项都是独立记录，最低只需要稳定 `id` 和 `asset`。已知日期按新到旧排列；省略日期或填写 `unknown` 的照片统一放在最后。
 - 主题赛：`currentContest.visual` 配置当期主视觉；`contestChampions` 至少登记稳定 `id`、期数 `issue` 和 `image`，冠军主题和作者可选。冠军列表统一使用 4:5 裁切预览，可通过资产的 `focalPoint` 调整主体位置；点击后会在共用大图查看器中按原始比例完整显示。
 
-可选照片字段缺失时，对应标题、说明或元数据行不会显示，也不会阻止构建。省略表示“没有拿到这项资料”；填写 `unknown` 会明确显示“未知 / Unknown”；填写 `anonymous` 会显示“匿名 / Anonymous”。照片的真实宽高只在 `content/photo-assets.ts` 维护一次，活动、画廊和主题赛不要重复填写。
+可选照片字段缺失时，对应标题、说明或元数据行不会显示，也不会阻止构建。省略表示“没有拿到这项资料”；填写 `unknown` 会明确显示“未知 / Unknown”；填写 `anonymous` 会显示“匿名 / Anonymous”。照片的真实宽高由图片构建统一生成，活动、画廊和主题赛不要重复填写。
 
 ## Cloudflare Pages 图片构建
 
