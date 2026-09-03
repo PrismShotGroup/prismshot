@@ -23,8 +23,8 @@ export interface ContestRound {
 export interface ContestChampion {
   id: string;
   issue: string;
-  theme: LocalizedText;
-  author: string;
+  theme?: LocalizedText;
+  author?: string;
   image: PhotoAsset;
 }
 

@@ -8,7 +8,12 @@ import {
   configuredEventMonths,
   eventPageCopy,
 } from "@/content/events";
-import { localize, toPhotoViewerItem } from "@/content/types";
+import {
+  getPhotoAlt,
+  getPhotoLabel,
+  localize,
+  toPhotoViewerItem,
+} from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
@@ -286,10 +291,10 @@ export function EventsContent({ locale }: EventsContentProps) {
                         <button
                           className={styles.mainPhoto}
                           type="button"
-                          aria-label={localize(mainPhoto.title, locale)}
+                          aria-label={getPhotoLabel(mainPhoto, locale)}
                           onClick={() => setLightboxIndex(allPhotos.findIndex((photo) => photo.id === mainPhoto.id))}
                         >
-                          <ResponsivePhoto photo={mainPhoto.asset} alt={localize(mainPhoto.asset.alt, locale)} sizes="(max-width: 820px) 100vw, 43vw" />
+                          <ResponsivePhoto photo={mainPhoto.asset} alt={getPhotoAlt(mainPhoto.asset, locale)} sizes="(max-width: 820px) 100vw, 43vw" />
                         </button>
                         {thumbnails.length > 0 && (
                           <div className={styles.thumbnailGrid} data-count={thumbnails.length}>
@@ -297,10 +302,10 @@ export function EventsContent({ locale }: EventsContentProps) {
                               <button
                                 key={photo.id}
                                 type="button"
-                                aria-label={localize(photo.title, locale)}
+                                aria-label={getPhotoLabel(photo, locale)}
                                 onClick={() => setLightboxIndex(allPhotos.findIndex((item) => item.id === photo.id))}
                               >
-                                <ResponsivePhoto photo={photo.asset} alt={localize(photo.asset.alt, locale)} sizes="(max-width: 820px) 36vw, 16vw" />
+                                <ResponsivePhoto photo={photo.asset} alt={getPhotoAlt(photo.asset, locale)} sizes="(max-width: 820px) 36vw, 16vw" />
                               </button>
                             ))}
                           </div>

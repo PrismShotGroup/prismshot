@@ -74,7 +74,6 @@ export const galleryPageCopy: Record<Locale, {
   sorted: string;
   loadMore: string;
   allLoaded: string;
-  unknown: string;
   photographyBy: string;
 }> = {
   zh: {
@@ -90,7 +89,6 @@ export const galleryPageCopy: Record<Locale, {
     sorted: "按拍摄日期 · 新 → 旧",
     loadMore: "加载更多 24 张",
     allLoaded: "已展示全部照片",
-    unknown: "未知",
     photographyBy: "摄影",
   },
   en: {
@@ -106,7 +104,6 @@ export const galleryPageCopy: Record<Locale, {
     sorted: "Capture date · New → Old",
     loadMore: "Load 24 more",
     allLoaded: "All photographs shown",
-    unknown: "Unknown",
     photographyBy: "Photography",
   },
 };

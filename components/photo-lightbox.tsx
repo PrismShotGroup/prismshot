@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import type { PhotoViewerItem } from "@/content/types";
-import { localize } from "@/content/types";
+import { getPhotoAlt, localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { ResponsivePhoto } from "./responsive-photo";
@@ -118,7 +118,7 @@ export function PhotoLightbox({
             key={photo.id}
             imageClassName={styles.image}
             photo={photo.asset}
-            alt={localize(photo.asset.alt, locale)}
+            alt={getPhotoAlt(photo.asset, locale)}
             sizes="(max-width: 820px) 100vw, calc(100vw - 380px)"
           />
         </div>
@@ -135,7 +135,7 @@ export function PhotoLightbox({
         <div className={styles.counter}>
           {String(index + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </div>
-        <h2>{localize(photo.title, locale)}</h2>
+        {photo.title && <h2>{localize(photo.title, locale)}</h2>}
         {photo.caption && <p>{localize(photo.caption, locale)}</p>}
         {photo.details && photo.details.length > 0 && (
           <div className={styles.meta}>

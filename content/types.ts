@@ -10,7 +10,7 @@ export interface PhotoAsset {
   source: string;
   width: number;
   height: number;
-  alt: LocalizedText;
+  alt?: LocalizedText;
   focalPoint?: {
     x: number;
     y: number;
@@ -20,16 +20,16 @@ export interface PhotoAsset {
 export interface PhotoContent {
   id: string;
   asset: PhotoAsset;
-  author: string;
-  date: string;
-  title: LocalizedText;
+  author?: string;
+  date?: string;
+  title?: LocalizedText;
   caption?: LocalizedText;
 }
 
 export interface PhotoViewerItem {
   id: string;
   asset: PhotoAsset;
-  title: LocalizedText;
+  title?: LocalizedText;
   caption?: LocalizedText;
   details?: readonly LocalizedText[];
 }
@@ -46,13 +46,33 @@ export function toPhotoViewerItem(photo: PhotoContent): PhotoViewerItem {
     asset: photo.asset,
     title: photo.title,
     caption: photo.caption,
-    details: [
-      localizePhotoMetadata(photo.author),
-      localizePhotoMetadata(photo.date),
-    ],
+    details: [photo.author, photo.date]
+      .filter((value): value is string => Boolean(value))
+      .map(localizePhotoMetadata),
   };
 }
 
 export function localize(value: LocalizedText, locale: Locale): string {
   return value[locale];
+}
+
+export function getPhotoAlt(asset: PhotoAsset, locale: Locale): string {
+  return asset.alt
+    ? localize(asset.alt, locale)
+    : locale === "zh"
+      ? "摄影作品"
+      : "Photograph";
+}
+
+export function getPhotoLabel(photo: PhotoContent, locale: Locale): string {
+  return photo.title
+    ? localize(photo.title, locale)
+    : getPhotoAlt(photo.asset, locale);
+}
+
+export function getPhotoMetadataLabel(
+  value: string | undefined,
+  locale: Locale,
+): string | undefined {
+  return value ? localize(localizePhotoMetadata(value), locale) : undefined;
 }

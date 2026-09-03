@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 
 import type { ContestChampion } from "@/content/contests";
-import { localize } from "@/content/types";
+import { getPhotoAlt, getPhotoMetadataLabel, localize } from "@/content/types";
 import type { PhotoViewerItem } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
@@ -18,17 +18,14 @@ interface ContestChampionGalleryProps {
   photographyBy: string;
 }
 
-function displayAuthor(author: string, locale: Locale): string {
-  if (author === "anonymous") return locale === "zh" ? "匿名" : "Anonymous";
-  if (author === "unknown") return locale === "zh" ? "未知" : "Unknown";
-  return author;
-}
-
 function toViewerItem(champion: ContestChampion): PhotoViewerItem {
-  const author = {
-    zh: displayAuthor(champion.author, "zh"),
-    en: displayAuthor(champion.author, "en"),
-  };
+  const authorValue = champion.author;
+  const author = authorValue
+    ? {
+        zh: getPhotoMetadataLabel(authorValue, "zh")!,
+        en: getPhotoMetadataLabel(authorValue, "en")!,
+      }
+    : undefined;
 
   return {
     id: champion.id,
@@ -36,7 +33,9 @@ function toViewerItem(champion: ContestChampion): PhotoViewerItem {
     title: champion.theme,
     details: [
       { zh: `第 ${champion.issue} 期`, en: `Issue ${champion.issue}` },
-      { zh: `摄影 · ${author.zh}`, en: `Photography · ${author.en}` },
+      ...(author
+        ? [{ zh: `摄影 · ${author.zh}`, en: `Photography · ${author.en}` }]
+        : []),
     ],
   };
 }
@@ -54,27 +53,32 @@ export function ContestChampionGallery({
   return (
     <>
       <div className={styles.championsGrid}>
-        {champions.map((champion, index) => (
-          <article className={styles.championCard} key={champion.id}>
-            <button
-              className={styles.championImage}
-              type="button"
-              aria-label={localize(champion.theme, locale)}
-              onClick={() => setLightboxIndex(index)}
-            >
-              <ResponsivePhoto
-                photo={champion.image}
-                alt={localize(champion.image.alt, locale)}
-                sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw"
-              />
-            </button>
-            <div className={styles.championMeta}>
-              <span>ISSUE {champion.issue} · {championLabel}</span>
-              <h3>「{localize(champion.theme, locale)}」</h3>
-              <p>{photographyBy} · {displayAuthor(champion.author, locale)}</p>
-            </div>
-          </article>
-        ))}
+        {champions.map((champion, index) => {
+          const author = getPhotoMetadataLabel(champion.author, locale);
+          return (
+            <article className={styles.championCard} key={champion.id}>
+              <button
+                className={styles.championImage}
+                type="button"
+                aria-label={champion.theme
+                  ? localize(champion.theme, locale)
+                  : getPhotoAlt(champion.image, locale)}
+                onClick={() => setLightboxIndex(index)}
+              >
+                <ResponsivePhoto
+                  photo={champion.image}
+                  alt={getPhotoAlt(champion.image, locale)}
+                  sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw"
+                />
+              </button>
+              <div className={styles.championMeta}>
+                <span>ISSUE {champion.issue} · {championLabel}</span>
+                {champion.theme && <h3>「{localize(champion.theme, locale)}」</h3>}
+                {author && <p>{photographyBy} · {author}</p>}
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {lightboxIndex !== null && (

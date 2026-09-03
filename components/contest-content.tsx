@@ -4,7 +4,7 @@ import {
   currentContest,
   getContestStatus,
 } from "@/content/contests";
-import { localize } from "@/content/types";
+import { getPhotoAlt, localize } from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { ContestStatusBadge } from "./contest-status-badge";
@@ -74,7 +74,7 @@ export function ContestContent({ locale }: ContestContentProps) {
           <div className={styles.currentVisual}>
             <ResponsivePhoto
               photo={currentContest.visual}
-              alt={localize(currentContest.visual.alt, locale)}
+              alt={getPhotoAlt(currentContest.visual, locale)}
               sizes="(max-width: 820px) 100vw, 48vw"
             />
           </div>

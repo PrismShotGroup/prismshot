@@ -95,13 +95,10 @@ if (new Date(currentContest.voteStart) >= new Date(currentContest.voteEnd)) {
 if (galleryPhotos.length < 48) errors.push("gallery requires at least 48 photographs");
 let encounteredUnknownDate = false;
 for (const photo of galleryPhotos) {
-  if (photo.date === "unknown") encounteredUnknownDate = true;
+  if (!photo.date || photo.date === "unknown") encounteredUnknownDate = true;
   else {
     if (!datePattern.test(photo.date)) errors.push(`${photo.id} has an invalid date`);
     if (encounteredUnknownDate) errors.push(`${photo.id} appears after an unknown-date photograph`);
-  }
-  if (!photo.asset.alt.zh || !photo.asset.alt.en || !photo.author) {
-    errors.push(`${photo.id} is missing required bilingual metadata`);
   }
 }
 
@@ -188,8 +185,8 @@ for (const asset of registeredAssets) {
   if (minimumWidth && asset.width < minimumWidth) {
     errors.push(`${asset.key} is ${asset.width}px wide; minimum usable width is ${minimumWidth}px`);
   }
-  if (!asset.alt.zh || !asset.alt.en) {
-    errors.push(`${asset.key} is missing bilingual alt text`);
+  if (asset.alt && (!asset.alt.zh || !asset.alt.en)) {
+    errors.push(`${asset.key} has incomplete bilingual alt text`);
   }
   if (
     asset.focalPoint &&

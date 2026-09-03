@@ -3,7 +3,13 @@
 import { useCallback, useState } from "react";
 
 import { galleryPageCopy, galleryPhotos } from "@/content/gallery";
-import { localize, toPhotoViewerItem } from "@/content/types";
+import {
+  getPhotoAlt,
+  getPhotoLabel,
+  getPhotoMetadataLabel,
+  localize,
+  toPhotoViewerItem,
+} from "@/content/types";
 import type { Locale } from "@/lib/i18n";
 
 import { EditorialSectionHeading } from "./editorial-section-heading";
@@ -38,27 +44,34 @@ export function GalleryContent({ locale }: GalleryContentProps) {
 
       <div className={styles.masonry}>
         {visiblePhotos.map((photo, index) => {
-          const author = photo.author === "unknown" ? copy.unknown : photo.author;
-          const date = photo.date === "unknown" ? copy.unknown : photo.date;
+          const title = photo.title ? localize(photo.title, locale) : undefined;
+          const author = getPhotoMetadataLabel(photo.author, locale);
+          const date = getPhotoMetadataLabel(photo.date, locale);
+          const metadata = [
+            author ? `${copy.photographyBy} · ${author}` : undefined,
+            date,
+          ].filter((value): value is string => Boolean(value)).join(" · ");
 
           return (
             <button
               className={styles.item}
               key={photo.id}
               type="button"
-              aria-label={localize(photo.title, locale)}
+              aria-label={getPhotoLabel(photo, locale)}
               onClick={() => setLightboxIndex(index)}
               style={{ aspectRatio: `${photo.asset.width} / ${photo.asset.height}` }}
             >
               <ResponsivePhoto
                 photo={photo.asset}
-                alt={localize(photo.asset.alt, locale)}
+                alt={getPhotoAlt(photo.asset, locale)}
                 sizes="(max-width: 560px) 100vw, (max-width: 820px) 50vw, 33vw"
               />
-              <span className={styles.itemMeta}>
-                <strong>{localize(photo.title, locale)}</strong>
-                <small>{copy.photographyBy} · {author} · {date}</small>
-              </span>
+              {(title || metadata) && (
+                <span className={styles.itemMeta}>
+                  {title && <strong>{title}</strong>}
+                  {metadata && <small>{metadata}</small>}
+                </span>
+              )}
             </button>
           );
         })}
